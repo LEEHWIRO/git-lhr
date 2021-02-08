@@ -1,3 +1,51 @@
+--중복제거   
+SELECT DISTINCT PROD_LGU 상품분류  
+FROM PROD;
+--Row를 Sort하고자 하면 ORDER BY 절을 사용
+--Ascending : 오름차순 -> ASC 앞
+--decending : 내림차순 -> DESC 뒤
+
+--상품 중 판매가가 170,000원인 상품 조회
+select *
+from prod
+where prod_sale = 170000;
+
+-- 상품 중 판매가가 170.000원이 아닌 상품 조회
+select *
+from prod
+where prod_sale <> 170000
+order by prod_sale asc;
+
+--상품 중 판매가가 170,000원 초과 상품 조회
+select *
+from prod
+where prod_sale > 170000
+order by prod_sale asc;
+
+--낮엔더워 NOT, AND, OR
+--상품 중 상품분류가 P201(여성 캐쥬얼)이고,  판매가가 170,000원인
+--상품 조회
+SELECT *
+FROM  PROD
+WHERE PROD_LGU = 'p201'
+AND   PROD_SALE = 170000;
+
+--상품 중 상품분류가 P201(여성 캐쥬얼)이거나
+--   판매가가 170,000원인  상품 조회
+SELECT *
+FROM  PROD
+WHERE PROD_LGU = 'p201'
+OR   PROD_SALE = 170000;
+--알간모르건 드모르간
+--상품 중 상품분류가 P201(여성 캐쥬얼)도
+--아니고
+--판매가가  170,000원도 아닌 상품 조회
+SELECT *
+FROM PROD
+WHERE 1=1
+--and prod_lgu != 'P201'and prod_sale != 170000;
+AND   NOT(PROD_LGU = 'P201' OR PROD_SALE = 170000);--드모르간정리
+
 --서브쿼리 3총사
 --SCALAR SUBQUREY : SELECT절에 사용
 --INLINE VIEW : FROM절에 사용
