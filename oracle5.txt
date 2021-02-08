@@ -1,0 +1,40 @@
+--조인정리
+카티젼프로덕트 : 모든 열과 행이 조합
+내부조인 : 카티젼프로덕트 결과에서 기본키 = 외래키 인 데이터
+외부조인 : 한쪽의 모든 데이터를출력(기본은 내부조인)
+셀프조인 : 하나의 테이블을 마치 여러개의 테이블처럼 조인
+--ANSI 표준
+CROSS JOIN : 카티젼프로덕트
+INNER JOIN : 내부조인
+OUTER JOIN : 외부조인
+SELF JOIN  : 셀프조인
+NATURAL JOIN
+--집계함수 5총사 / 집계복음 : 집계함수 이외의 컬럼들은 GROUP BY 절에 그대로 모두 기술함
+SUM
+AVG
+MAX
+MIN
+COUNT
+--집계가 완료된 후에 집계함수 자체에 조건을 줄때
+HAVING
+
+--------------------서브쿼리---------------------------
+--상품코드  상품명 거래처코드   거래처명
+--단, 서브쿼리 이용
+SELECT P.PROD_ID  상품코드
+     , P.PROD_NAME  상품명
+     , P.PROD_BUYER  거래처코드
+     , B.BUYER_NAME 거래처명
+FROM   PROD P, BUYER B
+WHERE  P.PROD_BUYER = B.BUYER_ID;
+
+--서브쿼리 3총사
+--SCALAR SUBQUREY : SELECT절에 사용
+--INLINE VIEW : FROM절에 사용
+--NESTED SUBQUREY : WHERE절에 사용
+
+SELECT A.PROD_ID  상품코드
+     , A.PROD_NAME  상품명
+     , A.PROD_BUYER  거래처코드
+     , (SELECT BUYER_NAME FROM BUYER WHERE BUYER_ID = A.PROD_BUYER) 거래처명
+FROM   PROD A;
