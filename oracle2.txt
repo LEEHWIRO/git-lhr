@@ -1,0 +1,19 @@
+SELECT PROD_PRICE 변경전
+     , LPAD(PROD_PRICE, 10, '*') 변경후 --왼쪽공백
+     , RPAD(PROD_PRICE, 10, '*') 변경후 --오른쪽공백
+FROM   PROD;
+
+SELECT '<' || LTRIM('     AAA     ') || '>' "LTRIM1",    --좌측 공백제거
+       '<' || LTRIM('Hello World', 'He') || '>' "LTRIM2",--왼쪽부터 'He' 문자를 찾아 하나 제거
+FROM DUAL;
+
+SELECT '<' || RTRIM('     A A A     ') || '>' "RTRIM1",  -- 우측 공백제거
+       '<' || RTRIM('Hello World', 'ld') || '>' "RTRIM2" --우측부터 'He' 문자를 찾아 하나 제거
+FROM DUAL;
+
+SELECT '<' || TRIM('     AAA     ') || '>'  TRIM1,               --앞뒤 공백제거
+       '<' || TRIM(LEADING 'a' FROM 'aaAaBaAaa') || '>'  TRIM2,  --앞 연속되는 a 제거
+       '<' || TRIM(TRAILING 'a' FROM 'aaAaBaAaa') || '>'  TRIM3, --뒤 연속되는 a제거
+       '<' || TRIM(BOTH 'a' FROM 'aaAaBaAaa') || '>'  TRIM4,     --앞뒤(양쪽) 연속되는 a제거
+       '<' || TRIM( 'a' FROM 'aaAaBaAaa') || '>'  TRIM5          --앞뒤 연속되는 a제거
+FROM SYS.DUAL; --DUAL : 가상의 테이블, SYS계정에서 소유 생략가능
