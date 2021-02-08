@@ -1,0 +1,11 @@
+--업데이트 쎄대여
+UPDATE LPROD
+SET    LPROD_NM = '향수'
+WHERE  LPROD_GU = 'P102';
+
+--등푸른생선 주세요
+SELECT *
+FROM LPROD
+WHERE LPROD_GU = 'P202';
+
+
