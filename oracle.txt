@@ -46,46 +46,47 @@ WHERE 1=1
 --and prod_lgu != 'P201'and prod_sale != 170000;
 AND   NOT(PROD_LGU = 'P201' OR PROD_SALE = 170000);--드모르간정리
 
---서브쿼리 3총사
---SCALAR SUBQUREY : SELECT절에 사용
---INLINE VIEW : FROM절에 사용
---NESTED SUBQUREY : WHERE절에 사용
+--제조업신청정보
+--상품 중 판매가가 150,000 또는 170,000 또는
+--330,000원인 상품 조회
+SELECT PROD_NAME AS “상품”
+     , PROD_SALE AS “판매가”
+FROM  PROD
+WHERE PROD_SALE IN(150000, 170000,330000);
 
-SELECT A.PROD_ID  상품코드
-     , A.PROD_NAME  상품명
-     , A.PROD_BUYER  거래처코드
-     , (SELECT BUYER_NAME FROM BUYER WHERE BUYER_ID = A.PROD_BUYER) 거래처명
-FROM   PROD A;
+-- 회원테이블에서 회원ID가 C001, F001, W001 인 회원만
+--   검색하시오 ?
+--    ( Alias는 회원ID, 회원명 )
+SELECT MEM_ID 회원ID
+     , MEM_NAME 회원명
+FROM   MEMBER
+WHERE  MEM_ID IN('c001', 'f001', 'w001');
 
----- 회원ID(CART_MEMBER), 회원명, 주문번호(CART_NO),
---   상품코드(CART_PROD), 수량(CART_QTY)
---   단, 서브쿼리 이용
-SELECT A.CART_MEMBER 회원ID
-     , (SELECT MEM_NAME FROM MEMBER WHERE MEM_ID = A.CART_MEMBER) 회원명
-     , A.CART_NO 주문번호
-     , A.CART_PROD 상품코드
-     , A.CART_QTY 수량
-FROM   CART A;
+--상품 분류테이블에서 현재 상품테이블에
+--존재하는 분류만 검색( 분류코드(LPROD_GU), 분류명(LPROD_NM))
+--WHERE절에 사용된 또다른 QUERY : NESTED 서브관리
+SELECT LPROD_GU 분류코드
+    ,  LPROD_NM 분류명
+FROM   LPROD
+WHERE BUYER_ID IN(SELECT DISTINCT PROD_BUYER FROM PROD);
 
---SCALAR 서브쿼리1
--- 입고일자(BUY_DATE), 상품코드(BUY_PROD)
---,상품명, 매입수량(BUY_QTY), 매입단가(BUY_COST)
--- 단, 서브쿼리 이용
+--상품 중 판매가가 100,000원 부터 300,000dnjs
+--사이의 상품 조회
+SELECT PROD_SALE 판매가
+     , PROD_NAME 상품명
+FROM   PROD
+WHERE 1=1
+AND    PROD_SALE BETWEEN 100000 AND 300000;
 
-SELECT BUY_DATE 입고일자
-     , BUY_PROD 상품코드
-     , (SELECT PROD_NAME FROM PROD WHERE PROD_ID = BUY_PROD) 상품명
-     , BUY_QTY 매입수량
-     , BUY_COST 매입단가
-FROM   BUYPROD;
+SELECT LPROD_GU
+     , LPROD_NM
+FROM   LPROD
+WHERE  LPROD_NM LIKE '홍길동\%' ESCAPE '\';
+--와일드카드라는 특수기능을 벗어나라!!
 
---SCALAR 서브쿼리2
--- 거래처코드(BUYER_ID), 거래처명(BUYER_NAME)
---,상품분류코드(BUYER_LGU), 상품분류명
--- 단, 서브쿼리 이용
-
-SELECT BUYER_ID
-     , BUYER_NAME
-     , BUYER_LGU
-     , (SELECT LPROD_NM FROM LPROD WHERE LPROD_GU = BUYER_LGU)
-FROM   BUYER
+SELECT 'a' || 'bcde' FROM DUAL; --결합연산자
+SELECT CHR(65) "CHR", ASCII('ABC') "ASCII" FROM DUAL; --Column의 ASCII값
+SELECT LOWER('DATA manipulation Language') AS "LOWER" --소문자
+     , UPPER('DATA manipulation Language') AS "UPPER" --대문자
+     , INITCAP('DATA manipulation Language') AS "INITCAP" --앞글자만 대문자
+FROM   DUAL;
