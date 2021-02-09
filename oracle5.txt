@@ -101,3 +101,14 @@ SELECT BUY_DATE 입고일자
      , BUY_COST 매입단가
 FROM   BUYPROD
 WHERE  SUBSTR(BUY_PROD,1,4) = (SELECT LPROD_GU FROM LPROD WHERE LPROD_NM ='전자제품');
+
+--NESTED 서브쿼리4
+--NESTED 서브쿼리 : WHERE절에 사용된 서브쿼리
+--장바구니테이블에서 정은실 회원의 구매 현황을 출력
+--ALIAS : 주문번호, 상품코드, 회원ID, 수량
+SELECT CART_NO 주문번호 
+     , CART_PROD 상품코드
+     , CART_MEMBER 회원ID
+     , CART_QTY 수량
+FROM   CART
+WHERE  CART_MEMBER = (SELECT MEM_ID FROM MEMBER WHERE MEM_NAME = '정은실');
