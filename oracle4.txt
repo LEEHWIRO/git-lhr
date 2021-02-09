@@ -32,7 +32,7 @@ SELECT MEM_ID 회원ID
             , 3,MEM_MILEAGE * 1.1
             , DECODE(MOD(SUBSTR(MEM_BIR,5,1),2)
                    , 0,MEM_MILEAGE*1.05
-                   ,MEM_MILEAGE)) 변경마일리지
+                   ,MEM_MILEAGE)) 변경마일리지 
 FROM   MEMBER;
 
 --simple-case-expression
