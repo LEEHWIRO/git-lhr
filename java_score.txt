@@ -69,7 +69,7 @@ public class Score {
 		for (int i = 0; i < ranklist.size() - 1; i++) {
 			int min = i;
 			for (int j = i + 1; j < ranklist.size(); j++) {
-				if (ranklist.get(j) > ranklist.get(min)) {
+				if (ranklist.get(j) < ranklist.get(min)) {
 					min = j;
 				}
 			}
