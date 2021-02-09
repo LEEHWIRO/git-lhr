@@ -112,3 +112,31 @@ SELECT CART_NO 주문번호
      , CART_QTY 수량
 FROM   CART
 WHERE  CART_MEMBER = (SELECT MEM_ID FROM MEMBER WHERE MEM_NAME = '정은실');
+
+--상품Table에서 판매가가 상품평균판매가 보다 큰 상품을 
+--검색하시오 ?  (Alias는 상품명,판매가,평균판매가)
+--SCLAR / NESTED SUBQUERY
+SELECT PROD_NAME 상품명
+     , PROD_SALE 판매가
+     , (SELECT AVG(PROD_SALE) FROM PROD)평균판매가
+FROM   PROD, (SELECT AVG(PROD_SALE) AVG_SALE  FROM PROD) A  
+WHERE  PROD_SALE > (SELECT AVG(PROD_SALE) FROM PROD);
+
+--INLINE VIEW 1
+SELECT B.PROD_NAME 상품명
+     , B.PROD_SALE 판매가
+     , A.AVG_SALE 평균판매가
+FROM   PROD B, (SELECT AVG(PROD_SALE) AVG_SALE  FROM PROD) A  
+WHERE  B.PROD_SALE > A.AVG_SALE;
+
+--INLINE VIEW 2
+--회원테이블에서 마일리지가 평균마일리지 보다 큰 회원을
+--검색하시오 ? (ALIAS : 회원명, 마일리지, 평균마일리지)
+SELECT B.MEM_NAME 회원명
+     , B.MEM_MILEAGE 마일리지 
+     , A.AVG_MILEAGE 평균마일리지
+FROM   MEMBER B, (SELECT ROUND(AVG(NVL(MEM_MILEAGE,0)),1) AVG_MILEAGE FROM MEMBER) A
+WHERE  B.MEM_MILEAGE > A.AVG_MILEAGE;
+
+--평균,카운트 할떄는 무조건 널처리 하자.
+
