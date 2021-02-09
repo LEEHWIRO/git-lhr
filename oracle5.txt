@@ -140,3 +140,47 @@ WHERE  B.MEM_MILEAGE > A.AVG_MILEAGE;
 
 --평균,카운트 할떄는 무조건 널처리 하자.
 
+--고급진것 ★★★★★
+--상관관계  서브쿼리(Correlated Subqueries) 예제 1 
+--장바구니Table에서 회원별 최고의 구매수량을 가진 자료의 회원, 
+--  주문번호, 상품, 수량에 대해 모두 검색하시오 ?
+--   (Alias는 회원, 주문번호, 상품, 수량)
+SELECT A.CART_MEMBER    AS "회원"
+     , A.CART_NO        AS "주문번호"
+     , A.CART_PROD      AS "상품"
+     , A.CART_QTY       AS "수량" 
+FROM   CART A 
+WHERE  A.CART_QTY = (
+                SELECT MAX(B.CART_QTY)  
+                FROM   CART B 
+                WHERE  B.CART_MEMBER = A.CART_MEMBER
+                )
+ORDER BY A.CART_MEMBER ASC;
+
+--상관관계 서브쿼리 예제 2
+--입고테이블 (BUYPROD)에서 (상품별)
+--최고 매입수량을 가진 자료의
+--입고일자, 상품코드, 매입수량, 매입단가를 검색하기
+SELECT A.BUY_DATE 입고일자 
+     , A.BUY_PROD 상품코드 
+     , A.BUY_QTY 매입수량
+     , A.BUY_COST 매입단가
+FROM   BUYPROD A
+WHERE  A.BUY_QTY = ( SELECT MAX(B.BUY_QTY)
+                     FROM   BUYPROD B
+                     WHERE  B.BUY_PROD = A.BUY_PROD)
+ORDER BY A.BUY_PROD;
+
+--상관관계 서브쿼리 예제 3
+--장바구니TABLE에서 일자별 최고의 구매수량을 가진 자료의 회원,
+--주문번호, 상품, 수량에 대해 모두 검색하시오?
+--(ALIAS : 회원, 일자, 상품, 수량)
+SELECT A.CART_MEMBER 회원
+     , SUBSTR(A.CART_NO,1,8) 일자
+     , A.CART_PROD 상품
+     , A.CART_QTY 수량
+FROM   CART A
+WHERE  A.CART_QTY = ( SELECT MAX(B.CART_QTY)
+                      FROM   CART B
+                      WHERE  SUBSTR(B.CART_NO,1,8) = SUBSTR(A.CART_NO,1,8))
+ORDER BY SUBSTR(A.CART_NO,1,8);
