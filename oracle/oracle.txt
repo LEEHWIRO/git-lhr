@@ -1,0 +1,92 @@
+--중복제거   
+SELECT DISTINCT PROD_LGU 상품분류  
+FROM PROD;
+--Row를 Sort하고자 하면 ORDER BY 절을 사용
+--Ascending : 오름차순 -> ASC 앞
+--decending : 내림차순 -> DESC 뒤
+
+--상품 중 판매가가 170,000원인 상품 조회
+select *
+from prod
+where prod_sale = 170000;
+
+-- 상품 중 판매가가 170.000원이 아닌 상품 조회
+select *
+from prod
+where prod_sale <> 170000
+order by prod_sale asc;
+
+--상품 중 판매가가 170,000원 초과 상품 조회
+select *
+from prod
+where prod_sale > 170000
+order by prod_sale asc;
+
+--낮엔더워 NOT, AND, OR
+--상품 중 상품분류가 P201(여성 캐쥬얼)이고,  판매가가 170,000원인
+--상품 조회
+SELECT *
+FROM  PROD
+WHERE PROD_LGU = 'p201'
+AND   PROD_SALE = 170000;
+
+--상품 중 상품분류가 P201(여성 캐쥬얼)이거나
+--   판매가가 170,000원인  상품 조회
+SELECT *
+FROM  PROD
+WHERE PROD_LGU = 'p201'
+OR   PROD_SALE = 170000;
+--알간모르건 드모르간
+--상품 중 상품분류가 P201(여성 캐쥬얼)도
+--아니고
+--판매가가  170,000원도 아닌 상품 조회
+SELECT *
+FROM PROD
+WHERE 1=1
+--and prod_lgu != 'P201'and prod_sale != 170000;
+AND   NOT(PROD_LGU = 'P201' OR PROD_SALE = 170000);--드모르간정리
+
+--제조업신청정보
+--상품 중 판매가가 150,000 또는 170,000 또는
+--330,000원인 상품 조회
+SELECT PROD_NAME AS “상품”
+     , PROD_SALE AS “판매가”
+FROM  PROD
+WHERE PROD_SALE IN(150000, 170000,330000);
+
+-- 회원테이블에서 회원ID가 C001, F001, W001 인 회원만
+--   검색하시오 ?
+--    ( Alias는 회원ID, 회원명 )
+SELECT MEM_ID 회원ID
+     , MEM_NAME 회원명
+FROM   MEMBER
+WHERE  MEM_ID IN('c001', 'f001', 'w001');
+
+--상품 분류테이블에서 현재 상품테이블에
+--존재하는 분류만 검색( 분류코드(LPROD_GU), 분류명(LPROD_NM))
+--WHERE절에 사용된 또다른 QUERY : NESTED 서브관리
+SELECT LPROD_GU 분류코드
+    ,  LPROD_NM 분류명
+FROM   LPROD
+WHERE BUYER_ID IN(SELECT DISTINCT PROD_BUYER FROM PROD);
+
+--상품 중 판매가가 100,000원 부터 300,000dnjs
+--사이의 상품 조회
+SELECT PROD_SALE 판매가
+     , PROD_NAME 상품명
+FROM   PROD
+WHERE 1=1
+AND    PROD_SALE BETWEEN 100000 AND 300000;
+
+SELECT LPROD_GU
+     , LPROD_NM
+FROM   LPROD
+WHERE  LPROD_NM LIKE '홍길동\%' ESCAPE '\';
+--와일드카드라는 특수기능을 벗어나라!!
+
+SELECT 'a' || 'bcde' FROM DUAL; --결합연산자
+SELECT CHR(65) "CHR", ASCII('ABC') "ASCII" FROM DUAL; --Column의 ASCII값
+SELECT LOWER('DATA manipulation Language') AS "LOWER" --소문자
+     , UPPER('DATA manipulation Language') AS "UPPER" --대문자
+     , INITCAP('DATA manipulation Language') AS "INITCAP" --앞글자만 대문자
+FROM   DUAL;
