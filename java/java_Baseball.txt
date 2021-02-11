@@ -1,0 +1,80 @@
+package c_statement;
+
+import java.util.Scanner;
+
+public class Baseball {
+
+	public static void main(String[] args) {
+//		Scanner sc  = new Scanner(System.in);
+//		int x1, y1; int x2, y2; int x3, y3;
+//		int sct = 0; int bct = 0; int oct = 0;
+//		
+//		x1 = (int) (Math.random()*9 + 1); x2 = (int) (Math.random()*9 + 1); x3 = (int) (Math.random()*9 + 1);
+//		while(x1 != x2 && x1 != x2 && x2 != x3){ 
+//			System.out.println(x1+""+x2+""+x3);
+//			break;}
+//		
+//		System.out.println("야구 게임 세가지 숫자를 맞춥시다. 1~9까지 겹치지 않는 수 세자리를 말해주세요.");
+//		for(int i = 1; i <= 10; i++){ 
+//			System.out.print("첫번쨰 번호 >"); y1 = Integer.parseInt(sc.nextLine()); 
+//			System.out.print("두번쨰 번호 >"); y2 = Integer.parseInt(sc.nextLine()); 
+//			System.out.print("세번쨰 번호 >"); y3 = Integer.parseInt(sc.nextLine());
+//			System.out.println(y1 + "" + y2 + "" + y3);
+//			 sct = 0;  bct = 0;  oct = 0;
+//			if(x1 == y1){ sct++; } else if(x1 == y2){ bct++; } else if(x1 == y3){ bct++; }
+//			if(x2 == y1){ bct++; } else if(x2 == y2){ sct++; } else if(x2 == y3){ bct++; }
+//			if(x3 == y1){ bct++; } else if(x3 == y2){ bct++; } else if(x3 == y3){ sct++; }
+//			else{oct++;}
+//		System.out.println(sct + "스트라이크 " + bct + "볼 " + oct + "아웃");}
+		
+		int a1 = 0; int a2 = 0; int a3 = 0;
+		
+		do{
+			a1= (int)(Math.random()*9)+1;
+			a2= (int)(Math.random()*9)+1;
+			a3= (int)(Math.random()*9)+1;
+		}while(a1==a2 || a1==a3 || a2==a3);
+		
+		Scanner sc  = new Scanner(System.in);
+		int count =0;
+		while(true){
+			System.out.print("3자리 숫자>");
+			int input = Integer.parseInt(sc.nextLine());
+			int i3 = input % 10;
+			input /= 10;
+			int i2 = input % 10;
+			input /= 10;
+			int i1 = input % 10;
+			input /= 10;
+			
+			int strike = 0;
+			int ball = 0;
+			int out = 0;
+			
+			if(a1==i1) strike++;
+			if(a2==i2) strike++;
+			if(a3==i3) strike++;
+			
+			if(a1==i2||a1==i3) ball++;
+			if(a2==i1||a2==i3) ball++;
+			if(a3==i1||a3==i2) ball++;
+			
+			out = 3-strike-ball;
+			
+			System.out.println(++count + "차 시도(" + i1 +i2 + i3 + ") :"
+					+ strike +"s "+ball+"b "+out+"o");
+			System.out.println("-------------------");
+			if(strike==3){
+				System.out.println("정답입니다.");
+				break;
+			}
+			
+			
+			
+			
+			
+		}
+
+	}
+
+}
