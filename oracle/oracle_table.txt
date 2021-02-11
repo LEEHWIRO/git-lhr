@@ -1,11 +1,167 @@
+[Oracle Database 접속 방법]
+1. RUN SQL command Line
+conn sys /as sysdba
+Enter password: java
+Connected.
+SQL> SELECT * FROM ALL_USERS; : 계정조회
+
+2. cmd(명령프롬프트)
+SQLPLUS SYS(계정)/JAVA(비번)@LOCALHOST:1521(내선번호) AS SYSDBA
+SQLPLUS SYS(계정)/JAVA(비번)@127.0.0.1:1521 AS SYSDBA
+SQLPLUS SYS(계정)/JAVA(비번)@IPV4주소:1521 AS SYSDBA
+SQLPLUS (계정)/(비번)@IPV4주소:1521-관리자가 권한부여를 해줘야 접속가능
+SQLPLUS (계정)/(비번)@LOCALHOST:1521
+
+--데이터베이스 계정 생성
+CREATE USER JOE(계정) IDENTIFIED BY BLACK(비번);
+
+--객체권한부여
+GRANT CONNECT, RESOURCE TO (계정);
+
+--데이터베이스 계정 삭제 
+DROP USER (계정) CASCADE;(계정에 테이블이 잇을시)
+
+[테이블스페이스생성] 1. 테이블 생성 2. 사용자에게 테이블 제공
+1. create tablespace gangnam
+2  datafile 'c:\oraclexe\app\oracle\oradata\XE\gangnam.dbf' sizec200M;
+     
+2. create user (계정) identified by java
+2  default tablespace gangnam
+3  quota unlimited on gangnam; -> 이 사용자는 gangnam이라는 테이블스페이스 공간 200M를 사용할 수 있다.(회사에서 차장급만)
+
+TABLE 생성(CREATE)
+
+CREATE TABLE <테이블명>
+(필드명1 TYPE [NOT NULL | NULL]
+ 필드명2 TYPE [NOT NULL | NULL]
+                    .
+                    .
+                    .
+CONSTRAINT 기본키명 PRIMARY KEY (필드명1, [,필드명2])
+CONSTRAINT 외부키명 FOREIGN KEY (필드명2) REFERENCE 외부테이블명(외부필드명)
+);
+
+TABLE 수정(ALTER)
+
+ALTER TABLE <테이블명>
+ADD(CONSTRAINT 기본키명 PRIMARY KEY (필드명1, 필드명2),
+    CONSTRAINT 외부키명 FOREIGN KEY (필드명2) REFERENCE 외부테이블명(외부필드명)
+);
+
+TABLE 생성 및 수정 예
+
+1.테이블 생성
+ 1) 상품분류 정보 테이블 생성
+CREATE TABLE LPROD
+( LPROD_ID NUMBER(5) NOT NULL   --순번
+, LPROD_GU CHAR(4) NOT NULL     --상품분류코드
+, LPROD_NM VARCHAR2(40) NOT NULL--상품분류명
+, CONSTRAINT PK_LPROD PRIMARY KEY (LPROD_GU)
+);
+ 2)거래처정보테이블 생성
+CREATE TABLE BUYER
+( BUYER_ID CHAR(6) NOT NULL
+, BUYER_NAME VARCHAR2(40) NOT NULL
+, BUYER_LGU CHAR(4) NOT NULL
+, BUYER_BANK VARCHAR2(60) 
+, BUYER_BANKNO VARCHAR2(60)
+, BUYER_BANKNAME VARCHAR2(15)
+, BUYER_ZIP CHAR(7)
+, BUYER_ADD1 VARCHAR2(100)
+, BUYER_ADD2 VARCHAR2(70)
+, BUYER_COMTEL VARCHAR2(14) NOT NULL
+, BUYER_FAX VARCHAR2(20) NOT NULL
+);
+
+2.테이블 수정
+ALTER TABLE BUYER ADD
+( BUYER_MAIL VARCHAR2(60) NOT NULL
+, BUYER_CHARGER VARCHAR2(20)
+, BUYER_TELEXT VARCHAR2(2)
+);
+
+ALTER TABLE BUYER
+MODIFY ( BUYER_NAME VARCHAR2(60));
+
+ALTER TABLE BUYER
+ADD
+( CONSTRAINT PK_BUYER PRIMARY KEY (BUYER_ID)
+, CONSTRAINT FK_BUYER_LPROD FOREIGN KEY (BUYER_LGU
+  REFERENCE LPROD(LPROD_GU)
+);
+
+ALTER TABLE BUYER
+ADD CONSTRAINT CHECK_PHONE CHECK
+( REGEXP_LIKE(BUYER_TELEXT, '[0-9][0-9]'));
+
+CREATE INDEX IDX_BUYER ON BUYER (BUYER_NAME, BUYER_ID);
+
+DROP INDEX BUYER_INX1;
+
+SEQUENCE 
+
+1.SEQUENCE 사용 및 수정 및 삭제
+
+Sequence 구문
+CREATE SEQUENCE sequence_name
+[ START WITH  n ]
+[ INCREMENT BY  n ]
+[ MAXVALUE n | NOMAXVALUE ]
+[ MINVALUE  n | NOMINVALUE ]
+[ CYCLE | NOCYCLE ]
+[ CACHE n | NOCACHE ]
+[ ORDER | NOORDER ]
+
+CREATE SEQUENCE LPROD_SEQ START WITH 10;
+
+INSERT INTO LPROD (LPROD_ID, LPROD_GU, LPROD_NM) 
+            VALUES (LPROD_SQL.NEXTVAL, 'P501', '농산물');
+            
+CREATE TABLE LPROD_TMP AS
+SELECT LPROD_SQL.NEXTVAL, LPROD_GU, LPROD_NM 
+FROM LPROD;
+
+1. INSERT
+INSERT INTO 테이블명(필드명1, 필드명2, ...)
+            VALUES (값1, 값2, ...);
+
+INSERT INTO LPROD(LPROD_ID, LPROD_GU, LPROD_NM)
+            VALUES (1, 'P101', '컴퓨터제품');
+            
+2. SELECT
+SELECT [DISTINCT]
+FROM <테이블목록>
+WHERE <검색조건>
+[GROUP BY <열목록>]
+[HAVING <검색조건>]
+[ORDER BY <열목록>]
+
+SELECT * FROM LPROD
+WHERE LPROD > 'P201';
+
+UPDATE 테이블명 SET 필드명1 = 값1, 필드명2 = 값2, ...
+WHERE <검색조건>;
+
+--등푸른생선 주세요
+SELECT *
+FROM LPROD
+WHERE LPROD_GU = 'P202';
+
+3. UPDATE
+UPDATE LPROD
+SET LPROD_NM = '향수'
+WHERE LPROD_GU = 'P102'
+
 --업데이트 쎄대여
 UPDATE LPROD
 SET    LPROD_NM = '향수'
 WHERE  LPROD_GU = 'P102';
 
---등푸른생선 주세요
-SELECT *
-FROM LPROD
+4. DELETE 
+DELETE FROM 테이블명
+WHERE <검색조건>;
+
+DELETE FROM LPROD
 WHERE LPROD_GU = 'P202';
 
 /*-------------------------------------------------
@@ -113,8 +269,8 @@ WHERE  NO = 5;
 
 /*
 Sequence 구문
-   CREATE SEQUENCE sequence_name
-	   [ START WITH  n ]
+CREATE SEQUENCE sequence_name
+[ START WITH  n ]
 [ INCREMENT BY  n ]
 [ MAXVALUE n | NOMAXVALUE ]
 [ MINVALUE  n | NOMINVALUE ]
