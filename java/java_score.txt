@@ -1,0 +1,139 @@
+package j_collection;
+
+import java.util.ArrayList;
+
+public class Score {
+
+	public static void main(String[] args) {
+		/*
+		 * 우리반 모두의 국어, 영어, 수학, 사회, 과학, Oracle, Java 점수를
+		 * 0 ~ 100까지 랜덤으로 생성해주시고, 아래와 같이 출력해주세요.
+		 * 
+	         */
+		
+		ArrayList<String> sublist = new ArrayList<>();
+		sublist.add("국어");
+		sublist.add("영어");
+		sublist.add("수학");
+		sublist.add("사회");
+		sublist.add("과학");
+		sublist.add("Oracle");
+		sublist.add("Java");
+
+		ArrayList<String> namelist = new ArrayList<>();
+		namelist.add("1번");
+		namelist.add("2번");
+		namelist.add("4번");
+		namelist.add("3번");
+		namelist.add("5번");
+		namelist.add("6번");
+
+		// 점수랜덤출력
+		ArrayList<ArrayList<Integer>> scoreslist = new ArrayList<>();
+		for (int i = 0; i < namelist.size(); i++) {
+			ArrayList<Integer> scorelist = new ArrayList<>();
+			for (int j = 0; j < sublist.size(); j++) {
+				scorelist.add((int) (Math.random() * 101));
+			}
+			scoreslist.add(scorelist);
+		}
+
+		// 합계/평균
+		ArrayList<Integer> namesumlist = new ArrayList<>();
+		ArrayList<Double> nameavglist = new ArrayList<>();
+		for (int i = 0; i < scoreslist.size(); i++) {
+			ArrayList<Integer> sc = scoreslist.get(i);
+			int sum = 0;
+			double avg = 0;
+			for (int j = 0; j < sc.size(); j++) {
+				sum += sc.get(j);
+			}
+			avg = Math.round((double) sum / sublist.size() * 100) / 100.0;
+			namesumlist.add(sum);
+			nameavglist.add(avg);
+		}
+
+		// 석차
+		ArrayList<Integer> ranklist = new ArrayList<>();
+		for (int i = 0; i < scoreslist.size(); i++) {
+			ranklist.add(1); // int rank = 1;
+			for (int j = 0; j < scoreslist.size(); j++) {
+				if (namesumlist.get(i) < namesumlist.get(j)) {
+					ranklist.set(i, ranklist.get(i) + 1); // rank++;
+				}
+			}
+			// ranklist.add(rank);
+		}
+
+		// 석차순으로 정렬
+		for (int i = 0; i < ranklist.size() - 1; i++) {
+			int min = i;
+			for (int j = i + 1; j < ranklist.size(); j++) {
+				if (ranklist.get(j) < ranklist.get(min)) {
+					min = j;
+				}
+			}
+			ArrayList<Integer> tempscore = scoreslist.get(i);
+			scoreslist.set(i, scoreslist.get(min));
+			scoreslist.set(min, tempscore);
+
+			Integer tempsum = namesumlist.get(i);
+			namesumlist.set(i, namesumlist.get(min));
+			namesumlist.set(min, tempsum);
+
+			Double tempavg = nameavglist.get(i);
+			nameavglist.set(i, nameavglist.get(min));
+			nameavglist.set(min, tempavg);
+
+			Integer temprank = ranklist.get(i);
+			ranklist.set(i, ranklist.get(min));
+			ranklist.set(min, temprank);
+
+			String tempname = namelist.get(i);
+			namelist.set(i, namelist.get(min));
+			namelist.set(min, tempname);
+		}
+
+		// 과목합계/평균
+		ArrayList<Integer> subsumlist = new ArrayList<>();
+		ArrayList<Double> subavglist = new ArrayList<>();
+		for (int i = 0; i < sublist.size(); i++) {
+			int sum = 0;
+			double avg = 0;
+			for (int j = 0; j < namelist.size(); j++) {
+				sum += scoreslist.get(j).get(i);
+			}
+			avg = Math.round((double) sum / namelist.size() * 100) / 100.0;
+			subsumlist.add(sum);
+			subavglist.add(avg);
+		}
+
+		// 출력
+		for (int i = 0; i < sublist.size(); i++) {
+			System.out.print("\t" + sublist.get(i));
+		}
+		System.out.println("\t합계\t평균\t석차");
+		for (int i = 0; i < scoreslist.size(); i++) {
+			System.out.print(namelist.get(i) + "\t");
+			ArrayList<Integer> sc = scoreslist.get(i);
+			for (int j = 0; j < sc.size(); j++) {
+				System.out.print(sc.get(j) + "\t");
+			}
+			System.out.print(namesumlist.get(i) + "\t" + nameavglist.get(i)
+					+ "\t" + ranklist.get(i));
+			System.out.println();
+		}
+
+		System.out.print("과목합계\t");
+		for (int i = 0; i < subsumlist.size(); i++) {
+			System.out.print(subsumlist.get(i) + "\t");
+		}
+		System.out.println();
+
+		System.out.print("과목평균\t");
+		for (int i = 0; i < subavglist.size(); i++) {
+			System.out.print(subavglist.get(i) + "\t");
+		}
+	}
+
+}
