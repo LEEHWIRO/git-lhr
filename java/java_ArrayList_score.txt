@@ -28,7 +28,7 @@ public class Score {
 		namelist.add("5번");
 		namelist.add("6번");
 
-		// 점수랜덤출력
+		// 점수랜덤출력 
 		ArrayList<ArrayList<Integer>> scoreslist = new ArrayList<>();
 		for (int i = 0; i < namelist.size(); i++) {
 			ArrayList<Integer> scorelist = new ArrayList<>();
