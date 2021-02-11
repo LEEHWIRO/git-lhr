@@ -1,0 +1,236 @@
+		//List, Map, Set
+		
+		/*
+		 * boolean add(Object obj) : 마지막 위치에 객체를 추가 후 성공여부를 반환한다.
+		 * void add(int index, Object obj) : 지정된 위치에 객체를 추가한다.
+		 * Object set(int index, Object obj) : 지정된 위치에 객체를 저장 후 기존 객체를 반환한다.
+		 * Object get(int index) : 지정된 위치의 객체를 반환한다.
+		 * int size() : 저장된 객체의 수를 반환한다.
+		 * boolean remove(int index) : 저장된 위치의 객체를 제거한다.
+		 */
+		
+//		ArrayList sample = new ArrayList();
+//		
+//		sample.add("abc");
+//		sample.add(100);
+//		sample.add(new Scanner(System.in));
+		
+		//제네릭을 지정하지 않으면 넣을때는 편하나 꺼낼떄는 타입을 예측하기 힘들다.
+		//따라서 제네릭의 사용이 권장된다.
+		ArrayList<Integer> list = new ArrayList<>();
+		list.add(10);
+//		list.add("abc");
+		list.add(20);
+		System.out.println(list.add(30));
+		System.out.println(list);
+		
+		list.add(1, 40); // 1번 인덱스부터 뒤로밀고 값을 저장한다.
+		System.out.println(list);
+		
+//		list.add(7, 50);
+		
+		Integer before = list.set(2, 50); // 2번 인덱스에 값을 저장하고 기존 값을 반환한다.
+		System.out.println("before : " + before);
+		System.out.println("after : " + list.get(2));
+		System.out.println(list);
+		
+		Integer integer = list.get(2);
+		System.out.println(integer);
+		
+//		for(int i = 0; i < list.size(); i++){
+//			System.out.println(i + " : " + list.get(i));
+//			list.remove(i);
+//		}
+		System.out.println(list);
+		for (int i = list.size() - 1; 0 <= i; i--) {
+			System.out.println(i + " : " + list.get(i));
+			list.remove(i);
+		}
+		System.out.println(list);
+		
+		//list에 1부터 100까지 랜덤값을 10개 저장해주세요.
+		ArrayList<Integer> list2 = new ArrayList<>();
+		for(int i = 0 ; i < 10; i++){
+			list2.add((int)(Math.random()*100)+1);
+		}
+		System.out.println(list2);
+		
+		//list에 저장된 값을 합계와 평균을 구해주세요.
+		int listsum = 0;
+		double listavg = 0;
+		for(int i = 0; i < list2.size(); i++){
+			listsum += list2.get(i);
+		}
+		listavg = (double)listsum / list2.size();
+		System.out.println("sum : " + listsum + "\tavg : " + listavg);
+		
+		//list에서 최솟값과 최댓값을 구해주세요.
+		int max = list2.get(0);
+		int min = list2.get(0);
+		for (int i = 1; i < list2.size(); i++) {
+			if(list2.get(i)> max){
+				max = list2.get(i);
+			}
+			if(list2.get(i)< min){
+				min = list2.get(i);
+			}
+		}
+		System.out.println("min : " + min + " / max : " + max);
+		
+		//list를 오름차순으로 정렬해주세요.
+		for(int i = 0; i < list2.size() -1; i++){
+			int m = i;
+			for(int j = i+1; j < list2.size(); j++){
+				if(list2.get(m) > list2.get(j)){
+					m = j;
+				}
+			}
+			int temp = list2.get(i);
+			list2.set(i, list2.get(m));
+			list2.set(m, temp);
+		}
+		System.out.println(list2);
+		
+		//2차원
+		ArrayList<ArrayList<Integer>> list3 = new ArrayList<>();
+		
+		list = new ArrayList<>();
+		list.add(10); // 1차원 배열 인덱스 0
+		list.add(20); // 1차원 배열 인덱스 1
+		list.add(30); // 1차원 배열 인덱스 2
+		
+		list3.add(list); // 2차원 배열 인덱스 0
+		
+		list = new ArrayList<>();
+		list3.add(list); // 2차원 배열 인덱스 1
+		list.add(40); // 1차원 배열 인덱스 0
+		list.add(50); // 1차원 배열 인덱스 1
+		
+		list3.get(0).add(70); 
+		
+		ArrayList<Integer> tempList = list3.get(0);
+		list3.set(0, list3.get(1));
+		list3.set(1, tempList);
+		
+		Collections.sort(list); 
+		
+		System.out.println(list3); 
+		
+		for(int i = 0; i < list3.size(); i++){
+			ArrayList<Integer> li = list3.get(i);
+			for(int j = 0; j < li.size(); j++){
+				System.out.print(li.get(j) + "\t");
+			}
+			System.out.println();
+		}
+		
+		for (int i = 0; i < list3.size(); i++) {
+			for (int j = 0; j < list3.get(i).size(); j++) {
+				System.out.print(list3.get(i).get(j)  + "\t");
+				
+			}
+			System.out.println();
+		}
+
+		//List, Map, Set
+		
+		/*
+		 * Object put(Object key, Object value) : 지정된 키와 값을 저장한다.
+		 * Object remove(Object key) : 지정된 키로 저장된 값을 제거한다.
+		 * Object get(Object key) : 지정된 키의 값(없으면 null)을 반환한다.
+		 * Set keySet() : 저장된 모든 키를 Set으로 반환한다.
+		 */
+		
+		HashMap<String, Object>map = new HashMap<>();
+		map.put("number", 10);
+		map.put("name", "홍길동");
+		map.put("name1", "홍길동");
+		map.put("scanner", new Scanner(System.in));
+		
+		System.out.println(map);
+		
+		map.put("name", "이순신"); //덮어쓰게 된다.
+		
+		System.out.println(map);
+		
+		map.remove("number");
+		
+		System.out.println(map);
+		
+		Object value = map.get("name");
+		System.out.println(value);
+		
+		System.out.println(((String)value).substring(0,1));
+		
+		Set<String> keys = map.keySet(); //저장된 모든 키
+		
+		for(String key : keys){
+			System.out.println(key + " : " + map.get(key));
+		}
+		
+		for(String key : map.keySet()){
+			
+		}
+		
+		ArrayList<HashMap<String, Object>> table = new ArrayList<>();
+		
+		HashMap<String,	Object> row = new HashMap<>();
+		row.put("CART_NUMBERT", "a001");
+		row.put("CART_NO", "2005040100001");
+		row.put("CART_PROD", "P101000001");
+		row.put("CART_QTY", 5);
+		
+		table.add(row);
+		
+		/*
+		 * 래퍼클래스 : 기본형 타입을 객체로 사용해야 할 때 대신 사용하는 클래스
+		 * - byte : Byte
+		 * - short : Short
+		 * - int : Integer
+		 * - long : Long
+		 * - float : Float
+		 * - double : Double
+		 * - char : Character
+		 * - boolean : Boolean
+		 */
+		
+		//회원 테이블
+		//아이디, 비밀번호, 이름, 전화번호
+		ArrayList<HashMap<String, Object>> users = new ArrayList<>();
+		
+		HashMap<String, Object> user = new HashMap<>();
+		user.put("id", "admin");
+		user.put("password", "admin123");
+		user.put("name", "관리자");
+		user.put("tel", "010-1234-5678");
+		
+		users.add(user);
+		
+		HashMap<String, Object> user2 = new HashMap<>();
+		user2.put("id", "jiro");
+		user2.put("password", "kks123");
+		user2.put("name", "이휘로");
+		user2.put("tel", "010-2580-2580");
+		
+		users.add(user2);
+		
+		HashMap<String, Object> user3 = new HashMap<>();
+		user3.put("id", "lhro");
+		user3.put("password", "pw123");
+		user3.put("name", "이혜림");
+		user3.put("tel", "010-3333-2132");
+		
+		users.add(user3);
+		
+		for(int i = 0; i < users.size(); i++){
+			HashMap<String, Object> u = users.get(i);
+			for(String key : u.keySet()){
+				System.out.println(key + " : " + u.get(key));
+			}
+		}
+		
+//		for(HashMap<String, Object> u : users){
+//			for(String key : u.keySet()){
+//				System.out.println(key + " : " + u.get(key));
+//			}
+//		}// 인덱스 알수 없다. 값 변경 불가
