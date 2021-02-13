@@ -1,4 +1,6 @@
 package ex7;
+
+import javax.management.loading.PrivateClassLoader;
 ////1.
 //class SutdaDeck {
 //	final int CARD_NUM = 20;
@@ -32,6 +34,9 @@ package ex7;
 //	}
 //}
 
+
+
+
 //class SutdaCard {
 //	int num;
 //	boolean isKwang;
@@ -50,13 +55,72 @@ package ex7;
 //	}
 //}
 
-class MyTv {
-	boolean isPowerOn;
-	int Channel;
-	int volume;
-	
-	final int MAX_
-}
+//3.
+//class MyTv {
+//	private boolean isPowerOn;
+//	private int channel;
+//	private int volume;
+//	private int prevechannel;
+//	
+//	final int MAX_VOLUME = 100;
+//	final int MIN_VOLUME = 0;
+//	final int MAX_CHANNEL = 100;
+//	final int MIN_CHANNEL = 1;
+//	
+//	public void setChannel(int channel) {
+//		if (channel > MAX_CHANNEL || channel < MIN_CHANNEL)
+//			return;
+//		
+//		prevechannel = this.channel;
+//		this.channel = channel;
+//	}
+//	public int getChannel(){
+//		return channel;
+//	}
+//	
+//	public void setVolume(int volume){
+//		if (volume > MAX_VOLUME || volume < MIN_VOLUME)
+//			return;
+//		this.volume = volume;
+//	}
+//	public int getVolume(){
+//		return volume;
+//	}
+//	
+//	public void gotoPrevChannel(){
+//		setChannel(prevechannel);
+//		
+//	}
+//}
+
+//class Outer {
+//	class Inner{
+//		int iv = 100;
+//	}
+//}
+
+//class Outer2 {
+//	static class Inner2{
+//		int iv2 = 200;
+//	}
+//}
+
+//class Outer3 {
+//	int value = 10;
+//	
+//	class Inner3{
+//		int value = 20;
+//		void method1(){
+//			int value = 30;
+//			
+//			
+//			System.out.println(value);
+//			System.out.println(this.value);
+//			System.out.println(Outer3.this.value);
+//		}
+//	}
+//}
+
 
 public class Ex7 {
 	public static void main(String[] args) {
@@ -73,6 +137,32 @@ public class Ex7 {
 //		
 //		System.out.println();
 //		System.out.println(deck.pick(0));
+		
+		//4-5
+//		MyTv t = new MyTv();
+//		
+//		t.setChannel(10);
+//		System.out.println("CH : " + t.getChannel());
+////		t.setVolume(20);
+////		System.out.println("VOL : " + t.getVolume());
+//		t.setChannel(20);
+//		System.out.println("CH : " + t.getChannel());
+//		t.gotoPrevChannel();
+//		System.out.println("CH : " + t.getChannel());
+//		t.gotoPrevChannel();
+//		System.out.println("CH : " + t.getChannel());
+		
+//		Outer o = new Outer();
+//		Outer.Inner ii = o.new Inner();
+//		System.out.println(ii.iv);
+		
+//		Outer2.Inner2 i = new Outer2.Inner2();
+//		System.out.println(i.iv2);
+		
+//		Outer3 o = new Outer3();
+//		Outer3.Inner3 i = o.new Inner3();
+//		
+//		i.method1();
 		
 		
 	}
