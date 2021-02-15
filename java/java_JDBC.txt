@@ -81,3 +81,24 @@ try {
 			if(ps != null) try{ ps.close();} catch(Exception e) {}
 			if(con != null) try{ con.close();} catch(Exception e) {}
 		}
+
+//insert, delete, update
+		try {
+			con = DriverManager.getConnection(url, user, password);
+//			String sql = "INSERT INTO DAWICE(DW_ACTINFO,DW_ACTYEAR,DW_MEMBER) VALUES ('ARIS','2017','메리스')";
+//			String sql = "delete from DAWICE where DW_ACTINFO = 'ARIS'";
+			String sql = "UPDATE DAWICE SET dW_MEMBER = '하이스' WHERE  DW_ACTINFO = 'KRIS'";
+			
+			ps = con.prepareStatement(sql);
+			
+			int result = ps.executeUpdate();
+			System.out.println(result + "개의 행이 업댓되었습니다.");
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			if(rs != null) try{ rs.close();} catch(Exception e) {}
+			if(ps != null) try{ ps.close();} catch(Exception e) {}
+			if(con != null) try{ con.close();} catch(Exception e) {}
+		}
