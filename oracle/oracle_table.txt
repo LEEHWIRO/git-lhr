@@ -146,6 +146,156 @@ INSERT INTO 테이블명(필드명1, 필드명2, ...)
 
 INSERT INTO LPROD(LPROD_ID, LPROD_GU, LPROD_NM)
             VALUES (1, 'P101', '컴퓨터제품');
+
+INSERT 예제
+ CREATE TABLE  REMAIN
+(REMAIN_YEAR CHAR(04) NOT NULL,      -- 해당 년도   
+ REMAIN_PROD VARCHAR2(10) NOT NULL,  -- 상품 코드   
+ REMAIN_J_00 NUMBER(5),              -- 전년 재고   
+ REMAIN_I NUMBER(5),                 -- 입고
+ REMAIN_O NUMBER(5),                 -- 출고
+ REMAIN_J_99 NUMBER(5),              -- 현재고  
+ REMAIN_DATE DATE,                   -- 처리일자
+CONSTRAINT PK_REMAIN PRIMARY KEY(REMAIN_YEAR, REMAIN_PROD),
+CONSTRAINT FR_REMAIN_PROD FOREIGN KEY(REMAIN_PROD) 
+                          REFERENCES PROD(PROD_ID)
+);
+COMMIT;
+
+--데이터의 개수와 컬럼의 개수가 같은 경우
+--컬럼을 생략해도 된다
+INSERT INTO REMAIN 
+VALUES('2003','P101000001',20,10,12,18,'2004-01-01');
+
+--하지만 다음과 같이 컬럼을 명시하는 것을 권장한다.
+INSERT INTO REMAIN(REMAIN_YEAR,REMAIN_PROD,REMAIN_J_00,
+                   REMAIN_I,REMAIN_O,REMAIN_J_99,
+                   REMAIN_DATE)
+VALUES('2003','P101000002',11,7,6,12,'2004-01-02');
+
+SELECT * FROM REMAIN;
+
+COMMIT;
+
+INSERT INTO REMAIN(REMAIN_YEAR,REMAIN_PROD,REMAIN_I)
+VALUES('2003','P102000007',10);
+
+SELECT * FROM REMAIN;
+
+--NULL값 입력(방법1), INSERT문장의 Column List에서 생략
+INSERT INTO REMAIN(REMAIN_YEAR,REMAIN_PROD,REMAIN_J_00,REMAIN_I
+          , REMAIN_J_99,REMAIN_DATE)
+VALUES('2003','P102000001',31,21,41,'2003-12-31');
+COMMIT;
+SELECT * FROM REMAIN;
+
+-- Insert문장의 Value절에서 Null 또는 빈공백(화이트스페이스 - '')으로 지정
+INSERT INTO REMAIN(REMAIN_YEAR,REMAIN_PROD,remain_j_00,REMAIN_I
+                  ,remain_o,REMAIN_J_99,REMAIN_DATE)
+VALUES('2003','P102000002',31,21,NULL,41,'2003-12-31');
+
+INSERT INTO REMAIN(REMAIN_YEAR,REMAIN_PROD,remain_j_00,REMAIN_I
+                  ,remain_o,REMAIN_J_99,REMAIN_DATE)
+VALUES('2003','P102000003',31,21,'',41,SYSDATE);
+
+COMMIT;
+--insert 문제1)
+--remain테이블에 다음 데이터를 입력하기
+--해당년도 : 2003
+--상품코드 : P302000023
+--전년재고 : 35
+--출고    : 20
+--현재고  : 15
+--처리일자 : sysdate
+INSERT INTO REMAIN(REMAIN_YEAR, REMAIN_PROD,REMAIN_J_00
+                  ,REMAIN_O,REMAIN_J_99,REMAIN_DATE )
+VALUES ('2003','P302000023',35,20,15,SYSDATE);
+COMMIT;
+SELECT * FROM REMAIN;
+
+--insert 문제2)
+--remain테이블에 다음 데이터를 입력하기
+--오류발생 시 상품코드의 첫글자를 수정하여 디버깅
+--해당년도 : 2003
+--상품코드 : Z302000022 -- 해당 테이블에 해당 데이터가 없으면 INSERT가 안된다.
+--전년재고 : 27
+--처리일자 : 2004년 1월 1일
+INSERT INTO REMAIN(REMAIN_YEAR,REMAIN_PROD,REMAIN_J_00,REMAIN_DATE)
+VALUES ('2003','P302000022',27,'2004-01-01');
+
+--insert 문제3)
+--remain테이블에 다음 데이터를 입력하기
+--오류발생 시 디버깅(2003년도)
+--상품코드 : P302000016
+--전년재고 : 30
+--입고    : 10
+--출고    : 15
+--현재고  :25
+--처리일자 : 2004년 1월 2일
+INSERT INTO REMAIN(REMAIN_YEAR,REMAIN_PROD,REMAIN_J_00,REMAIN_I,
+            REMAIN_O,REMAIN_J_99,REMAIN_DATE)
+VALUES ('2003','P302000016',30,10,15,25,'2004-01-02');
+COMMIT;
+
+--모든 상품에 대한 재고 수불 파일 생성 ( 2016년도 재고 수불 마감)
+--해당년도 : 2017년     
+--상품코드 : 전 상품(PROD테이블!!)
+--기초(전년)재고 : 상품코드의 우측 2자리를 숫자로 Conversion하여 
+--처리 ( 원칙은 전년도말 재고가 되어야 함 )
+--입고 : 10으로 일괄 처리
+--출고 : 7으로 일괄 처리
+--현재고 : 전년재고 + 입고 - 출고
+INSERT INTO REMAIN(REMAIN_YEAR,REMAIN_PROD,REMAIN_J_00,REMAIN_I,REMAIN_O,REMAIN_J_99,REMAIN_DATE)
+SELECT '2021', PROD_ID, SUBSTR(PROD_ID,-2), 10, 7,  SUBSTR(PROD_ID,-2) + 10 -7, SYSDATE
+FROM  PROD;
+
+CREATE TABLE DAWICE(
+DW_ACTINFO VARCHAR2(10) NOT NULL,
+DW_ACTYEAR VARCHAR2(20) NOT NULL,
+DW_MEMBER VARCHAR2(60),
+DW_SITE VARCHAR2(40),
+CONSTRAINT PK_DAWICE PRIMARY KEY(DW_ACTINFO)
+);
+COMMIT;
+
+/*
+1. DAWICE테이블에 데이터를 입력하기(3명)
+DW_ACTINFO : BAEKHYUN
+DW_ACTYEAR : 2017
+DW_MEMBER  : 변백현
+DW_SITE    : http://www.smtown.com
+*/
+INSERT INTO DAWICE(DW_ACTINFO,DW_ACTYEAR,DW_MEMBER,DW_SITE)
+VALUES ('BAEKHYUN','2017','변백현','http://www.smtown.com');
+COMMIT;
+
+--문제2) 다음과 같이 3개의 컬럼에 데이터를 입력하기
+--DW_ACTINFO : KRIS
+--DW_ACTYEAR : 2017
+--DW_MEMBER  : 크리스
+INSERT INTO DAWICE(DW_ACTINFO,DW_ACTYEAR,DW_MEMBER)
+VALUES ('KRIS','2017','크리스');
+COMMIT;
+
+--문제3) DAWICE 테이블을 사용하여 
+--DAWICE2 테이블을 복제하기(테이블 백업)/기본키,외래키는 복제 안됨
+CREATE TABLE DAWICE2
+AS
+SELECT * FROM DAWICE;
+SELECT * FROM DAWICE2;
+
+DESC DAWICE2; --테이블의 구조 보기
+
+--DAWICE2 테이블의 데이터를 삭제
+DELETE FROM DAWICE2;
+--DAWICE2 테이블의 데이터 조회
+SELECT * FROM DAWICE2;
+
+--문제4) DAWICE 테이블을 이용하여
+--DAWICE2 테이블로 데이터를 INSERT하기
+INSERT INTO DAWICE2(DW_ACTINFO,DW_ACTYEAR)
+SELECT DW_ACTINFO,DW_ACTYEAR
+FROM   DAWICE;
             
 2. SELECT
 SELECT [DISTINCT]
