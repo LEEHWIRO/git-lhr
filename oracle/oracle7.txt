@@ -1,0 +1,19 @@
+--2005년도 매입금액 100만 이상 우수거래처로 지정하여 검색하시오
+--거래처ID 거래처명 우수고객
+
+SELECT A.BUYER_ID 거래처ID
+     , A.BUYER_NAME 거래처명
+     , '우수고객' 우수고객
+FROM   BUYER A
+WHERE EXISTS (
+ SELECT B.BUYER_ID
+      , B.BUYER_NAME 
+      , SUM(D.BUY_QTY * D.BUY_COST)
+ FROM   BUYER B, PROD C,BUYPROD D 
+ WHERE  D.BUY_PROD = C.PROD_ID
+ AND    C.PROD_BUYER = B.BUYER_ID
+ AND    D.BUY_DATE LIKE '05%'
+ AND    A.BUYER_ID = B.BUYER_ID --*****
+ GROUP BY  B.BUYER_ID , B.BUYER_NAME
+ HAVING SUM(D.BUY_QTY * D.BUY_COST) >= 1000000
+ );
