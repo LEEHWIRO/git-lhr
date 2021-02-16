@@ -326,6 +326,51 @@ UPDATE LPROD
 SET    LPROD_NM = '향수'
 WHERE  LPROD_GU = 'P102';
 
+--'이' 와  '김'씨 성을 가진 회원의 휴대폰 컬럼에 
+--'011-111-1111'로 갱신
+--업데이트 쎄대여
+--데이터가 1000만건 이상이다.
+SELECT *
+FROM   MEMBER
+WHERE  MEM_NAME LIKE '이%' OR MEM_NAME LIKE '김%');
+--데이터가 1000만건 미만이다.
+SELECT *
+FROM   MEMBER
+WHERE  SUBSTR(MEM_NAME,1,1) IN('이', '김');
+
+UPDATE MEMBER
+SET    MEM_HP = '011-111-1111' --업데이트처리
+WHERE  SUBSTR(MEM_NAME,1,1) IN('이', '김'); --조건
+--트랜잭션 : 데이터베이스를 변경(I, U, D)하기 위해 
+--논리적 기능을 수행하기 위한 일련의 연산 집합으로서 
+--작업의 단위이다.
+CREATE TABLE A(
+   COLI VARCHAR2(30)
+); 
+--UPDATE,DELETE,INSERT하고나서 커밋하기전
+--CREATE를 쓰면 자동으로 COMMIT이 되어버린다.
+
+--회원테이블에서 회원ID가  'a001' 인 회원의 
+--데이터를 다음과 같이 수정하시오 ?
+--( 취미 : 독서,  직업 : 군인 )
+SELECT *
+FROM  MEMBER
+WHERE MEM_ID = 'a001';
+
+UPDATE MEMBER
+SET   MEM_JOB = '군인' , MEM_LIKE = '독서'
+WHERE MEM_ID = 'a001';
+
+SELECT * 
+FROM   MEMBER
+WHERE  SUBSTR(MEM_NAME,1,1) IN ('이','김')
+AND    MEM_ID NOT IN('a001','j001');
+
+UPDATE MEMBER
+SET    MEM_HP = '099-999-9999'
+WHERE  SUBSTR(MEM_NAME,1,1) IN ('이','김')
+AND    MEM_ID NOT IN('a001','j001');
+
 4. DELETE 
 DELETE FROM 테이블명
 WHERE <검색조건>;
