@@ -36,9 +36,10 @@ public class JDBCBoard {
 		 * 6. 자원 반납 close()
 		 */
 		while(true){
+			System.out.println("----------------------------------------------------------------");
 			System.out.println("1. 게시판 List\t2. 게시판 등록\t3. 게시판 상세보기");
 			System.out.println("4. 게시판 수정\t5. 게시판 삭제\t0. 게시판 종료");
-			System.out.println("1.번호/2.제목/3.내용/4.id/5.일자");
+			System.out.println("----------------------------------------------------------------");
 			int input = ScanUtil.nextInt();
 			switch (input) {
 			case 1:
@@ -95,6 +96,7 @@ public class JDBCBoard {
 //			}
 			
 			System.out.println("삭제할 번호를 골라주세요.");
+			System.out.println("----------------------------------------------------------------");
 			
 			ps.setInt(1, ScanUtil.nextInt());
 			
@@ -130,10 +132,26 @@ public class JDBCBoard {
 			
 			ps = con.prepareStatement(sql);
 			
-			for(int i = 1; i <= 5; i++){
-				System.out.println("업데이트할 내용을 입력해주세요>");
-				ps.setString(i, ScanUtil.nextLine());
-			}
+			System.out.println("업데이트할 제목을 입력해주세요>");
+			System.out.println("----------------------------------------------------------------");
+			ps.setString(1, ScanUtil.nextLine());
+			
+			System.out.println("업데이트할 내용을 입력해주세요>");
+			System.out.println("----------------------------------------------------------------");
+			ps.setString(2, ScanUtil.nextLine());
+			
+			System.out.println("업데이트할 아이디를 입력해주세요>");
+			System.out.println("----------------------------------------------------------------");
+			ps.setString(3, ScanUtil.nextLine());
+			
+			System.out.println("업데이트할 날짜를 입력해주세요>");
+			System.out.println("----------------------------------------------------------------");
+			ps.setString(4, ScanUtil.nextLine());
+			
+			System.out.println("업데이트할 번호을 입력해주세요>");
+			System.out.println("----------------------------------------------------------------");
+			ps.setString(5, ScanUtil.nextLine());
+			
 			
 			int result = ps.executeUpdate();
 			System.out.println(result + "개의 행이 업데이트되었습니다.");
@@ -166,6 +184,7 @@ public class JDBCBoard {
 			rs = ps.executeQuery();
 			
 			System.out.println("TITLE\t" + "CONTENT");
+			System.out.println("----------------------------------------------------------------");
 			while(rs.next()){
 
 				System.out.println(rs.getString(2) + "\t"+ rs.getString(3));
@@ -201,6 +220,7 @@ public class JDBCBoard {
 			
 			int Count = md.getColumnCount();
 			System.out.println("BOARD_NO\t" + "TITLE\t\t" + "USER_ID\t\t" + "REG_DATE");
+			System.out.println("----------------------------------------------------------------");
 			while(rs.next()){
 				for(int i = 1; i <= Count; i++){
 					Object value = rs.getObject(i);
@@ -236,10 +256,27 @@ public class JDBCBoard {
 			
 			ps = con.prepareStatement(sql);
 			
-			for(int i = 1; i <= 5; i++){
-				System.out.println("입력해주세요.>");
-				ps.setString(i, ScanUtil.nextLine());
-			}
+			
+				System.out.println("번호를 입력해주세요.");
+				System.out.println("----------------------------------------------------------------");
+				ps.setString(1, ScanUtil.nextLine());
+				
+				System.out.println("제목를 입력해주세요.");
+				System.out.println("----------------------------------------------------------------");
+				ps.setString(2, ScanUtil.nextLine());
+				
+				System.out.println("내용를 입력해주세요.");
+				System.out.println("----------------------------------------------------------------");
+				ps.setString(3, ScanUtil.nextLine());
+				
+				System.out.println("아이디를 입력해주세요.");
+				System.out.println("----------------------------------------------------------------");
+				ps.setString(4, ScanUtil.nextLine());
+				
+				System.out.println("날짜를 입력해주세요.");
+				System.out.println("----------------------------------------------------------------");
+				ps.setString(5, ScanUtil.nextLine());
+			
 			int result = ps.executeUpdate();
 			System.out.println(result + "개의 행이 삽입되었습니다.");
 		} catch (SQLException e) {
