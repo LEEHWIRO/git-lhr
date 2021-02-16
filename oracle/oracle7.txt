@@ -17,3 +17,10 @@ WHERE EXISTS (
  GROUP BY  B.BUYER_ID , B.BUYER_NAME
  HAVING SUM(D.BUY_QTY * D.BUY_COST) >= 1000000
  );
+
+--* 서브쿼리
+--단일행 서브쿼리(쿼리 내의 SELECT문)
+= <  <= > >=
+
+--다중행 서브쿼리
+IN ANY(안씀) ALI(안씀) EXISTS
