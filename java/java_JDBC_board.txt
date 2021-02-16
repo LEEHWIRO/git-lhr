@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import e_oop.ScanUtil;
 
 public class JDBCBoard {
-	///1. DB접속
+	//1. DB접속
 	static String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	static String user = "pc16";
 	static String password = "java";
@@ -49,6 +49,7 @@ public class JDBCBoard {
 				break;
 			case 3:
 				Content();
+				break;
 			case 4:
 				update();
 				break;
@@ -76,16 +77,27 @@ public class JDBCBoard {
 		try {
 			con = DriverManager.getConnection(url, user, password);
 
-			String sql = " delete BOARD_NO, TITLE, CONTENT, USER_ID, REG_DATE"
-					+ "set title = ?, content = ?, user_id = ?, reg_date = ?"
-					+ "where board_no = ?";
+			String sql = " delete from TB_JOBC_BOARD"
+						+ " where board_no = ?";
 
 			ps = con.prepareStatement(sql);
-
-			for (int i = 1; i <= 5; i++) {
-				System.out.println("업데이트할 내용을 입력해주세요>");
-				ps.setString(i, ScanUtil.nextLine());
-			}
+			
+//			rs = ps.executeQuery();
+//			
+//			ResultSetMetaData md = rs.getMetaData();
+//			
+//			int count = md.getColumnCount();
+//			
+//			while(rs.next()){
+//				for(int i = 1; i <= count; i++){
+//					System.out.println(rs.getObject(i) + "\t");
+//				}
+//			}
+			
+			System.out.println("삭제할 번호를 골라주세요.");
+			
+			ps.setInt(1, ScanUtil.nextInt());
+			
 
 			int result = ps.executeUpdate();
 			System.out.println(result + "개의 행이 삭제되었습니다.");
@@ -112,9 +124,9 @@ public class JDBCBoard {
 		try {
 			con = DriverManager.getConnection(url, user, password);
 			
-			String sql = " update BOARD_NO, TITLE, CONTENT, USER_ID, REG_DATE"
-					+ "set title = ?, content = ?, user_id = ?, reg_date = ?"
-					+ "where board_no = ?";
+			String sql = " update TB_JOBC_BOARD"
+					+ " set title = ?, content = ?, user_id = ?, reg_date = ?"
+					+ " where board_no = ?";
 			
 			ps = con.prepareStatement(sql);
 			
