@@ -45,6 +45,7 @@ public class JDBCUtil {
 	 * int update(String sql, List<Object> param)
 	 */
 	
+	//selectOne(String sql)
 	Map<String, Object> selectOne(String sql){
 		Map<String, Object> map = new HashMap<>();
 		
@@ -70,6 +71,7 @@ public class JDBCUtil {
 		return map;
 	}
 	
+	//selectOne(String sql, List<Object> param)
 	Map<String, Object> selectOne(String sql, List<Object> param){
 		Map<String, Object> map = new HashMap<>();
 		
@@ -98,7 +100,7 @@ public class JDBCUtil {
 		return map;
 	}
 	
-	
+	//selectList(String sql)
 	List<Map<String, Object>> selectList(String sql){
 		List<Map<String, Object>> list = new ArrayList<>();
 		
@@ -130,6 +132,7 @@ public class JDBCUtil {
 		return list;
 	}
 	
+	//selectList(String sql, List<Object> param)
 	List<Map<String, Object>> selectList(String sql, List<Object> param){
 		List<Map<String, Object>> list = new ArrayList<>();
 		
@@ -164,6 +167,7 @@ public class JDBCUtil {
 		return list;
 	}
 	
+	//int update(String sql)
 	int update(String sql){
 		int result = 0;
 		try {
@@ -187,6 +191,7 @@ public class JDBCUtil {
 		return result;
 	}
 	
+	//int update(String sql, List<Object> param)
 	int update(String sql, List<Object> param){
 		int result = 0;
 		try {
