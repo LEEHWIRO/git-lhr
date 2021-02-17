@@ -92,7 +92,7 @@ public class JDBCUtil {
 			while(rs.next()){
 				row = new HashMap<>();
 				for(int i = 1; i <= columnCount; i++){
-					row.put(metaData.getCatalogName(i), rs.getObject(i));
+					row.put(metaData.getColumnName(i), rs.getObject(i));
 				}
 			}
 		} catch (SQLException e) {
