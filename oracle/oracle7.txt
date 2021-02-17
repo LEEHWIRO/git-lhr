@@ -95,7 +95,77 @@ BEGIN
   FROM   MEMBER
   WHERE  MEM_ID = 'e001';
   
-  DBMS_OUTPUT.PUT_LINE('V_MILEAGE : ' || V_MILEAGE);
+  IF V_MILEAGE > 5000 THEN
+      DBMS_OUTPUT.PUT_LINE('VIP회원');
+  ELSE
+      DBMS_OUTPUT.PUT_LINE('일반회원');
+  END IF;
+  DBMS_OUTPUT.PUT('V_MILEAGE : ' || V_MILEAGE); -- LINE : 줄넘김
   DBMS_OUTPUT.PUT_LINE('V_NAME : ' || V_NAME);
 END;
 /
+--상품분류가 화장품인 상품의 평균판매가를
+--구한 후 평균판매가가 3,000원 미만이면 
+--싸다, 3,000원 이상 ~ 6,000원 미만이면 보통,
+--6,000원 이상 ~ 9,000원 미만이면 비싸다,
+--9,000원 이상이면 너무비싸다를 출력하기
+--단, CASE 문 사용하여 처리하기
+--출력형식 : 화장품의 평균판매가는 5000원이고 보통이다.
+DECLARE
+    V_SALE NUMBER;-- 실수
+    V_STR  VARCHAR2(20);
+BEGIN
+    SELECT ROUND(AVG(NVL(PROD_SALE,0)),2) INTO V_SALE --54233.33
+    FROM   PROD
+    WHERE  PROD_LGU = (
+             SELECT LPROD_GU FROM LPROD
+             WHERE  LPROD_NM = '화장품'
+        );
+        
+  DBMS_OUTPUT.PUT_LINE('V_SALE : ' || V_SALE);
+        
+  CASE WHEN V_SALE < 3000 THEN 
+         V_STR := ('싸다');
+       WHEN V_SALE >= 3000 AND V_SALE < 6000 THEN
+         V_STR := ('보통');
+       WHEN V_SALE >= 6000 AND V_SALE < 9000 THEN 
+         V_STR := ('비싸다');
+       ELSE
+         V_STR := ('너무비싸다');
+    END CASE;
+    
+    DBMS_OUTPUT.PUT_LINE('화장품의 평균판매가는 ' || V_SALE ||
+             '원이고 ' ||V_STR);
+END;
+/
+--가파치 업체의 지역을 검색하여
+--다음과 같이 출력하기
+--대구 : 경북 
+--부산 : 경남
+--대전 : 충청
+--서울, 인천 : 수도권
+--기타 : 기타
+--단, CASE문 사용하기
+DECLARE
+  V_ADD1 VARCHAR2(30);
+  V_STR  VARCHAR2(30);
+BEGIN
+    SELECT SUBSTR(BUYER_ADD1,1,2) INTO V_ADD1 --대구
+    FROM   BUYER
+    WHERE  BUYER_NAME = '가파치';
+  CASE WHEN V_ADD1 = ('대구') THEN
+    V_STR :=('경북');
+     WHEN V_ADD1 = ('부산') THEN
+    V_STR :=('경남');
+     WHEN V_ADD1 = ('대전') THEN
+    V_STR :=('충청');
+     WHEN V_ADD1 = ('서울')AND V_ADD1 = ('인천') THEN
+    V_STR :=('수도권');
+    ELSE
+    V_STR :=('기타');
+     
+END CASE;
+DBMS_OUTPUT.PUT_LINE('가파치의 ' || V_ADD1 ||
+             ' : ' ||V_STR);
+END;
+    
