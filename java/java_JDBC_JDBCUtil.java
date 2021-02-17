@@ -46,8 +46,8 @@ public class JDBCUtil {
 	 */
 	
 	//selectOne(String sql)
-	Map<String, Object> selectOne(String sql){
-		Map<String, Object> map = new HashMap<>();
+	public Map<String, Object> selectOne(String sql){
+		Map<String, Object> row = null;
 		
 		try {
 			con = DriverManager.getConnection(url,user,password);
@@ -60,20 +60,21 @@ public class JDBCUtil {
 			int columnCount = metaData.getColumnCount();
 			
 			while(rs.next()){
+				row = new HashMap<>();
 				for(int i = 1; i <= columnCount; i++){
-					map.put(metaData.getColumnName(i), rs.getObject(i));
+					row.put(metaData.getColumnName(i), rs.getObject(i));
 				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return map;
+		return row;
 	}
 	
 	//selectOne(String sql, List<Object> param)
-	Map<String, Object> selectOne(String sql, List<Object> param){
-		Map<String, Object> map = new HashMap<>();
+	public Map<String, Object> selectOne(String sql, List<Object> param){
+		Map<String, Object> row = null;
 		
 		try {
 			con = DriverManager.getConnection(url,user,password);
@@ -89,19 +90,20 @@ public class JDBCUtil {
 			int columnCount = metaData.getColumnCount();
 			
 			while(rs.next()){
+				row = new HashMap<>();
 				for(int i = 1; i <= columnCount; i++){
-					map.put(metaData.getCatalogName(i), rs.getObject(i));
+					row.put(metaData.getCatalogName(i), rs.getObject(i));
 				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return map;
+		return row;
 	}
 	
 	//selectList(String sql)
-	List<Map<String, Object>> selectList(String sql){
+	public List<Map<String, Object>> selectList(String sql){
 		List<Map<String, Object>> list = new ArrayList<>();
 		
 		try {
@@ -133,7 +135,7 @@ public class JDBCUtil {
 	}
 	
 	//selectList(String sql, List<Object> param)
-	List<Map<String, Object>> selectList(String sql, List<Object> param){
+	public List<Map<String, Object>> selectList(String sql, List<Object> param){
 		List<Map<String, Object>> list = new ArrayList<>();
 		
 		try {
@@ -168,18 +170,14 @@ public class JDBCUtil {
 	}
 	
 	//int update(String sql)
-	int update(String sql){
+	public int update(String sql){
 		int result = 0;
 		try {
 			con = DriverManager.getConnection(url,user,password);
 			
-			ps = con.prepareStatement(sql);
+		    ps = con.prepareStatement(sql);
 			
 			result = ps.executeUpdate();
-			if(0 < result){
-				System.out.println("수정이 완료되었습니다.");
-			}					
-						
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -192,7 +190,7 @@ public class JDBCUtil {
 	}
 	
 	//int update(String sql, List<Object> param)
-	int update(String sql, List<Object> param){
+	public int update(String sql, List<Object> param){
 		int result = 0;
 		try {
 			con = DriverManager.getConnection(url,user,password);
@@ -203,10 +201,6 @@ public class JDBCUtil {
 			}
 			
 			result = ps.executeUpdate();
-			if(0 < result){
-				System.out.println("수정이 완료되었습니다.");
-			}					
-						
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
