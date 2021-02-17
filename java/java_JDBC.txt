@@ -7,7 +7,7 @@
 		 * 1. Connection 생성(DB 연결)
 		 * 2. Statement 생성(쿼리 작성)
 		 * 3. Query 실행
-		 * 4. ResultSet에서 결고 추출(select인 경우)
+		 * 4. ResultSet에서 결과 추출(select인 경우)
 		 * 5. ResultSet, Statement, Connection 닫기
 		 */
 
