@@ -197,7 +197,7 @@ END CASE;
 DBMS_OUTPUT.PUT_LINE('가파치의 ' || V_ADD1 ||
              ' : ' ||V_STR);
 END;
-
+/
 6.반복문
  (1). WHILE문
  반복될 떄마다 조건을 확인하고 조건이 TRUE가 되어야 LOOP실행
@@ -214,5 +214,107 @@ BEGIN
       V_VAR := V_VAR + 1;
    END LOOP;
    DBMS_OUTPUT.PUT_LINE('1부터 10까지의 합 ='||V_SUM);
+END;
+/
+--구구단
+DECLARE
+   V_DAN NUMBER := 2;
+   V_I NUMBER := 1;
+BEGIN
+   WHILE V_DAN < 10 LOOP
+      DBMS_OUTPUT.PUT_LINE(V_DAN||'단');
+      WHILE V_I <10 LOOP
+         DBMS_OUTPUT.PUT(V_DAN||'*'||V_I||'='||V_DAN * V_I||' ');
+         V_I := V_I + 1;
+      END LOOP;
+      DBMS_OUTPUT.PUT_LINE('');
+      V_I := 1;
+      V_DAN := V_DAN + 1;
+   END LOOP;
+END;
+/
+DECLARE
+    V_ADD  NUMBER(5) := 1000;
+    V_CODE CHAR(4) := '';
+    V_ID   NUMBER(5) := 0;
+BEGIN 
+    SELECT MAX(LPROD_ID) INTO V_ID
+    FROM   LPROD;
+    WHILE  V_ADD <= 1005 LOOP
+        V_ADD := V_ADD + 1;
+        V_ID  := V_ID  + 1;
+        V_CODE := 'TT' || SUBSTR(TO_CHAR(V_ADD), -2);
+        INSERT INTO LPROD(LPROD_ID, LPROD_GU, LPROD_NM)
+        VALUES(V_ID, V_CODE, 'LOOP TEST');
+        IF SQL%FOUND THEN
+            DBMS_OUTPUT.PUT_LINE('신규코드'||V_CODE ||'가 추가되었음');
+        END IF;
+    END LOOP;
+END;
+/
+ (4) FOR 문
+  - index는 1씩 증가하는 자동선언 정수형 변수(최소, 최대값)
+  - REVERSE 가 사용될 경우 1씩 감소
+  - IN 다음에 SELECT 문, CURSOR 문이 올 수 있다.
+  - SELECT, CURSOR 를 사용한 경우 index는 레코드타입 변수
+  
+FOR index IN [REVERSE] 최소값 .. 최대값 LOOP
+    처리문장들;
+   END LOOP;
+   
+--1씩 증가
+BEGIN
+    --i : 자동선언 정수형 변수
+    FOR i IN 1 .. 10 LOOP -- 시작 .. 종료
+        DBMS_OUTPUT.PUT_LINE('i=' || i);
+    END LOOP;
+END;
+/
+--1씩 감소
+BEGIN
+    --i : 자동선언 정수형 변수
+    FOR i IN REVERSE 1 .. 10 LOOP -- 시작 .. 종료
+        DBMS_OUTPUT.PUT_LINE('i=' || i);
+    END LOOP;
+END;
+/
+--FOR문을 사용하여 구구단 출력하기
+BEGIN 
+    --i : 자동선언 정수형 변수
+    FOR i IN 2..9 LOOP
+      DBMS_OUTPUT.PUT_LINE(i||'단');
+      FOR j IN 1..9 LOOP
+      DBMS_OUTPUT.PUT_LINE(i || '*' || j || '=' || i*j);
+      END LOOP;
+    END LOOP;
+END;
+/
+--FOR 문제
+--변수 및 FOR문을 활용하여 LPROD테이블의
+--LPROD_ID, LPROD_GU,LPROD_NM을
+--출력하시오. 최소값과 최대값은 변수로 처리하시오
+DECLARE
+  V_ID  NUMBER;
+  V_GU  VARCHAR2(10);
+  V_NM  VARCHAR2(30);
+  V_MIN NUMBER; --:= 1;
+  V_MAX NUMBER; --:= 9;
+BEGIN 
+    --방법 1
+--  FOR i IN 1..9 LOOP
+--  SELECT LPROD_ID, LPROD_GU, LPROD_NM 
+--         INTO V_ID, V_GU, V_NM
+--  FROM   LPROD
+--  WHERE  LPROD_ID = i;
+    --방법 2
+  SELECT MIN(LPROD_ID), MAX(LPROD_ID) INTO V_MIN, V_MAX
+  FROM   LPROD;
+  FOR i IN V_MIN..V_MAX LOOP
+      SELECT LPROD_ID, LPROD_GU, LPROD_NM 
+             INTO V_ID, V_GU, V_NM
+      FROM   LPROD
+      WHERE  LPROD_ID = i;
+  DBMS_OUTPUT.PUT_LINE(V_ID||' '||V_GU||' '||V_NM);
+  END LOOP;
 END;
 /
