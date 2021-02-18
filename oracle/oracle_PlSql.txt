@@ -197,3 +197,22 @@ END CASE;
 DBMS_OUTPUT.PUT_LINE('가파치의 ' || V_ADD1 ||
              ' : ' ||V_STR);
 END;
+
+6.반복문
+ (1). WHILE문
+ 반복될 떄마다 조건을 확인하고 조건이 TRUE가 되어야 LOOP실행
+  - 조건이 만족할 때까지 반복 처리
+  - EXIT문은 WHILE LOOP를 벗어나게한다.
+  - CONTINUE문은 11g부터 제공한다.
+--1부터 10까지 더하기
+DECLARE 
+   V_SUM NUMBER := 0;
+   V_VAR NUMBER := 1;
+BEGIN
+   WHILE V_VAR <= 10 LOOP
+      V_SUM := V_SUM + V_VAR;
+      V_VAR := V_VAR + 1;
+   END LOOP;
+   DBMS_OUTPUT.PUT_LINE('1부터 10까지의 합 ='||V_SUM);
+END;
+/
