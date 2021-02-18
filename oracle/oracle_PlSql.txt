@@ -1,3 +1,4 @@
+I. PL/SQL 
 1. PL/SQL
 Anonymous block : 단순 스크립트에서 실행되는 블록 서버에 저장되지 않는다.
 Stored Procedure : 자주 실행되거나, 복잡한 비지니스 로직을 미리 작성하여 서버에 저장하여 사용한다.
@@ -318,3 +319,58 @@ BEGIN
   END LOOP;
 END;
 /
+
+II. Exception
+1. Exception
+ (1). Exception 구문 
+   EXCEPTION 
+        WHEN exception1 [OR exception2 …] THEN 
+                     statement1;
+                     statement2;…
+         [ WHEN exception2 [OR exception4…]  THEN
+                     statement1;
+                     statement2;…  ] 
+         [ WHEN OTHERS THEN
+                     statement1;
+                     statement2;…  ] 
+exception n : 미리 정의된 예외 또는 선언부에 선언된 예외 이름
+statement n : PL/SQL 또는 SQL 구문
+WHEN OTHERS : 명시적으로 선언되지 않은 모든 예외를 처리
+ (2). EXCEPTION 처리
+NO_DATA_FOUND : 선택된 행이 없는 경우 (SELECT.. INTO)
+TOO_MANY_ROWS : 여러 행이 리턴 되는 경우 (SELECT.. INTO)
+DUP_VAL_ON_INDEX : UNIQUE인덱스가 걸린 컬럼에 중복 데이터를 입력할 때
+VALUE_ERROR : 값을 할당하거나 변환할 때 오류가 나는 경우
+INVALID_NUMBER : 숫자로 변환이 되지 않는 경우(문자형 데이터)
+NOT_LOGGED_ON : DB에 접속하지 않은 채 실행하는 경우
+LOGIN_DENIED : 잘못된 사용자나 비밀번호로 로그인을 시도할 때
+ZERO_DIVIDE : 0으로 나누려고 할 때
+INVALID_CURSOR : 허용되지 않은(열리지 않은) 커서에 접근하는 경우
+
+예제 1.
+DECLARE
+    V_NM VARCHAR2(30);
+BEGIN
+    SELECT LPROD_NM + 0 INTO V_NM
+    FROM   LPROD
+    WHERE  LPROD_GU = 'P201';
+    
+    DBMS_OUTPUT.PUT_LINE('분류명 : ' || V_NM);
+    
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            DBMS_OUTPUT.PUT_LINE('해당 정보가 없습니다.' || SQLCODE ||' '|| SQLERRM);
+        WHEN TOO_MANY_ROWS THEN
+            DBMS_OUTPUT.PUT_LINE('다중행 오류입니다');
+        WHEN OTHERS THEN  --아몰랑
+            DBMS_OUTPUT.PUT_LINE('기타오류' || SQLCODE ||' '|| SQLERRM);
+END;
+/
+
+
+
+ 
+
+
+
+
