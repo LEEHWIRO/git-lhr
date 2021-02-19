@@ -383,7 +383,25 @@ BEGIN
             DBMS_OUTPUT.PUT_LINE('삭제불가 : ' || SQLERRM);
 END;
 /
-
+--정의되지 않은 예외 문제
+--MEMBER 테이블의 a001회원의 정보를 삭제
+--MEMBER 테이블의 MEM_ID를 참조하고 있는
+--CART 테이블의 CART_MEMBER(FK)로 인해
+--MEMBER 테이블 데이턱 삭제되지 않는데
+--예외로 처리하기
+DECLARE
+    EXP EXCEPTION;
+    PRAGMA EXCEPTION_INIT(EXP, -2292);
+    --ORA-02292: integrity constraint (PC16.FR_CART_MEMBER) violated - child record found
+BEGIN
+    DELETE FROM MEMBER
+    WHERE  MEM_ID = 'a001';
+    
+    EXCEPTION
+        WHEN EXP THEN
+            DBMS_OUTPUT.PUT_LINE('삭제불가 : ' || SQLERRM);
+END;
+/
 
  
 
