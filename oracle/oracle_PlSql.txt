@@ -399,11 +399,73 @@ BEGIN
     
     EXCEPTION
         WHEN EXP THEN
-            DBMS_OUTPUT.PUT_LINE('삭제불가 : ' || SQLERRM);
+            DBMS_OUTPUT.PUT_LINE('삭제불가 : ' || SQLERRM); --자식 레코드 발견
 END;
 /
-
- 
+ACCEPT P_LGU PROMPT '등록하려는 분류코드 입력:'
+DECLARE
+    EXP_LPROD_GU EXCEPTION;
+    V_LGU VARCHAR2(10) := UPPER('&P_LGU');
+BEGIN
+    IF V_LGU IN('P101','P102','P201','P202') THEN
+        RAISE EXP_LPROD_GU;
+    END IF;
+    DBMS_OUTPUT.PUT_LINE(V_LGU||'는 등록가능');
+EXCEPTION
+    WHEN EXP_LPROD_GU THEN
+        DBMS_OUTPUT.PUT_LINE(V_LGU||'는 이미 등록된 코드 입니다.');
+END;
+/
+--사용자 정의 예외
+--MEMBER 테이블에 회원ID b001을 추가하려고
+--할 때 사용자 정의 예외를 발생하기
+--회원ID 체크는 a001, b001, c001 로하기
+ACCEPT M_ID PROMPT '등록하려는 분류코드 입력:'
+DECLARE
+     EXP_M_ID EXCEPTION;
+     V_ID VARCHAR2(10) := LOWER('&M_ID');
+BEGIN
+    IF V_ID IN('a001','b001','c001') THEN
+        RAISE EXP_M_ID;
+    END IF;
+    DBMS_OUTPUT.PUT_LINE(V_ID||'는 등록가능');
+EXCEPTION
+    WHEN EXP_M_ID THEN
+        DBMS_OUTPUT.PUT_LINE(V_ID||'는 이미 등록된 코드 입니다.');
+END;
+/
+--회원의 마일리지 현황을 출력하기
+--단, 직업이 주부인 회원만 출력
+--ALIAS : MEM_NAME, MEM_MILEAGE
+--정렬 : MEM_NAME 오름차순
+DECLARE
+    V_NAME VARCHAR2(30);
+    V_MILEAGE NUMBER;
+    --커서를 선언
+    CURSOR MEM_CUR IS 
+        SELECT MEM_NAME, MEM_MILEAGE
+        FROM   MEMBER
+        WHERE  MEM_JOB = '주부'
+        ORDER BY MEM_NAME ASC;
+BEGIN
+    --메모리 할당 및 정보를 저장
+--    OPEN MEM_CUR;
+--    --방법1.
+--    LOOP
+--        FETCH MEM_CUR INTO V_NAME, V_MILEAGE;  
+--        EXIT WHEN MEM_CUR%NOTFOUND;
+--        DBMS_OUTPUT.PUT_LINE(V_NAME || ', ' || V_MILEAGE);
+--    END LOOP;
+--    CLOSE MEM_CUR;
+      --사용중인 메모리를 반환
+      
+    --방법2.
+    FOR MEM_REC IN MEM_CUR LOOP
+        DBMS_OUTPUT.PUT_LINE(MEM_REC.MEM_NAME ||
+                     ', ' || MEM_REC.MEM_MILEAGE);
+    END LOOP;   
+END;
+/ 
 
 
 
