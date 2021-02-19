@@ -366,7 +366,23 @@ BEGIN
             DBMS_OUTPUT.PUT_LINE('기타오류' || SQLCODE ||' '|| SQLERRM);
 END;
 /
-
+--정의되지 않은 예외인 경우
+DECLARE 
+    --예외처리형의 EXP1변수를 선언
+    EXP1 EXCEPTION;
+    --PRAGMA : 컴파일때만 실행 BUT, 실행시에는 실행안됨.
+    --EXCEPTION_INIT : 예외처리형 EXP1변수와 오류코드번호를 매핑
+    PRAGMA EXCEPTION_INIT(EXP1, -2292);
+BEGIN
+    DELETE FROM LPROD
+    WHERE  LPROD_GU = 'P101';
+     
+    EXCEPTION
+        WHEN EXP1 THEN
+            --SQLERRM : SQL ERROR MESSAGE
+            DBMS_OUTPUT.PUT_LINE('삭제불가 : ' || SQLERRM);
+END;
+/
 
 
  
