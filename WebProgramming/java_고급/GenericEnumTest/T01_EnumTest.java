@@ -54,7 +54,7 @@ public class T01_EnumTest {
 		
 		System.out.println("myCity1 : " + myCity1.name());
 		System.out.println("myCity1의 oardinal : " + myCity1.ordinal());
-		System.out.println();
+		System.out.println(); 
 		
 		System.out.println("myCity2 : " + myCity2.name());
 		System.out.println("myCity2의 oardinal : " + myCity2.ordinal());
@@ -87,4 +87,4 @@ public class T01_EnumTest {
 		System.out.println("서울 => " + city.compareTo(City.서울));
 		System.out.println("대전 => " + city.compareTo(City.대전));
 	}
-}
+	}
