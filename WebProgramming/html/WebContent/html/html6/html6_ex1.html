@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		div {
+			width: 100px;
+			height: 100px;
+			top: 0px;
+			left: 0px;
+			z-index: 0;
+		}
+		
+		#ex1 {
+			background-color: red;
+		}
+		#ex2 {
+			background-color: blue;
+			position: absolute;
+		    top: 30px;
+		    left: 30px;
+		    z-index: -1;
+		}
+		#ex3 {
+			background-color: yellow;
+			position: absolute;
+		    top: 60px;
+		    left: 60px;
+		    z-index: -2;
+		}
+	</style>
+</head>
+<body>
+	<div id="ex1">박스1</div>
+	<div id="ex2">박스2</div>
+	<div id="ex3">박스2</div>
+</body>
+</html>
