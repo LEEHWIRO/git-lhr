@@ -11,12 +11,16 @@
 			margin: 0px;
 			padding: 0px;
 		}
+		body {
+			min-width: 1000px;
+		}
 		header {
-			background-color: #E0F8F7; 
+			background-color: #FACC2E; 
 			line-height: 80px;
 			text-align: left;
 			margin-bottom: 5px;
-			height: 60px
+			height: 60px;
+			border-radius: 30px;
 		}
 		header h1	{
 			display: inline;
@@ -29,53 +33,157 @@
 			margin-left: 25px;
 			margin-top: 15px;
 		}
+		header h1 a:link {
+			color: #8000FF 
+		}
 		nav {
-			border-top: 1px dotted green;
-			border-bottom: 1px solid green;
-			text-align: center;
-			line-height: 5px;
-		}
-		ul {
-			padding: 15px 0px;
-		}
-		ul li {		
-			display: inline;	
+			width:100%;
+			height: 30px;
+			background-color: #D0A9F5;
+			border-radius: 30px;
+			margin-bottom: 5px;
+			
 		}
 		.nav {
-			color: blue;
-			text-transform: uppercase;
+			color: white;			
+			width: 20%;
+			float:left;
+			text-align: center;
+			line-height: 30px;
+			font-size: 20px;
+			text-transform:  uppercase;
 		}
-
+		nav div a:link{
+		   color : white;
+		}		
+		#left {
+			width: 25%;
+			background-color: #F8E0F7;
+			
+		}
+		#left h3 {
+			padding-top: 20px;
+			padding-left: 10px; 
+			margin-left: 10px;
+			padding-bottom: 10px;
+			font-size: 30px;
+    		line-height: 80px;
+		}
+		#left ul li {
+			background-color: #F5A9D0;
+			margin-left: 10px;
+			padding-left: 10px;
+			border: 1px solid #E6E6E6;
+			width: 215px;
+			font-size: 30px;
+    		line-height: 80px;
+		}
+		#left ul li a {
+			color: white;
+		}		
+		#main {
+			width: 50%;
+		}
+		#main article iframe {
+			width: 30%;
+			height: 400px;
+			
+		}
+		.center {
+			float: left;
+			height: 779px;
+			margin-bottom: 5px;
+			border-radius: 30px;
+		}
+		section article {
+			float: left;
+			width: 30%;
+			padding-left: 15px;
+			height: 739px;
+		    padding-top: 20px;
+		    padding-bottom: 20px;
+		}
+		
+		#right {
+			width: 25%;
+			background-color: #F8E0F7;
+		}
+		#shopcart {
+			height: 235px;
+			margin-top: 20px;
+			margin-left: 15px;
+			font-size: 30px;
+		}
+		#login {
+			height: 235px;
+			margin-top: 20px;
+			margin-left: 15px;
+			font-size: 30px;
+		}
+		footer {
+			clear: both;
+			background-color: black;
+			height: 60px;
+			color: white;
+			text-align: center;
+			line-height: 60px;
+			border-radius: 30px;
+		}
 	</style>
 </head>
 <body>
 	<header>
 		
 			<img id="headerimage" alt="쇼핑몰메인그림" src="../images/shopping.png">
-			<h1>Web Shopping</h1>
+			<h1><a href="index.html">Web Shopping</a></h1>
 	</header>
-	
-<!-- 	<div style="width:100%;"> -->
-<!-- 	        <div style="width:20%;float:left;text-align:center;" class="nav"><a href="index.html">Home</a></div> -->
-<!-- 	        <div style="width:20%;float:left;text-align:center;" class="nav"><a href="index.html">Shopping About</a></div> -->
-<!-- 	        <div style="width:20%;float:left;text-align:center;" class="nav"><a href="index.html">News</a></div> -->
-<!-- 	        <div style="width:20%;float:left;text-align:center;" class="nav"><a href="index.html">My Account</a></div> -->
-<!-- 	        <div style="width:20%;float:left;text-align:center;" class="nav"><a href="index.html">Contacts</a></div> -->
-<!-- 	</div> -->
-	<nav>
-		<ul>
-	        <li><a href="index.html" class="nav">Home</a></li>
-	        <li><a href="index.html" class="nav">Shopping About</a></li>
-	        <li><a href="index.html" class="nav">News</a></li>
-	        <li><a href="index.html" class="nav">My Account</a></li>
-	        <li><a href="index.html" class="nav">Contacts</a></li>
-    	</ul>
+	<nav id="mnav">
+	        <div class="nav"><a href="index.html">Home</a></div>
+	        <div class="nav"><a href="index.html">Shopping About</a></div>
+	        <div class="nav"><a href="index.html">News</a></div>
+	        <div class="nav"><a href="index.html">My Account</a></div>
+	        <div class="nav"><a href="index.html">Contacts</a></div>
 	</nav>
-	<aside id="left"></aside>
-	<section>
-		<article></article>
+	<aside id="left" class="center">
+		<h3>카테고리</h3>
+		<ul>
+			<li><a href="computer.html" target="frm">컴퓨터</a></li>
+			<li><a href="clothing.html" target="frm">의류</a></li>
+			<li><a href="music.html" target="frm">음악</a></li>
+			<li><a href="movie.html" target="frm">영화</a></li>
+			<li><a href="sprots.html" target="frm">스포츠/레져</a></li>
+			<li><a href="furniture.html" target="frm">가구/인테리어</a></li>
+			<li><a href="fodd.html" target="frm">식품</a></li>
+		</ul>
+	</aside>
+	<section id="main" class="center">
+   		<article id="article1">
+	        <iframe src="index.html" name="frm" title="본문영역"> 
+	        </iframe>
+    	</article>
+   		<article id="article2">
+			<iframe src="index.html" name="frm" title="본문영역"> 
+	        </iframe>
+		</article>
+   		<article id="article3">
+			<iframe src="index.html" name="frm" title="본문영역"> 
+	        </iframe>
+		</article>
 	</section>
-	<aside id="right"></aside>
-	<footer></footer>
+	<aside id="right" class="center">
+	    <div id="shopcart">
+	        <h4>Shopping Cart</h4>
+	    </div>
+	
+	    <div id="login">
+	        <h4>Log In</h4>
+	        <form action="#">
+	           
+	        </form>
+	    </div>
+	</aside>
+	<footer>
+		<h3>Copyright (c)2021 Lee</h3>
+	</footer>
 </body>
 </html>
