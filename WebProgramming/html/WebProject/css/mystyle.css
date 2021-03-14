@@ -100,7 +100,7 @@ nav div a:link {
 	padding-bottom: 20px;
 }
 #frm {
-	width: 730px;
+	width: 650px;
 	height: 580px;
 	border: 1px solid white;
 }
@@ -132,11 +132,11 @@ footer {
 
 /* computer.html style */
 .comimg {
-	width: 230px;
+	width: 200px;
 	height: 230px;
 }
 .comset {
-	width: 230px;
+	width: 200px;
 	height: 500px;
 	display: inline;
 }
@@ -151,3 +151,29 @@ footer {
 	height: 500px;
 	display: inline;
 }
+
+/* music.html style */
+.musimg {
+	width: 200px;
+	height: 230px;
+}
+.musset {
+	width: 200px;
+	height: 500px;
+	display: inline;
+}
+.audio {
+	width: 200px;
+}
+
+/* movie.html style */
+.movimg {
+	width: 200px;
+	height: 230px;
+}
+.musset {
+	width: 200px;
+	height: 500px;
+	display: inline;
+}
+
