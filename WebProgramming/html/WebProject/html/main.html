@@ -3,141 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Web Shop Page</title>
-	<style type="text/css">
-		* {
-			list-style: none;
-			text-decoration: none;
-			border-collapse: collapse;
-			margin: 0px;
-			padding: 0px;
-		}
-		body {
-			min-width: 1000px;
-		}
-		header {
-			background-color: #FACC2E; 
-			line-height: 80px;
-			text-align: left;
-			margin-bottom: 5px;
-			height: 60px;
-			border-radius: 30px;
-		}
-		header h1	{
-			display: inline;
-			position: absolute;
-			font-size: 20px;
-		}
-		#headerimage {
-			width: 40px;
-			height: 40px;
-			margin-left: 25px;
-			margin-top: 15px;
-		}
-		header h1 a:link {
-			color: #8000FF 
-		}
-		nav {
-			width:100%;
-			height: 30px;
-			background-color: #D0A9F5;
-			border-radius: 30px;
-			margin-bottom: 5px;
-			
-		}
-		.nav {
-			color: white;			
-			width: 20%;
-			float:left;
-			text-align: center;
-			line-height: 30px;
-			font-size: 20px;
-			text-transform:  uppercase;
-		}
-		nav div a:link{
-		   color : white;
-		}		
-		#left {
-			width: 25%;
-			background-color: #F8E0F7;
-			
-		}
-		#left h3 {
-			padding-top: 20px;
-			padding-left: 10px; 
-			margin-left: 10px;
-			padding-bottom: 10px;
-			font-size: 30px;
-    		line-height: 80px;
-		}
-		#left ul li {
-			background-color: #F5A9D0;
-			margin-left: 10px;
-			padding-left: 10px;
-			border: 1px solid #E6E6E6;
-			width: 215px;
-			font-size: 30px;
-    		line-height: 80px;
-		}
-		#left ul li a {
-			color: white;
-		}		
-		#main {
-			width: 50%;
-		}
-		#main article iframe {
-			width: 30%;
-			height: 400px;
-			
-		}
-		.center {
-			float: left;
-			height: 779px;
-			margin-bottom: 5px;
-			border-radius: 30px;
-		}
-		section article {
-			float: left;
-			width: 30%;
-			padding-left: 15px;
-			height: 739px;
-		    padding-top: 20px;
-		    padding-bottom: 20px;
-		}
-		
-		#right {
-			width: 25%;
-			background-color: #F8E0F7;
-		}
-		#shopcart {
-			height: 235px;
-			margin-top: 20px;
-			margin-left: 15px;
-			font-size: 30px;
-		}
-		#login {
-			height: 235px;
-			margin-top: 20px;
-			margin-left: 15px;
-			font-size: 30px;
-		}
-		footer {
-			clear: both;
-			background-color: black;
-			height: 60px;
-			color: white;
-			text-align: center;
-			line-height: 60px;
-			border-radius: 30px;
-		}
-	</style>
+	<link type="text/css" rel="stylesheet" href="../css/mystyle.css"></link>
 </head>
-<body>
+<body id="mainhome">
 	<header>
-		
 			<img id="headerimage" alt="쇼핑몰메인그림" src="../images/shopping.png">
 			<h1><a href="index.html">Web Shopping</a></h1>
 	</header>
-	<nav id="mnav">
+	<nav>
 	        <div class="nav"><a href="index.html">Home</a></div>
 	        <div class="nav"><a href="index.html">Shopping About</a></div>
 	        <div class="nav"><a href="index.html">News</a></div>
@@ -157,18 +30,10 @@
 		</ul>
 	</aside>
 	<section id="main" class="center">
-   		<article id="article1">
-	        <iframe src="index.html" name="frm" title="본문영역"> 
+   		<div id="article1">
+	        <iframe src="index.html" name="frm" title="본문영역" id="frm"> 
 	        </iframe>
-    	</article>
-   		<article id="article2">
-			<iframe src="index.html" name="frm" title="본문영역"> 
-	        </iframe>
-		</article>
-   		<article id="article3">
-			<iframe src="index.html" name="frm" title="본문영역"> 
-	        </iframe>
-		</article>
+    	</div>
 	</section>
 	<aside id="right" class="center">
 	    <div id="shopcart">
