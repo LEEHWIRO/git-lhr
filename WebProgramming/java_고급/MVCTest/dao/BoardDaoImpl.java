@@ -155,6 +155,10 @@ public class BoardDaoImpl implements IBoardDao {
 						sql += " and boadr_content like '%' || ? || '%' ";
 						
 					}
+					if(mv.getBoardDate() != null && !mv.getBoardDate().equals("")) {
+						sql += " and boadr_date like '%' || ? || '%' ";
+						
+					}
 					
 					
 					pstmt = conn.prepareStatement(sql);
@@ -173,6 +177,9 @@ public class BoardDaoImpl implements IBoardDao {
 					if(mv.getBoardContent() != null && !mv.getBoardContent().equals("")) {
 						pstmt.setString(index++, mv.getBoardContent());
 					}
+					if(mv.getBoardDate() != null && !mv.getBoardDate().equals("")) {
+						pstmt.setString(index++, mv.getBoardDate());
+					}
 					
 					
 					rs = pstmt.executeQuery();
@@ -183,7 +190,7 @@ public class BoardDaoImpl implements IBoardDao {
 						mv2.setBoardTitle(rs.getString("board_title"));
 						mv2.setBoardWriter(rs.getString("board_writer"));
 						mv2.setBoardContent(rs.getString("board_content"));
-						
+						mv2.setBoardDate(rs.getString("board_date"));
 					
 						boardList.add(mv2);
 					}

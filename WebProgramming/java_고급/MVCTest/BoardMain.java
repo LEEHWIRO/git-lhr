@@ -102,15 +102,19 @@ public class BoardMain {
 		
 		System.out.print("게시판 내용 >> ");
 		String boardContent = scan.nextLine().trim();
+		
+		System.out.print("게시판 작성 날짜 >> ");
+		String boardDate = scan.nextLine().trim();
 				
 		BoardVO mv = new BoardVO();
-		mv.setBoardNo(boardNo);;
-		mv.setBoardTitle(boardTitle);;
-		mv.setBoardWriter(boardWriter);;
-		mv.setBoardContent(boardContent);;
+		mv.setBoardNo(boardNo);
+		mv.setBoardTitle(boardTitle);
+		mv.setBoardWriter(boardWriter);
+		mv.setBoardContent(boardContent);
+		mv.setBoardDate(boardDate);
 		
 		// 입력한 정보로 검색한 내용을 출력하는 부분
-		List<BoardVO> boardList = boardService.getSearchBoard(mv));
+		List<BoardVO> boardList = boardService.getSearchBoard(mv);
 		
 		System.out.println();
 		System.out.println("---------------------------------------");
@@ -154,81 +158,80 @@ public class BoardMain {
 	private void updateBoard() {
 		
 		boolean chk = false;
-		String memId = null;
+		int boardNo = 0;
 		
 		do {
 			System.out.println();
-			System.out.println("수정할 회원 정보를 입력하세요.");
-			System.out.print("회원 ID >> ");
-			memId = scan.next();
+			System.out.println("수정할 게시판 번호를 입력하세요.");
+			System.out.print("게시판번호 >> ");
+			boardNo = scan.nextInt();
 			
-			chk =  memService.checkMember(memId);
+			chk =  boardService.checkBoard(boardNo);
 			
 			if(chk == false) {
-				System.out.println("회원ID가 " + memId + "인 회원이 없습니다.");
+				System.out.println("게시판번호가 " + boardNo + "인 번호가 없습니다.");
 				System.out.println("다시 입력해 주세요.");
 			}
 			
 		}while(chk == false);
 		
-		System.out.print("회원 이름 >> ");
-		String memName = scan.next();
+		System.out.print("게시판 제목 >> ");
+		String boardTitle = scan.next();
 		
-		System.out.print("회원 전화번호 >> ");
-		String memTel = scan.next();
+		System.out.print("게시판 내용 >> ");
+		String boardContent = scan.next();
 		
-		scan.nextLine(); // 입력버퍼 비우기
-		System.out.print("회원 주소 >> ");
-		String memAddr = scan.nextLine();
+//		scan.nextLine(); // 입력버퍼 비우기
+//		System.out.print("회원 주소 >> ");
+//		String memAddr = scan.nextLine();
 		
-		MemberVO mv = new MemberVO();
-		mv.setMemId(memId);
-		mv.setMemName(memName);
-		mv.setMemTel(memTel);
-		mv.setMemAddr(memAddr);
+		BoardVO mv = new BoardVO();
+		mv.setBoardNo(boardNo);
+		mv.setBoardTitle(boardTitle);
+		mv.setBoardContent(boardContent);
 		
-		int cnt = memService.updateMember(mv);
+		int cnt = boardService.updateBoard(mv);
 		
 		if(cnt > 0) {
-			System.out.println(memId + "회원정보 수정 작업 성공");
+			System.out.println(boardNo + "게시판 수정 작업 성공");
 		}else {
-			System.out.println(memId + "회원정보 수정 작업 실패!!!");
+			System.out.println(boardNo + "게시판 수정 작업 실패!!!");
 		}
 	}
 
 	/**
-	 * 게시판 번호를 이용하여 게시판이 있는지 알려주는 메서드
-	 * @param boardNo
-	 * @return 존재하면 true, 없으면 false
-	 */
-	private boolean chkboard(String boardNo) {
-		boolean chk = false;
-
-		try {
-			conn = JDBCUtil3.getConnection();
-
-			String sql = "select count(*) as cnt from jdbc_board where board_no = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, boardNo);
-
-			rs = pstmt.executeQuery();
-
-			int cnt = 0;
-			while (rs.next()) {
-				cnt = rs.getInt("cnt");
-			}
-
-			if (cnt > 0) {
-				chk = true;
-			}
-
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			JDBCUtil.disConnect(conn, stmt, pstmt, rs);
-		}
-		return chk;
-	}
+//	 * 게시판 번호를 이용하여 게시판이 있는지 알려주는 메서드
+//	 * @param boardNo
+//	 * @return 존재하면 true, 없으면 false
+//	 */
+//	private boolean chkboard(String boardNo) {
+//		boolean chk = false;
+//
+//		try {
+//			conn = JDBCUtil3.getConnection();
+//
+//			String sql = "select count(*) as cnt from jdbc_board where board_no = ?";
+//			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, boardNo);
+//
+//			rs = pstmt.executeQuery();
+//
+//			int cnt = 0;
+//			while (rs.next()) {
+//				cnt = rs.getInt("cnt");
+//			}
+//
+//			if (cnt > 0) {
+//				chk = true;
+//			}
+//
+//		} catch (SQLException ex) {
+//			ex.printStackTrace();
+//		} finally {
+//			JDBCUtil.disConnect(conn, stmt, pstmt, rs);
+//		}
+//		return chk;
+//	}
 	
 
 	/**
@@ -236,34 +239,22 @@ public class BoardMain {
 	 */
 	private void displayAll() {
 		System.out.println();
-		System.out.println("----------------------------");
-		System.out.println(" 게시판번호\t제  목\t작 성 자\t날  짜\t\t\t내  용");
-		System.out.println("----------------------------");
+		System.out.println("---------------------------------------");
+		System.out.println(" NO\\t제 목\\t작 성 자\\t내 용\\t작성날짜");
+		System.out.println("---------------------------------------");
 		
-		try {
-			conn = JDBCUtil3.getConnection();
-			
-			stmt = conn.createStatement();
-			
-			rs = stmt.executeQuery("select *"
-								+ "from jdbc_board");
-			
-			while(rs.next()) {
-				String boardNo = rs.getString("board_no");
-				String boardTitle = rs.getString("board_title");
-				String boardWriter = rs.getString("board_writer");
-				String boardDate = rs.getString("board_date");
-				String boardContent = rs.getString("board_content");
-				
-				System.out.println(boardNo + "\t" + boardTitle + "\t" + boardWriter + "\t" + boardDate + "\t" + boardContent);
-			}
-			System.out.println("----------------------------");
-			System.out.println("출력 작업 끝");
-		}catch(SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			JDBCUtil.disConnect(conn, stmt, pstmt, rs);
+		
+		List<BoardVO> boardList = boardService.getAllBoardList();
+		
+		for(BoardVO mv : boardList) {
+			System.out.println(mv.getBoardNo() 
+					+ "\t" + mv.getBoardTitle() + "\t"
+					+ mv.getBoardWriter() + "\t" + mv.getBoardDate()
+					+ "\t" + mv.getBoardContent());
 		}
+		
+		System.out.println("---------------------------------------");
+		System.out.println("출력 작업 끝...");
 		
 	}
 
@@ -272,41 +263,45 @@ public class BoardMain {
 	 */
 	private void insertBoard() {
 				
-		System.out.println("작성할 제목을 입력하세요.");
-		System.out.print("제목 >> ");
-		String title = scan.next();
+		boolean chk = false;
+		int boardNo = 0;
+		
+		do {
+			System.out.println();
+			System.out.println("추가할 게시판 번호를 입력하세요.");
+			System.out.print("게시판 번호 >> ");
+			boardNo = scan.nextInt();
+			
+			chk = boardService.checkBoard(boardNo);
+			
+			if(chk == true) {
+				System.out.println("게시판번호가 " + boardNo + "인 게시판이 이미 존재합니다.");
+				System.out.println("다시 입력해 주세요.");
+			}
+		}while(chk == true);
+		
+		System.out.print("게시판 제목 >> ");
+		String boardTitle = scan.next();
+		
+		System.out.print("게시판 작성자 >> ");
+		String boardWriter = scan.next();
 		
 		scan.nextLine(); // 입력버퍼 비우기
-		System.out.println("작성할 내용을 입력하세요.");
-		System.out.print("내용 >> ");
-		String content = scan.nextLine();
+		System.out.print("게시판 내용 >> ");
+		String boardContent = scan.nextLine();
 		
-		System.out.println("이름을 입력하세요.");
-		System.out.print("이름 >> ");
-		String writer = scan.next();
-			
-		try {
-			
-			conn = JDBCUtil3.getConnection();
-			
-			String sql = "insert into jdbc_board (board_no,board_title,board_writer,board_date,board_content) " 
-						+ "values (board_seq.nextval,?,?,sysdate,?)";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, title);
-			pstmt.setString(2, writer);
-			pstmt.setString(3, content);
-			
-			int cnt = pstmt.executeUpdate();
-			
-			if(cnt > 0) {
-				System.out.println(writer + "작성자의 게시글 추가 완료");
-			}else {
-				System.out.println(writer + "작성자의 게시글 추가  실패");
-			}
-		}catch(SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			JDBCUtil3.disConnect(conn, stmt, pstmt, rs);
+		BoardVO mv = new BoardVO();
+		mv.setBoardNo(boardNo);;
+		mv.setBoardTitle(boardTitle);;
+		mv.setBoardWriter(boardWriter);;
+		mv.setBoardContent(boardContent);;
+		
+		int cnt = boardService.insertBoard(mv);
+		
+		if(cnt > 0) {
+			System.out.println(boardNo + "게시판 추가 작업 성공");
+		}else {
+			System.out.println(boardNo + "게시판 추가 작업 실패!!!");
 		}
 		
 	}
