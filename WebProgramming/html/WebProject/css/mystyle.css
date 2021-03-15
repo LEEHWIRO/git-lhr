@@ -35,9 +35,12 @@ header h1 {
 header h1 a:link {
 	color: #8000FF
 }
+header h1 a:visited {
+	color: #8000FF
+}
 nav {
 	width: 100%;
-	height: 30px;
+	height: 60px;
 	background-color: #D0A9F5;
 	border-radius: 30px;
 	margin-bottom: 5px;
@@ -47,21 +50,24 @@ nav div {
 	width: 20%;
 	float: left;
 	text-align: center;
-	line-height: 30px;
+	line-height: 50px;
 	font-size: 20px;
 	text-transform: uppercase;
 }
 nav div a:link {
 	color: white;
 }
+nav div a:visited {
+	color: white;
+}
 .center {
 	float: left;
-	height: 779px;
+	height: 743px;
 	margin-bottom: 5px;
 	border-radius: 30px;
 }
 #left {
-	width: 25%;
+	width: 20%;
 	background-color: #F8E0F7;
 }
 #left h3 {
@@ -69,7 +75,7 @@ nav div a:link {
 	padding-left: 10px;
 	margin-left: 10px;
 	padding-bottom: 10px;
-	font-size: 30px;
+	font-size: 20px;
 	line-height: 80px;
 }
 #left ul li {
@@ -77,15 +83,15 @@ nav div a:link {
 	margin-left: 10px;
 	padding-left: 10px;
 	border: 1px solid #E6E6E6;
-	width: 215px;
-	font-size: 30px;
+	width: 161px;
+	font-size: 20px;
 	line-height: 80px;
 }
 #left ul li a {
 	color: white;
 }
 #main {
-	width: 50%;
+	width: 60%;
 }
 #main article iframe {
 	width: 30%;
@@ -100,25 +106,24 @@ nav div a:link {
 	padding-bottom: 20px;
 }
 #frm {
-	width: 650px;
+	width: 800px;
 	height: 580px;
 	border: 1px solid white;
+	margin-left: 80px;
 }
 #right {
-	width: 25%;
+	width: 20%;
 	background-color: #F8E0F7;
 }
 #shopcart {
 	height: 235px;
 	margin-top: 20px;
 	margin-left: 15px;
-	font-size: 30px;
 }
 #login {
 	height: 235px;
 	margin-top: 20px;
 	margin-left: 15px;
-	font-size: 30px;
 }
 footer {
 	clear: both;
@@ -129,10 +134,14 @@ footer {
 	line-height: 60px;
 	border-radius: 30px;
 }
+.login {
+	width: 200px;
+	height: 20px;
+}
 
 /* computer.html style */
 .comimg {
-	width: 200px;
+	width: 250px;
 	height: 230px;
 }
 .comset {
@@ -143,7 +152,7 @@ footer {
 
 /* clothing.html style */
 .cloimg {
-	width: 300px;
+	width: 360px;
 	height: 300px;	
 }
 .closet {
@@ -154,7 +163,7 @@ footer {
 
 /* music.html style */
 .musimg {
-	width: 200px;
+	width: 250px;
 	height: 230px;
 }
 .musset {
@@ -168,12 +177,108 @@ footer {
 
 /* movie.html style */
 .movimg {
-	width: 200px;
+	width: 250px;
 	height: 230px;
 }
-.musset {
+.movset {
+	width: 200px;
+	height: 260px;
+	display: inline;
+}
+#videofrm {
+	width: 700px;
+	height: 300px;
+}
+
+/* sports.html style */
+.spoimg {
+	width: 250px;
+	height: 230px;
+}
+.sposet {
 	width: 200px;
 	height: 500px;
 	display: inline;
 }
 
+/* furniture.html style */
+.furimg {
+	width: 250px;
+	height: 230px;
+}
+.furset {
+	width: 200px;
+	height: 500px;
+	display: inline;
+}
+
+/* foothing.html style */
+.fooimg {
+	width: 360px;
+	height: 300px;	
+}
+.fooset {
+	width: 230px;
+	height: 500px;
+	display: inline;
+}
+
+/* member.html style */
+#memset {
+	padding-left: 25px;
+    width: 430px;
+}
+.user {
+	size: 5px;
+}
+#userbir {
+	width: 169px;
+}
+#idlabel {
+	padding-right: 73px;
+}
+#passlabel {
+	padding-right: 57px;
+}
+#passchklabel {
+	padding-right: 20px;
+}
+#namelabel {
+	padding-right: 89px;
+}
+#hplabel {
+    padding-right: 36px;
+}
+#emaillabel {
+	padding-right: 73px;
+}
+#birlabel {
+    padding-right: 89px;
+}
+#homelabel {
+	padding-right: 57px;
+}
+#genderMale {
+	margin-left: 75px;
+}
+#genderFemale {
+	margin-left: 75px;
+}
+#genlabel {
+	padding-left: 75px;
+}
+.membutton {
+	width: 160px;
+}
+/* shopcart.html style */
+#shoptable {
+	text-align: center;	
+	padding-left: 10px;
+}
+.form {
+	margin-left: 30px;
+	margin-top: 30px;
+}
+.back {
+	margin-left: 30px;
+}
