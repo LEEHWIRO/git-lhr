@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link type="text/css" rel="stylesheet" href="../css/mystyle.css"></link>
+</head>
+<body>
+<form class="form">
+	<fieldset id="memset">
+		<legend>회원정보입력</legend>
+		<label for="userId" id="idlabel">아이디</label> 
+		<input type="text" name="userId" class="user" maxlength="15" required>
+		<input type="submit" value="중복검사" name="userIdchk" id="idCheck" required><br>
+		<label for="userPassword" id="passlabel">패스워드</label> 
+		<input type="password" name="userPassword" class="user" maxlength="15" required><br>
+		<label for="userPasswordchk" id="passchklabel">패스워드 확인</label> 
+		<input type="password" name="userPasswordchk" class="user" maxlength="15" required><br>
+		<label for="userName" id="namelabel">이름</label> 
+		<input type="text" name="userName" class="user" maxlength="5" required><br>
+		<label for="userHp" id="hplabel">휴대폰 번호</label>
+		<input type="text" name="userHp" class="user" maxlength="12" required><br>
+		<label for="userEmail" id="emaillabel">이메일</label>
+		<input type="text" name="userEmail" class="user"  maxlength="30" required><br>
+		<label for="userBir" id="birlabel">생일</label>
+		<input type="date" name="userBir" id="userBir" required><br>
+		<label for="userHomepage" id="homelabel">홈페이지</label>
+		<input type="text" name="userHomepage" class="user"  maxlength="30" required><br>		 
+		<input type="radio" name="gender" value="M" id="genderMale" required>
+		<label for="genderMale" id="genlabel">남성</label><br>
+		<input type="radio" name="gender" value="F" id="genderFemale"  required>
+		<label for="genderFemale" id="genlabel">여성</label><br>
+	</fieldset>
+	<button type="submit" class="membutton">제출</button>
+	<button type="reset" class="membutton">초기화</button>
+	</form>
+	<br>
+	<a class="back"href="main.html" target="_self">Back to the Home</a>
+</body>
+</html>
