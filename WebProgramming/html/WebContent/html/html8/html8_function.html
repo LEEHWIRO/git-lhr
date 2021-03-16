@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		function sub(a,b) {
+			return a + b;
+		}
+		
+		
+		window.onload = function(){
+			document.getElementById("a").innerHTML = sub(4,5)
+			
+			var result = confirm("컨펌 메세지 입니다.") // 확인 , 취소 버튼이 있는 창
+			document.getElementById("tmp1").innerHTML = result;
+		}
+	</script>
+</head>
+<body>
+	<p id="a"></p>
+	<input type="text" id="tmp" value="대한민국">
+	<p id="tmp1"></p>
+	<hr>
+
+				
+		
+
+
+	
+</body>
+</html>
