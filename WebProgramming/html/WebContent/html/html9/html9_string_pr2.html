@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script> 
+// 		var input = prompt("주민번호");950120-1
+		
+// 		var year = parseInt(input.substr(0,2));
+// 		var month = parseInt(input.substr(2,2));
+// 		var day = parseInt(input.substr(4,2));
+// 		var gender = parseInt(input.substr(7,1));
+		
+// 		if(year >= 90 && year <=99){
+// 			document.write("연도 : " + (1900 + year) +"<br>");
+// 		}else {
+// 			document.write("연도 : " + (2000 + year) +"<br>");
+// 		}
+		
+// 		document.write("월 : " + month+"<br>");
+// 		document.write("일 : " + day+"<br>");
+		
+// 		if(gender == 1){
+// 			document.write("성별 : 남성"+"<br>");
+// 		}else{
+// 			document.write("성별 : 여성"+"<br>");
+// 		}
+		
+		function proc(){
+			input = document.getElementById("jumin").value;
+			//950120-1234567
+			var year = parseInt(input.substr(0,2));
+			var month = parseInt(input.substr(2,2));
+			var day = parseInt(input.substr(4,2));
+			var gender = "";
+			
+			var tmp = parseInt(input.substr(7,1));
+			
+			
+			
+			if(tmp == 1 || tmp == 3){
+				gender = "남성";
+			}else{
+				gender = "여성";
+			}
+			
+			if(tmp == 1 || tmp == 2){
+				year = 1900 + year;
+			}else{
+				year = 2000 + year;
+			}
+			
+			document.getElementById("spYear").innerHTML = year;
+			document.getElementById("spMonth").innerHTML = month;
+			document.getElementById("spDay").innerHTML = day;
+			document.getElementById("spGender").innerHTML = gender;
+			
+			
+			var A = parseInt(input.substr(0,1));
+			var B = parseInt(input.substr(1,1));
+			var C = parseInt(input.substr(2,1));
+			var D = parseInt(input.substr(3,1));
+			var E = parseInt(input.substr(4,1));
+			var F = parseInt(input.substr(5,1));
+			var G = parseInt(input.substr(7,1));
+			var H = parseInt(input.substr(8,1));
+			var I = parseInt(input.substr(9,1));
+			var J = parseInt(input.substr(10,1));
+			var K = parseInt(input.substr(11,1));
+			var L = parseInt(input.substr(12,1));
+			var M = parseInt(input.substr(13,1));
+			
+			var sum = A*2+B*3+C*4+D*5+E*6+F*7+G*8+H*9+I*2+J*3+K*4+L*5;
+
+			var i = sum % 11;
+
+			var j = 11 - i;
+
+			if(j>=0 && j<=9){
+				
+			}else if(j==10||j==0||j==11){
+				j = 1
+			}
+			
+			var flag = false;
+			if(M == j){
+				flag = true;
+				document.getElementById("true").innerHTML = flag
+			}else{
+				flag = false;
+				document.getElementById("true").innerHTML = flag
+			}
+		}
+		
+	</script> 
+</head>
+<body>
+	주민등록번호 : <input type="text" id="jumin">
+	<button type="button" onclick="proc()">확인</button>
+	<hr>
+	연도 : <span id="spYear"></span><br>
+	월 : <span id="spMonth"></span><br>
+	일 : <span id="spDay"></span><br>
+	성별 : <span id="spGender"></span><br>
+	<hr><hr>
+	결과 : <span id="true"></span><br>
+	
+	
+	
+</body>
+</html>
