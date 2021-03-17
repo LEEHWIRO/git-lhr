@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+
+	var randomNo = Math.floor(Math.random()*100+1);
+	//parseInt(Math.random()*100+1)
+	function guessNumber(){
+		var val = parseInt(document.getElementById("no").value);
+		
+		
+		if(val == randomNo){
+			document.getElementById("message").innerHTML = "정답";
+		}else if(val > randomNo){
+			document.getElementById("message").innerHTML = val + "보다 작은 수 입니다.";
+		}else if(val < randomNo){
+			document.getElementById("message").innerHTML = val + "보다 큰 수 입니다.";
+		}else{
+			document.getElementById("message").innerHTML = "비교 불가.";
+		}
+	}
+	
+	var randomNo2 = Math.floor(Math.random()*10+1);
+	
+	function guessNumber2(){
+		var val = parseInt(document.getElementById("no2").value);
+		
+		if(val == randomNo2){
+			document.getElementById("message2").innerHTML = "정답";
+		}else if(val > randomNo2){
+			document.getElementById("message2").innerHTML = val + "보다 작은 수 입니다.";
+		}else if(val < randomNo2){
+			document.getElementById("message2").innerHTML = val + "보다 큰 수 입니다.";
+		}else{
+			document.getElementById("message2").innerHTML = "비교 불가.";
+		}
+	}
+	
+	
+	
+	function lotoo(){
+		document.getElementById("result").innerHTML = ""
+		
+		var num = [];
+		var rotto, cnt = 0;
+		
+		while(cnt < 6) {
+			rotto = Math.floor(Math.random()*44+1);
+			if(num.indexOf(rotto) == -1) {
+				num.push(rotto);
+				cnt++;
+			}
+		}
+		document.getElementById("result").innerHTML = num;
+		
+		
+	}
+	
+	
+	
+	
+	</script>
+</head>
+<body>
+	<h1>Number Guess</h1> 
+	<p>1부터 100 사이의 숫자를 입력하시오.</p> 
+	<input id="no" type="text"> 
+	<button type="button" onclick="guessNumber()">숫자 추측</button> 
+	<p id="message"></p> 
+	<br><hr>
+	<h1>Number Guess2</h1> 
+	<p>1부터 10 사이의 숫자를 입력하시오.</p> 
+	<input id="no2" type="text"> 
+	<button type="button" onclick="guessNumber2()">숫자 추측</button> 
+	<p id="message2"></p> 
+	<br><hr>
+	<h1>Lotto program</h1>
+	<p>로또 번호 추첨</p>
+	<button type="button" onclick="lotoo()">번호 추첨</button>
+	<p id="result"></p>
+	<br><hr>
+	<h1>game</h1>
+	<p>가위 바위 보 게임</p>
+	<input id=no3 type="text">
+	<button type="button" onclick="game()">게임 시작</button>
+	<p id="message3"></p>
+</body>
+</html>
