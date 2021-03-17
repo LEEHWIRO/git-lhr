@@ -14,13 +14,13 @@ import kr.or.ddit.util.SqlMapClientUtil;
 public class BoardServiceImpl implements IBoardService{
 	
 	private IBoardDao boardDao;
-	private SqlMapClient smc2;
+	private SqlMapClient smc;
 	
 	private static IBoardService boardService;
 	
 	public BoardServiceImpl() {
 		boardDao = BoardDaoImpl.getInstance();
-		smc2 = SqlMapClientUtil.getInstance();
+		smc = SqlMapClientUtil.getInstance();
 	}
 	
 	public static IBoardService getInstance() {
@@ -37,7 +37,7 @@ public class BoardServiceImpl implements IBoardService{
 		int cnt = 0;
 		
 		try {
-			cnt = boardDao.insertBoard(smc2, mv);
+			cnt = boardDao.insertBoard(smc, mv);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -52,7 +52,7 @@ public class BoardServiceImpl implements IBoardService{
 		boolean chk = false;
 		
 		try {
-			chk = boardDao.checkBoard(smc2, boardNo);
+			chk = boardDao.checkBoard(smc, boardNo);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -66,7 +66,7 @@ public class BoardServiceImpl implements IBoardService{
 		List<BoardVO> boardList = new ArrayList<BoardVO>();
 		
 		try {
-			boardList = boardDao.getAllBoardList(smc2);
+			boardList = boardDao.getAllBoardList(smc);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -79,7 +79,7 @@ public class BoardServiceImpl implements IBoardService{
 		int cnt = 0;
 		
 		try {
-			cnt = boardDao.updateBoard(smc2, mv);
+			cnt = boardDao.updateBoard(smc, mv);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -92,7 +92,7 @@ public class BoardServiceImpl implements IBoardService{
 		int cnt = 0;
 		
 		try {
-			cnt = boardDao.deleteBoard(smc2, boardNo);
+			cnt = boardDao.deleteBoard(smc, boardNo);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -105,7 +105,7 @@ public class BoardServiceImpl implements IBoardService{
 		List<BoardVO> boardList = new ArrayList<>();
 		
 		try {
-			boardList = boardDao.getSearchBoard(smc2, mv);
+			boardList = boardDao.getSearchBoard(smc, mv);
 		}catch(SQLException ex) {
 			ex.printStackTrace();
 		}

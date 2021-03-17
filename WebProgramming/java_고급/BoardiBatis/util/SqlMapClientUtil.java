@@ -13,7 +13,7 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
  * SqlMapClientUtil객체를 제공하는 클래스
  */
 public class SqlMapClientUtil {
-	private static SqlMapClient smc2; // SqlMapClient객체변수 선언
+	private static SqlMapClient smc; // SqlMapClient객체변수 선언
 	
 	private SqlMapClientUtil() {
 		
@@ -21,7 +21,7 @@ public class SqlMapClientUtil {
 	
 	public static SqlMapClient getInstance() {
 		
-		if(smc2 == null) {
+		if(smc == null) {
 			
 			try {
 				// 1-1. xml 설정문서 읽어오기
@@ -30,7 +30,7 @@ public class SqlMapClientUtil {
 				Reader rd = Resources.getResourceAsReader("SqlMapConfig.xml");
 				
 				// 1-2. 위에서 읽어온 Reader객체를 이용하여 실제 작업을 진행할 객체 생성
-				smc2 = SqlMapClientBuilder.buildSqlMapClient(rd);
+				smc = SqlMapClientBuilder.buildSqlMapClient(rd);
 				
 				rd.close(); // Reader객체 닫기
 			}catch(IOException ex) {
@@ -38,6 +38,6 @@ public class SqlMapClientUtil {
 			}
 		}
 		
-		return smc2;
+		return smc;
 	}
 }

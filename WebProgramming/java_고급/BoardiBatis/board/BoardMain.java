@@ -104,7 +104,7 @@ public class BoardMain {
 		
 		System.out.println();
 		System.out.println("---------------------------------------");
-		System.out.println(" NO\t제 목\t작 성 자\t내 용\t작성날짜");
+		System.out.println(" NO\t제 목\t작 성 자\t작성날짜\t내 용");
 		System.out.println("---------------------------------------");
 		
 		for(BoardVO mv2 : boardList) {
@@ -132,9 +132,9 @@ public class BoardMain {
 		int cnt = boardService.deleteBoard(boardNo);
 		
 		if(cnt > 0) {
-			System.out.println(boardNo + "게시판정보 삭제 작업 성공");
+			System.out.println("게시판정보 삭제 작업 성공");
 		}else {
-			System.out.println(boardNo + "게시판정보 삭제 작업 실패!!!");
+			System.out.println("게시판정보 삭제 작업 실패!!!");
 		}
 	}
 
@@ -179,9 +179,9 @@ public class BoardMain {
 		int cnt = boardService.updateBoard(mv);
 		
 		if(cnt > 0) {
-			System.out.println(boardNo + "게시판 수정 작업 성공");
+			System.out.println("게시판 수정 작업 성공");
 		}else {
-			System.out.println(boardNo + "게시판 수정 작업 실패!!!");
+			System.out.println("게시판 수정 작업 실패!!!");
 		}
 	}
 
@@ -226,7 +226,7 @@ public class BoardMain {
 	private void displayAll() {
 		System.out.println();
 		System.out.println("---------------------------------------");
-		System.out.println(" NO\\t제 목\\t작 성 자\\t내 용\\t작성날짜");
+		System.out.println(" NO\\t제 목\\t작 성 자\\t작성날짜\\t내 용");
 		System.out.println("---------------------------------------");
 		
 		
@@ -252,19 +252,7 @@ public class BoardMain {
 		boolean chk = false;
 		int boardNo = 0;
 		
-		do {
-			System.out.println();
-			System.out.println("추가할 게시판 번호를 입력하세요.");
-			System.out.print("게시판 번호 >> ");
-			boardNo = scan.nextInt();
-			
-			chk = boardService.checkBoard(boardNo);
-			
-			if(chk == true) {
-				System.out.println("게시판번호가 " + boardNo + "인 게시판이 이미 존재합니다.");
-				System.out.println("다시 입력해 주세요.");
-			}
-		}while(chk == true);
+		
 		
 		System.out.print("게시판 제목 >> ");
 		String boardTitle = scan.next();
@@ -277,7 +265,7 @@ public class BoardMain {
 		String boardContent = scan.nextLine();
 		
 		BoardVO mv = new BoardVO();
-		mv.setBoardNo(boardNo);
+
 		mv.setBoardTitle(boardTitle);
 		mv.setBoardWriter(boardWriter);
 		mv.setBoardContent(boardContent);
@@ -285,9 +273,9 @@ public class BoardMain {
 		int cnt = boardService.insertBoard(mv);
 		
 		if(cnt > 0) {
-			System.out.println(boardNo + "게시판 추가 작업 성공");
+			System.out.println("게시판 추가 작업 성공");
 		}else {
-			System.out.println(boardNo + "게시판 추가 작업 실패!!!");
+			System.out.println("게시판 추가 작업 실패!!!");
 		}
 		
 	}

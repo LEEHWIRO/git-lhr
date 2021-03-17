@@ -24,11 +24,11 @@ public class BoardDaoImpl implements IBoardDao {
 		return boardDao;
 	}
 	@Override
-	public int insertBoard(SqlMapClient smc2, BoardVO mv) throws SQLException {
+	public int insertBoard(SqlMapClient smc, BoardVO mv) throws SQLException {
 
 		int cnt = 0;
 		
-		Object obj = smc2.insert("board.insertBoard", mv);
+		Object obj = smc.insert("board.insertBoard", mv);
 		
 		if(obj == null) {
 			cnt = 1;
@@ -40,11 +40,11 @@ public class BoardDaoImpl implements IBoardDao {
 	
 	
 	@Override
-	public boolean checkBoard(SqlMapClient smc2, int boardNo) throws SQLException {
+	public boolean checkBoard(SqlMapClient smc, int boardNo) throws SQLException {
 
 		boolean chk = false;
 		
-		int cnt = (int) smc2.queryForObject("board.getBoard", boardNo);
+		int cnt = (int) smc.queryForObject("board.getBoard", boardNo);
 		
 		if(cnt > 0) {
 			chk = true;
@@ -55,35 +55,35 @@ public class BoardDaoImpl implements IBoardDao {
 		return chk;
 	}
 	@Override
-	public List<BoardVO> getAllBoardList(SqlMapClient smc2) throws SQLException {
+	public List<BoardVO> getAllBoardList(SqlMapClient smc) throws SQLException {
 		
-		List<BoardVO> boardList = smc2.queryForList("board.getBoardAll");
+		List<BoardVO> boardList = smc.queryForList("board.getBoardAll");
 				
 				
 		return boardList;
 	}
 	@Override
-	public int updateBoard(SqlMapClient smc2, BoardVO mv) throws SQLException {
+	public int updateBoard(SqlMapClient smc, BoardVO mv) throws SQLException {
 
 		int cnt = 0;
 		
-		cnt = smc2.update("board.updateBoard", mv);
+		cnt = smc.update("board.updateBoard", mv);
 		
 		return cnt;
 	}
 	@Override
-	public int deleteBoard(SqlMapClient smc2, int boardNo) throws SQLException {
+	public int deleteBoard(SqlMapClient smc, int boardNo) throws SQLException {
 
 		int cnt = 0;
 		
-		cnt = smc2.delete("board.deleteBoard", boardNo);
+		cnt = smc.delete("board.deleteBoard", boardNo);
 		
 		return cnt;
 	}
 	@Override
-	public List<BoardVO> getSearchBoard(SqlMapClient smc2, BoardVO mv) throws SQLException {
+	public List<BoardVO> getSearchBoard(SqlMapClient smc, BoardVO mv) throws SQLException {
 
-		List<BoardVO> boardList = smc2.queryForList("board.getSearchBoard", mv);
+		List<BoardVO> boardList = smc.queryForList("board.getSearchBoard", mv);
 				
 		return boardList;
 	}
