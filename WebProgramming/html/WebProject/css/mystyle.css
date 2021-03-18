@@ -134,7 +134,7 @@ footer {
 	line-height: 60px;
 	border-radius: 30px;
 }
-.login {
+.log {
 	width: 200px;
 	height: 20px;
 }
@@ -229,7 +229,7 @@ footer {
     width: 430px;
 }
 .user {
-	size: 5px;
+	width: 136px;
 }
 #userbir {
 	width: 169px;
@@ -264,7 +264,7 @@ footer {
 #genderFemale {
 	margin-left: 75px;
 }
-#genlabel {
+.genlabel {
 	padding-left: 75px;
 }
 .membutton {
