@@ -9,6 +9,11 @@
 	padding: 0px;
 }
 
+body { 
+	font-family: 'Noto Sans KR', sans-serif; 
+}
+
+
 /* main.html style */
 #mainhome {
 	min-width: 1000px;
@@ -50,7 +55,7 @@ nav div {
 	width: 20%;
 	float: left;
 	text-align: center;
-	line-height: 50px;
+	line-height: 57px;
 	font-size: 20px;
 	text-transform: uppercase;
 }
@@ -235,28 +240,28 @@ footer {
 	width: 169px;
 }
 #idlabel {
-	padding-right: 73px;
+	padding-right: 72px;
 }
 #passlabel {
-	padding-right: 57px;
+	padding-right: 58px;
 }
 #passchklabel {
-	padding-right: 20px;
+	padding-right: 24px;
 }
 #namelabel {
-	padding-right: 89px;
+	padding-right: 87px;
 }
 #hplabel {
-    padding-right: 36px;
+    padding-right: 39px;
 }
 #emaillabel {
-	padding-right: 73px;
+	padding-right: 72px;
 }
 #birlabel {
-    padding-right: 89px;
+    padding-right: 87px;
 }
 #homelabel {
-	padding-right: 57px;
+	padding-right: 58px;
 }
 #genderMale {
 	margin-left: 75px;
