@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	
+</head>
+<body>
+	<div id="target" style="font: 20px bold;" onclick="addtext('무궁화 꽃이 피었습니다.')">
+		여기를 클릭하세요.
+	</div>
+	
+	<button type="button" onclick="removeC()">삭제</button>
+	
+	<hr>
+	<ul id="t1">
+		<li id="q1">컴퓨터1</li>
+		<li id="q2">식품2</li>
+		<li id="q3">호랑이</li>
+		<li id="q4">cloud03</li>
+		<li id="q5">coffee1</li>
+	</ul>
+	<button type="button" onclick="addImage1()">실행</button>
+	<button type="button" onclick="removeC1()">삭제</button>
+	
+	<hr>
+	<ul >
+		<li id="tmp1" onclick="addImg(this,'coffee1.jfif')">컴퓨터1</li>
+		<li id="tmp2" onclick="addImg(this,'lion.jpg')">식품2</li>
+		<li id="tmp3" onclick="addImg(this,'spone.jfif')">호랑이</li>
+		<li id="tmp4" onclick="addImg(this,'spone.jfif')">cloud03</li>
+		<li id="tmp5" onclick="addImg(this,'spone.jfif')">coffee1</li>
+	</ul>
+	<button type="button" onclick="addImage()">실행</button>
+	<button type="button" onclick="removeC()">삭제</button>
+</body>
+	
+
+	
+ 	<script type="text/javascript"> 
+ 		function addtext(t){
+ 			var node = document.createTextNode(t);
+ 			document.getElementById("target").appendChild(node);
+ 		}
+	
+ 		function addImg(obj, fileName){
+ 			var arrImgs = document.getElementsByTagName("img");
+ 			for(var i = 0; i < arrImgs.length; i++){
+ 				arrImgs[i].remove(); // <li>
+ 			}
+ 			
+//  			alert(obj); //<li id="tmp1" onclick="addImg(this)">컴퓨터<li>
+//  			alert(obj.innerHTML);
+//  			alert(obj.id);
+ 			
+ 			var objImg = document.createElement("img");
+ 			objImg.src = "../../images/" + fileName;
+ 			objImg.height = "30";
+ 		}
+	</script>
+	
+	<script type="text/javascript">
+		function removeC1(){
+// 			var parentEle = document.getElementById("target1"); // <div>
+// 			var childEle = document.getElementsById("p1"); // <p>
+// 			parentEle.removeChild(childEle);
+
+		var input = parseInt(prompt("번호입력"));
+		
+		switch(input){
+		case 1:
+			var pEle1 = document.getElementById("q1")
+			var cEle1 = document.getElementById("p1")
+	        pEle1.removeChild(cEle1);
+			break;
+		case 2:
+			var pEle2 = document.getElementById("q2")
+			var cEle2 = document.getElementById("p2")
+	        pEle2.removeChild(cEle2);
+			break;
+		case 3:
+			var pEle3 = document.getElementById("q3")
+			var cEle3 = document.getElementById("p3")
+	        pEle3.removeChild(cEle3);
+			break;
+		case 4:
+			var pEle4 = document.getElementById("q4")
+			var cEle4 = document.getElementById("p4")
+	        pEle4.removeChild(cEle4);
+			break;
+		case 5:
+			var pEle5 = document.getElementById("q5")
+			var cEle5 = document.getElementById("p5")
+	        pEle5.removeChild(cEle5);
+			break;
+	
+		}
+
+	}
+
+		function addImage1() {
+			var arr = document.getElementsByTagName("li");
+
+			// 이미지 소스를 가지고 있는 배열
+			var arrImgId = [ "p1", "p2", "p3", "p4", "p5" ]
+			var arrImgSrc = [ "coffee1.jfif", "lion.jpg", "spone.jfif",
+					"spone.jfif", "spone.jfif" ];
+			for (var i = 0; i < arr.length; i++) {
+				// 이미지 요소를 생성
+				var imgObj = document.createElement("img");
+				// <img alt="" src="" height="">
+				imgObj.alt = " 뭐지";
+// 				imgObj.src = "../../images/coffee1.jfif";
+				imgObj.src = "../../images/" + arrImgSrc[i];
+				imgObj.height = "30";
+				imgObj.id = arrImgId[i];
+				arr[i].appendChild(imgObj); // <li>구름</li>
+			}
+		}
+	</script>
+</html>

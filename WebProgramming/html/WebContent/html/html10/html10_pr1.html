@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<button type="button" onclick="gameStart()">게임 시작</button>
+	<button type="button" onclick="gameReset()">리셋</button>
+	<table>
+		<tr>
+			<th>사람</th>
+			<th>컴퓨터</th>
+		</tr>
+		<tr id=table>
+			<td id="table1">
+<!-- 				<img alt="게임" src="../../images/ga_left.png"> -->
+			</td>
+			<td id="table2">
+				
+			</td>
+		</tr>
+	</table>
+	<p id="message3"></p>
+</body>
+<script type="text/javascript">
+
+function gameStart(){
+	
+	
+	var arr = document.getElementsByTagName("td");
+	
+	var computer = ["가위", "바위", "보"];
+	var person = prompt("가위,바위,보 중 하나를 고르시오.");
+	
+	var com = computer[parseInt(Math.random()*3)];
+	
+	var arrImgSrc = [];
+	
+	if(person == "가위"){
+		arrImgSrc[0] = "ga_left.png";
+		
+	}else if(person == "바위"){
+		arrImgSrc[0] = "ba_left.png";
+		
+	}else if(person == "보"){
+		arrImgSrc[0] = "bo_left.png";
+		
+	}
+	
+	if(com == "가위"){
+		arrImgSrc[1] = "ga_right.png";
+	}else if(com == "바위"){
+		arrImgSrc[1] = "ba_right.png";
+	}else if(com == "보"){
+		arrImgSrc[1] = "bo_right.png";
+	}
+	
+	for(var i = 0; i < arr.length; i++) {
+		var imgObj = document.createElement("img");
+		
+		imgObj.alt = "게임";
+		imgObj.src = "../../images/" + arrImgSrc[i];
+		imgObj.height = "100";
+		
+		arr[i].appendChild(imgObj);
+	}
+	
+	
+	if(person == ("가위") && com == ("바위")){
+		result = "컴퓨터승!!!"
+	}else if(person == ("바위") && com == ("가위")){
+		result = "사람 승!!!"
+	}else if(person == ("바위") && com == ("보")){
+		result = "컴퓨터 승!!!"
+	}else if(person == ("보") && com == ("바위")){
+		result = "사람 승!!!"
+	}else if(person == ("가위") && com == ("보")){
+		result = "사람 승!!!"
+	}else if(person == ("보") && com == ("가위")){
+		result = "컴퓨터 승!!!"
+	}else {
+		result = "무승부!!!"
+	}
+	
+	document.getElementById("message3").innerHTML = result;
+	
+}
+function gameReset() {
+	var pEle1 = document.getElementById("table")
+	var cEle1 = document.getElementById("table1")
+    pEle1.removeChild(cEle1);
+	
+	var pEle2 = document.getElementById("table")
+	var cEle2 = document.getElementById("table2")
+    pEle2.removeChild(cEle2);
+}
+
+</script>
+</html>
