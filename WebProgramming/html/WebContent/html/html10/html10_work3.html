@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>	
+	
+<input id="p1" type="text" size="3">
+<span>단</span>
+<button type="button" onclick="program()">출력</button><br>
+
+<textarea id="result" rows="25" cols="15"></textarea>
+</body>
+<script type="text/javascript">
+
+	function program() {
+		var num = document.getElementById("p1").value;
+		var result = document.getElementById("result");
+
+
+		for (var i = 1; i <= 9; i++) {
+			result.innerHTML += num + "*" + i + "=" + num * i + "\n";
+
+		}
+
+	}
+</script>
+	
+	
+</html>
