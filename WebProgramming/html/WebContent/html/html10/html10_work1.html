@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<form >
+	<label>이름 : </label>
+	<input Id="name" name="name" type="text"><br>
+	<label>성별 : </label>
+	<input type="radio" name="gender" value="남성" id="genderMale">
+	<label for="genderMale">남자</label>
+	<input type="radio" name="gender" value="여성" id="genderFemale" >
+	<label for="genderFemale">여자</label><br>
+	
+	취미 : 
+	<input type="checkbox" name="hobby" id="hobbyBook" value="독서" >
+	<label for="hobbyBook">독서</label>
+	<input  type="checkbox" name="hobby" id="hobbyEx" value="운동">
+	<label for="hobbyEx">운동</label>
+	<input type="checkbox" name="hobby" id="hobbyMovie" value="영화보기">
+	<label for="hobbyMovie">영화보기</label>
+	<input type="checkbox" name="hobby" id="hobbyMusic" value="음악듣기" >
+	<label for="hobbyMusic">음악듣기</label>
+	<input type="checkbox" name="hobby" id="hobbyFood" value="맛집탐방">
+	<label for="hobbyFood">맛집탐방</label><br>
+	
+	<button type="button" onclick="resultSet()">결과출력</button><br>
+	<fieldset id="frm" style="width: 500px; height: 300px;"></fieldset>
+	
+	</form>
+</body>
+
+<script type="text/javascript">
+	function resultSet(){
+		var name = document.getElementById("name");
+		var gender = document.getElementsByName("gender");
+		var hobby = document.getElementsByName("hobby");
+		
+		var frmname, frmgender;
+		var frmhobby;
+		
+		frmname = name.value;
+		
+		frmhobby = "취미는 "
+		
+		if(gender[0].checked){
+			frmgender = gender[0].value;
+		}else if(gender[1].checked){
+			frmgender = gender[1].value;
+		}
+		
+		for(var i = 0; i < hobby.length; i++){
+			if(hobby[i].checked){
+				frmhobby += hobby[i].value + " ";
+			}
+		}
+		
+		
+		if(hobby[0].checked || hobby[1].checked ||
+				hobby[2].checked || hobby[3].checked ||
+				hobby[4].checked){
+			frmhobby += "이군요."
+		}else{
+			frmhobby += "없군요."
+		}
+			
+		
+		
+		
+		document.getElementById("frm").innerHTML =
+			frmname + "씨!<br>" + "당신은 " + frmgender + "이고<br>" + frmhobby ;
+	}
+</script>
+</html>
