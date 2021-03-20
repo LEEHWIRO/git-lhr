@@ -1,16 +1,36 @@
 package kr.or.ddit.basic;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 public class FileCopy {
 	public static void main(String[] args) {
 		
-		File file = new File("d:/D_Other/Tulips.jpg");
+		try {
+//			InputStreamReader fr = new InputStreamReader("d:/D_Other/Tulips.jpg");
+			
+//			FileReader fr = new FileReader("d:/D_Other/Tulips.jpg");
+			FileInputStream fis = new FileInputStream("d:/D_Other/Tulips.jpg");
+			
+			FileOutputStream fos = new FileOutputStream("d:/D_Other/복사본2_Tulips.jpg");
+			
+			int data;
+			
+			byte[] readBy = new byte[200];
+			
+			while((data = fis.read(readBy)) != -1) {
+				fos.write(readBy,0,data);
+			}
+//			fos.flush();
+			fos.close();
+			fis.close();
+			
+			System.out.println("작업 완료...");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 //		if(file.exists()) {
 //			System.out.println(file.getAbsolutePath() + "은 존재합니다.");
@@ -18,13 +38,6 @@ public class FileCopy {
 //			System.out.println(file.getAbsolutePath() + "은 없는 파일입니다.");
 //		}
 		
-		try {
-			if(file.createNewFile()) {
-				System.out.println(file.getAbsolutePath() + "파일 생성 완료");
-			}
-		}catch(IOException ex) {
-			ex.printStackTrace();
-		}
 		}
 		
 		
