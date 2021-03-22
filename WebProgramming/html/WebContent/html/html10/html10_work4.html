@@ -6,45 +6,125 @@
 </head>
 <body>	
 	
-
-<select name="구구단" id="myselect">
-    <option value="1">1단</option>
-    <option value="2">2단</option>
-    <option value="3">3단</option>
-    <option value="4">4단</option>
-    <option value="5">5단</option>
-    <option value="6">6단</option>
-    <option value="7">7단</option>
-    <option value="8">8단</option>
-    <option value="9">9단</option>
-</select>
-<button type="button" onclick="program()">출력</button><br>
-<h1>결과 출력</h1>
-<span id="result"></span>
-</body>
-<script type="text/javascript">
-	function program(){
-		var option = document.getElementsByTagName("option");
-		var result = document.getElementById("result");
-		var num = 0;
-		result.innerHTML = " ";
-		
-		for(var j = 0; j < 9; j++){
-			if(option[j].selected){
-				num = j+1;
-				for(var i = 1; i <= 9; i++){
-					result.innerHTML += num + "*" + i + "="+ num * i+"<br>";
-				}
+	<div>
+		<select id="num1" multiple="multiple" size="10">
 			
+		</select>
+	</div>
+	
+	
+	<div>
+		<input type="button" onclick="selectLeftMove()" value=">">
+		<input type="button" onclick="allLeftMove()" value=">>">
+		<input type="button" onclick="selectRightMove()" value="<">
+		<input type="button" onclick="allRightMove()" value="<<">
+	</div>
+	<div>
+		<select id="num2" multiple="multiple" size="10">
+			
+		</select>
+	</div>
+	<div>
+		<input id="inputNum" type="text">
+		<button type="button" onclick="addNum()">추가하기</button>
+	</div>
+</body>	
+	<script type="text/javascript">
+		function addNum() {
+			var parentEle1 = document.getElementById("num1");
+			var parentEle2 = document.getElementById("num2");
+			
+			var inpNum1 = document.getElementById("inputNum").value;
+			
+			var ele1 = document.createElement("option");
+			
+			ele1.value = inpNum1;
+			ele1.innerHTML = inpNum1;
+			
+			parentEle1.appendChild(ele1);
 		}
-			
-		}
-			
-	}		
-
 		
 	
-</script>
+		function selectLeftMove() {
+			var parentEle1 = document.getElementById("num1");
+			var parentEle2 = document.getElementById("num2");
+
+			var ele1 = document.getElementById("num1").children;
+
+			for (var i = 0; i < ele1.length; i++) {
+				if (ele1[i].selected) {
+					var ele2 = document.createElement("option");
+
+					ele2.value = ele1[i].value;
+					ele2.innerHTML = ele1[i].value;
+					
+					parentEle2.appendChild(ele2);
+					
+					parentEle1.removeChild(ele1[i]);
+				}
+			}
+		}
+
+		function selectRightMove() {
+			var parentEle1 = document.getElementById("num1");
+			var parentEle2 = document.getElementById("num2");
+
+			var ele2 = document.getElementById("num2").children;
+
+			for (var i = 0; i < ele2.length; i++) {
+				if (ele2[i].selected) {
+					var ele1 = document.createElement("option");
+
+					ele1.value = ele2[i].value;
+					ele1.innerHTML = ele2[i].value;
+					
+					parentEle1.appendChild(ele1);
+					
+					parentEle2.removeChild(ele2[i]);
+				}
+			}
+		}
+
+		function allLeftMove() {
+			var parentEle1 = document.getElementById("num1");
+			var parentEle2 = document.getElementById("num2");
+
+			var ele1 = document.getElementById("num1").children;
+
+			for (var i = 0; i < ele1.length; i++) {
+
+				var ele2 = document.createElement("option");
+
+				ele2.value = ele1[i].value;
+				ele2.innerHTML = ele1[i].value;
+				
+				parentEle2.appendChild(ele2);
+				
+				parentEle1.removeChild(ele1[i]);
+			}
+		}
+
+		function allRightMove() {
+			var parentEle1 = document.getElementById("num1");
+			var parentEle2 = document.getElementById("num2");
+
+			var ele2 = document.getElementById("num2").children;
+
+			for (var i = 0; i < ele2.length; i++) {
+				var ele1 = document.createElement("option");
+
+				ele1.value = ele2[i].value;
+				ele1.innerHTML = ele2[i].value;
+				
+				parentEle1.appendChild(ele1);
+				
+				parentEle2.removeChild(ele2[i]);
+			}
+		}
+	</script>
+
+
+
 	
 	
 </html>

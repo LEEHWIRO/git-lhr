@@ -13,75 +13,106 @@
 		#message3 {
 			clear: both;
 		}
+		#red {
+			background-color: red;
+			width: 300px;
+			text-align: center;
+		}
+		#yellow {
+			background-color: yellow;
+			width: 300px;
+			text-align: center;
+		}
+		#message3 { 
+			text-align: center;
+		}
+		select {
+			margin-left: 245px;
+		}
 	</style>
 </head>
 <body>
-	<button type="button" onclick="gameStart()">게임 시작</button><br>
+	<select name="게임" id="myGame">
+	    <option value="가위">가위</option>
+	    <option value="바위">바위</option>
+	    <option value="보">보</option>
+	</select>
+
+	<button type="button" onclick="gameStart()">대결</button><br>
 		
+	
 	<div id="p">
-		<p>사람 </p>
-		<img id="l" alt="person" src="../../images/ga_left.jpg" style="width: 300px; height: 300px;">
+		<p id="red">사람 </p>
+		<img id="l" alt="person" src="" style="width: 300px; height: 300px;">
 	</div>
 	<div id="c">
-		<p>컴퓨터</p>
-		<img id="r" alt="computer" src="../../images/ga_right.jpg" style="width: 300px; height: 300px;">
+		<p id="yellow">컴퓨터</p>
+		<img id="r" alt="computer" src="" style="width: 300px; height: 300px;">
 	</div><br>
 	<p id="message3"></p>
 </body>
+
 <script type="text/javascript">
 
+
+
 function gameStart(){
-	
 	document.getElementById("l").remove
 	document.getElementById("r").remove
 	
 	var computer = ["가위", "바위", "보"];
-	var person = prompt("가위,바위,보 중 하나를 고르시오.");
-	
 	var com = computer[parseInt(Math.random()*3)];
-	
 	var arrImgSrc = [];
 	
-	if(person == "가위"){
-		document.getElementById("l").src = "../../images/ga_left.jpg";
-		
-	}else if(person == "바위"){
-		document.getElementById("l").src = "../../images/ba_left.jpg";
-		
-	}else if(person == "보"){
-		document.getElementById("l").src = "../../images/bo_left.jpg";
-		
-	}
+	var option = document.getElementById("myGame");
 	
-	if(com == "가위"){
-		document.getElementById("r").src = "../../images/ga_right.jpg";
-	}else if(com == "바위"){
-		document.getElementById("r").src = "../../images/ba_right.jpg";
-	}else if(com == "보"){
-		document.getElementById("r").src = "../../images/bo_right.jpg";
-	}
+// 	option.options[option.selectedIndex].value == 
 	
-	
-	
-	if(person == ("가위") && com == ("바위")){
-		result = "컴퓨터승!!!"
-	}else if(person == ("바위") && com == ("가위")){
-		result = "사람 승!!!"
-	}else if(person == ("바위") && com == ("보")){
-		result = "컴퓨터 승!!!"
-	}else if(person == ("보") && com == ("바위")){
-		result = "사람 승!!!"
-	}else if(person == ("가위") && com == ("보")){
-		result = "사람 승!!!"
-	}else if(person == ("보") && com == ("가위")){
-		result = "컴퓨터 승!!!"
-	}else {
-		result = "무승부!!!"
-	}
-	
-	document.getElementById("message3").innerHTML = result;
-	
-}
 
+	if (option.options[option.selectedIndex].value == "가위") {
+			document.getElementById("l").src = "../../images/ga_left.jpg";
+
+		} else if (option.options[option.selectedIndex].value == "바위") {
+			document.getElementById("l").src = "../../images/ba_left.jpg";
+
+		} else if (option.options[option.selectedIndex].value == "보") {
+			document.getElementById("l").src = "../../images/bo_left.jpg";
+
+		}
+
+		
+
+	
+	if (com == "가위") {
+			document.getElementById("r").src = "../../images/ga_right.jpg";
+		} else if (com == "바위") {
+			document.getElementById("r").src = "../../images/ba_right.jpg";
+		} else if (com == "보") {
+			document.getElementById("r").src = "../../images/bo_right.jpg";
+		}
+
+		
+	if (option.options[option.selectedIndex].value == "가위" && com == ("바위")) {
+			result = "컴퓨터승!!!"
+		} else if (option.options[option.selectedIndex].value == "바위"
+				&& com == ("가위")) {
+			result = "사람 승!!!"
+		} else if (option.options[option.selectedIndex].value == "바위"
+				&& com == ("보")) {
+			result = "컴퓨터 승!!!"
+		} else if (option.options[option.selectedIndex].value && com == ("바위")) {
+			result = "사람 승!!!"
+		} else if (option.options[option.selectedIndex].value == "가위"
+				&& com == ("보")) {
+			result = "사람 승!!!"
+		} else if (option.options[option.selectedIndex].value && com == ("가위")) {
+			result = "컴퓨터 승!!!"
+		} else {
+			result = "무승부!!!"
+		}
+
+		document.getElementById("message3").innerHTML = result;
+
+	}
 </script>
 </html>
