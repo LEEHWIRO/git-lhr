@@ -3,28 +3,61 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<style type="text/css">
+		#div1 {
+			float: left;
+			margin-right: 10px;
+			margin-bottom: 10px;
+		}
+		#div2 {
+			margin-top: 40px;
+			float: left;
+			margin-bottom: 10px;
+			margin-right: 10px;
+		}
+		#div3 {
+			float: left;
+			margin-bottom: 10px;
+		}
+		#div4 {
+			clear: both;
+		}
+		#num1 {
+			width: 100px;
+			height: 200px;
+		}
+		#num2 {
+			width: 100px;
+			height: 200px;
+		}
+		#div2 input {
+			width: 35px;
+			margin-bottom: 10px;
+		}
+	</style>
 </head>
 <body>	
 	
-	<div>
-		<select id="num1" multiple="multiple" size="10">
+	<div id="div1">
+		<select id="num1" multiple="multiple">
 			
 		</select>
 	</div>
 	
 	
-	<div>
-		<input type="button" onclick="selectLeftMove()" value=">">
-		<input type="button" onclick="allLeftMove()" value=">>">
-		<input type="button" onclick="selectRightMove()" value="<">
+	<div id="div2">
+		
+		<input type="button" onclick="selectLeftMove()" value=">"><br>
+		<input type="button" onclick="allLeftMove()" value=">>"><br>
+		<input type="button" onclick="selectRightMove()" value="<"><br>
 		<input type="button" onclick="allRightMove()" value="<<">
 	</div>
-	<div>
-		<select id="num2" multiple="multiple" size="10">
+	<div id="div3">
+		<select id="num2" multiple="multiple">
 			
 		</select>
 	</div>
-	<div>
+	<div id="div4">
 		<input id="inputNum" type="text">
 		<button type="button" onclick="addNum()">추가하기</button>
 	</div>
@@ -34,14 +67,30 @@
 			var parentEle1 = document.getElementById("num1");
 			var parentEle2 = document.getElementById("num2");
 			
-			var inpNum1 = document.getElementById("inputNum").value;
+			var inpNum1 = document.getElementById("inputNum");
+			
+			for(var i = 0; i < parentEle1.length; i++){
+				
+				if(parentEle1[i].innerHTML == inpNum1.value){
+					alert(1);
+					inpNum1.focus();
+					return;
+				}else{
+					alert(2);
+				}
+			}
 			
 			var ele1 = document.createElement("option");
 			
-			ele1.value = inpNum1;
-			ele1.innerHTML = inpNum1;
+			ele1.value = inpNum1.value;
+			ele1.innerHTML = inpNum1.value;
 			
 			parentEle1.appendChild(ele1);
+			
+			//입력란을 빈값으로 초기화
+			inpNum1.value = " "
+			// 입력란으로 포커스 주기
+			inpNum1.focus();
 		}
 		
 	
@@ -53,14 +102,16 @@
 
 			for (var i = 0; i < ele1.length; i++) {
 				if (ele1[i].selected) {
-					var ele2 = document.createElement("option");
+// 					var ele2 = document.createElement("option");
 
-					ele2.value = ele1[i].value;
-					ele2.innerHTML = ele1[i].value;
+// 					ele2.value = ele1[i].value;
+// 					ele2.innerHTML = ele1[i].value;
 					
-					parentEle2.appendChild(ele2);
+					parentEle2.append(parentEle1[i]);
 					
-					parentEle1.removeChild(ele1[i]);
+// 					parentEle1.removeChild(ele1[i]);
+					
+					i--;
 				}
 			}
 		}
@@ -73,14 +124,16 @@
 
 			for (var i = 0; i < ele2.length; i++) {
 				if (ele2[i].selected) {
-					var ele1 = document.createElement("option");
+// 					var ele1 = document.createElement("option");
 
-					ele1.value = ele2[i].value;
-					ele1.innerHTML = ele2[i].value;
+// 					ele1.value = ele2[i].value;
+// 					ele1.innerHTML = ele2[i].value;
 					
-					parentEle1.appendChild(ele1);
+					parentEle1.append(parentEle2[i]);
 					
-					parentEle2.removeChild(ele2[i]);
+// 					parentEle2.removeChild(ele2[i]);
+					
+					i--;
 				}
 			}
 		}
@@ -93,14 +146,16 @@
 
 			for (var i = 0; i < ele1.length; i++) {
 
-				var ele2 = document.createElement("option");
+// 				var ele2 = document.createElement("option");
 
-				ele2.value = ele1[i].value;
-				ele2.innerHTML = ele1[i].value;
+// 				ele2.value = ele1[i].value;
+// 				ele2.innerHTML = ele1[i].value;
 				
-				parentEle2.appendChild(ele2);
+				parentEle2.append(parentEle1[i]);
 				
-				parentEle1.removeChild(ele1[i]);
+// 				parentEle1.removeChild(ele1[i]);
+				
+				i--;
 			}
 		}
 
@@ -111,14 +166,16 @@
 			var ele2 = document.getElementById("num2").children;
 
 			for (var i = 0; i < ele2.length; i++) {
-				var ele1 = document.createElement("option");
+// 				var ele1 = document.createElement("option");
 
-				ele1.value = ele2[i].value;
-				ele1.innerHTML = ele2[i].value;
+// 				ele1.value = ele2[i].value;
+// 				ele1.innerHTML = ele2[i].value;
 				
-				parentEle1.appendChild(ele1);
+				parentEle1.append(parentEle2[i]);
 				
-				parentEle2.removeChild(ele2[i]);
+// 				parentEle2.removeChild(ele2[i]);
+				
+				i--;
 			}
 		}
 	</script>
