@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		function checkName() {
+			var ele = document.getElementById("userName");
+			// 빈값 체크
+			if(ele.value.indexOf(" ") == 0){
+				alert("빈값이 있습니다.")
+				ele.focus();
+				return;
+			}
+			// 자릿수 체크
+			if(ele.value.length < 2 || ele.value.length > 5) {
+				alert("이름은(는) 2~5 글자 입니다.");
+				ele.focus();
+				return;
+			}
+			// 입력 체크
+			if(ele.value.trim().length == 0){
+				alert("이름이 입력되지 않았습니다.")
+				ele.focus();
+				return;
+			}
+		}
+		function checkDate() {
+			var ele = document.getElementById("userDate");
+			// 빈값 체크
+			if(ele.value.indexOf(" ") == 0){
+				alert("빈값이 있습니다.")
+				ele.focus();
+				return;
+			}
+			// 자릿수 체크
+			if(ele.value.length > 10) {
+				alert("생일은 10 글자 입니다.");
+				ele.focus();
+				return;
+			}
+			// 입력 체크
+			if(ele.value.trim().length == 0){
+				alert("생일이 입력되지 않았습니다.")
+				ele.focus();
+				return;
+			}
+		}
+		function checkId() {
+			var ele = document.getElementById("userId")
+			// 빈값 체크
+			if(ele.value.indexOf(" ") == 0){
+				alert("빈값이 있습니다.")
+				ele.focus();
+				return;
+			}
+			// 자릿수 체크
+			if(ele.value.length < 6 || ele.value.length > 13) {
+				alert("아이디은(는) 6~13 글자 입니다.");
+				ele.focus();
+				return;
+			}
+			// 입력 체크
+			if(ele.value.trim().length == 0){
+				alert("아이디이(가) 입력되지 않았습니다.")
+				ele.focus();
+				return;
+			}
+		}
+		function checkTel() {
+			var ele = document.getElementById("userTel")
+			// 빈값 체크
+			if(ele.value.indexOf(" ") == 0){
+				alert("빈값이 있습니다.")
+				ele.focus();
+				return;
+			}
+			// 자릿수 체크
+			if(ele.value.length > 13) {
+				alert("휴대폰 번호은(는) 13 글자 입니다.");
+				ele.focus();
+				return;
+			}
+			// 입력 체크
+			if(ele.value.trim().length == 0){
+				alert("휴대폰 번호이(가) 입력되지 않았습니다.")
+				ele.focus();
+				return;
+			}
+		}
+		function checkAddr() {
+			var ele = document.getElementById("userAddr")
+			// 빈값 체크
+			if(ele.value.indexOf(" ") == 0){
+				alert("빈값이 있습니다.")
+				ele.focus();
+				return;
+			}
+			// 입력 체크
+			if(ele.value.trim().length == 0){
+				alert("주소이(가) 입력되지 않았습니다.")
+				ele.focus();
+				return;
+			}
+		}
+		function checkEmail() {
+			var ele = document.getElementById("userEmail")
+			// 빈값 체크
+			if(ele.value.indexOf(" ") == 0){
+				alert("빈값이 있습니다.")
+				ele.focus();
+				return;
+			}else if(ele.value.indexOf("@") == -1){
+				alert("이메일 형식이 안맞습니다.")
+				ele.focus();
+				return;
+			}
+			// 입력 체크
+			if(ele.value.trim().length == 0){
+				alert("이메일이(가) 입력되지 않았습니다.")
+				ele.focus();
+				return;
+			}
+		}
+		function check(){
+			checkName();
+			checkAddr();
+			checkDate();
+			checkId();
+			checkEmail();
+			checkTel();
+			alert("통과");
+		}
+		function validate(){
+			var ele = document.getElementById("hp");
+			var regExp = /\d{3}-?\d{3,4}-?\d{4}/;
+			if(ele.value.match(regExp)) {
+				alert("전화번호가 정상입니다.");
+				return;
+			}else {
+				alert("전화번호가 오류입니다.");
+				ele.focus();
+				return;
+			}
+		}
+	</script>
+</head>
+<body>
+	<h3>회원가입</h3>
+	<fieldset style="width: 450px; height: 300px;">
+		<form>
+			이름 : <input type="text" id="userName" required
+							pattern="[가-힣]{5}"><br>
+			주소 : <input type="text" id="userAddr"><br>
+			생일 : <input type="date" id="userDate"><br>
+			아이디(6~13 문자) : <input type="text" id="userId"><br>
+			이메일 : <input type="email" id="userEmail"><br>
+			휴대폰 : <input type="tel" id="userTel" required
+							pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+							title="####-####-####"><br>
+			<button type="submit">확인</button>
+			<button type="reset">취소</button>
+<!-- 			/^[0-9a-zA-Z][-_.]?[0-9a-zA-Z]*@\w[-_.]?[0-9a-zA-Z]*.[a-zA-Z]{2,3} -->
+		</form>
+	</fieldset>
+</body>
+</html>
