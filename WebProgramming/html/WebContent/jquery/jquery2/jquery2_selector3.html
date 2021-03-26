@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+	#imgview {
+		display:none; max-width:100%; margin-top:25px;
+	}
+	</style>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+	function readFile(){
+		   
+		//input type이 file인 경우 files라는 배열로 리턴
+		//vfile변수는 input type이 file인 입력태그에서 만들어진 
+		//File객체다 
+	    vfile = document.getElementById('file').files[0];
+	 
+		//파일정보 얻기 
+		str = "";
+	 
+		str += " 파일명 :" + vfile.name  + "<br>";
+		str += " 파일크기 :" + vfile.size  + "<br>";
+		str += " 파일종류 :" + vfile.type  + "<br>";
+		str += " 변경날짜 :" + vfile.lastModifiedDate  + "<br>";
+		  
+		document.getElementById("content").innerHTML = str;
+		 	
+		
+		//파일 읽기 - 그림파일일 경우에는 DataURL형식으로 아닌경우 Text형식으로 
+		reader = new FileReader();
+		 
+		if(vfile.name.match('jpg|gif|png|jfif')){
+			reader.readAsDataURL(vfile);
+		}else{
+			reader.readAsText(vfile);
+		}
+		 
+		 
+		reader.onload = function(){
+		   
+			
+
+		    if(reader.result.match("image")){
+				vimg = document.getElementById("imgview");
+			 	vimg.src = reader.result;
+				vimg.style.display = "block" ;  
+			}else {
+				vimg.style.display = "none"; 
+			}
+	 
+	    }    
+	}
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		$("input").css("background-color", "pink").css("border-color", "lime");
+		$("input[type='button']").css("background-color", "yellow");
+		$("button").css("background-color", "aqua");
+		$("[type='submit']").css("background-color", "green");
+		$("[type='text'],[type='password']").css("border-color", "blue");
+		$("[type='file'],img").css("border", "2px solid red");
+			
+		});
+	
+	</script>
+</head>
+<body>
+	<fieldset>
+		<form>
+			Text: <input type="text"><br>
+			PassWord: <input type="password"><br>
+			Radio :
+			<input type="radio" id="A" name="Z">
+			<label for="A">A</label>
+			<input type="radio" id="B" name="Z">
+			<label for="B">B</label><br>
+			Checkbox :
+			<input type="radio" id="1" name="N">
+			<label for="1">1</label>
+			<input type="radio" id="2" name="N">
+			<label for="2">2</label><br>
+			Textarea : <br>
+			<textarea id="content" rows="10" cols="70"></textarea><br>
+			Im age : <img id="imgview" src=""><br>
+			File : <input type="file" id="file"><br>
+			Buttons: 
+			<button type="button" onclick="readFile()">Normal</button>
+			<button type="submit">submit</button>
+			<button type="reset">Reset</button><br>
+			Input: 
+			<input type="button" value="일반버튼" onclick="readFile()">
+			<input type="submit" value="전송버튼">
+			<input type="reset" value="초기화버튼">
+		</form>
+	</fieldset>
+</body>
+</html>
