@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		function init(){
+			var ele = $('<button type="button" onclick="addImage()">이미지 추가</button><br>');
+			//==> p요소가 생성됨
+			ele.appendTo("body");// 선택된 요소를 ~에 추가하기
+			
+	//	 	$('<img alt="사자" src="../../images/lion.png">')
+			
+		}
+		
+		function addImage(){
+			var img = $("<img>", {
+				"alt" : "커피"
+				,"src" : "../../images/coffee1.jfif"
+				,"weight" : "100"
+				,"height" : "100"
+				,"click" : function(){
+					$(this).css("border", "2px solid red");
+				}
+			});
+			img.appendTo("body");
+		}
+	</script>
+</head>
+<body onload="init()">
+
+</body>
+</html>
