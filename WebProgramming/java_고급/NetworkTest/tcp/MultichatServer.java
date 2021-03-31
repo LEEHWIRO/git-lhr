@@ -139,5 +139,7 @@ public class MultichatServer {
 		}
 	}
 	
-	
+	public static void main(String[] args) {
+		new MultichatServer().startServer();
+	}
 }
