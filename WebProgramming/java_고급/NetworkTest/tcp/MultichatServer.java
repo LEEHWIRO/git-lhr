@@ -3,6 +3,7 @@ package kr.or.ddit.tcp;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Collections;
@@ -17,8 +18,8 @@ public class MultichatServer {
 	// 생성자
 	public MultichatServer() {
 		// 동기화 처리가 가능하도록 Map객체 생성
-		clients = Collections.synchronizedMap(
-				new HashMap<String, Socket>());
+		clients = new HashMap<String, Socket>();
+		Collections.synchronizedMap(clients);
 	}
 	
 	// 서버 시작
@@ -122,7 +123,23 @@ public class MultichatServer {
 				// 이 이후의 메세지 처리는 반복문으로 처리한다.
 				// 한 클라이언트가 보낸 메세지를 다른 모든 클라이언트에게 보내준다.
 				while(dis != null) {
-					sendMessage(dis.readUTF(), name);
+					
+					if(name.equals("종료")) {
+						break;
+					}
+					if(name.startsWith("/")) {
+						if(name.charAt(1) == 'w') {
+							//귓속말
+							String[] w = name.split(" ");
+							if(clients.get(w) != null) {
+								clients.put(name, socket);
+								
+							}
+						}
+					}else {
+						sendMessage(dis.readUTF(), name);
+					}
+					
 				}
 			}catch(IOException ex) {
 				ex.printStackTrace();
