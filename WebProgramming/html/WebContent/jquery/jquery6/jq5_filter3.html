@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("td:nth-child(3n+1)").css("background-color", "darkgray")
+			$("td:nth-child(3n+2)").css("background-color", "gray")
+			$("td:nth-child(3n)").css("background-color", "lightgray")
+			$("tr:first-child td").css({
+				"background-color" : "black"
+				,"color" : "white"
+			});
+		});
+		
+	</script>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>이름</td>
+			<td>주소</td>
+			<td>전화번호</td>
+		</tr>
+		<tr>
+			<td>홍길동</td>
+			<td>대전</td>
+			<td>010-2222-3333</td>
+		</tr>
+		<tr>
+			<td>진달래</td>
+			<td>서울</td>
+			<td>010-4444-4444</td>
+		</tr>
+		<tr>
+			<td>시즈프스</td>
+			<td>강남</td>
+			<td>010-1223-2312</td>
+		</tr>
+		<tr>
+			<td>빈센조</td>
+			<td>대구</td>
+			<td>010-2312-3212</td>
+		</tr>
+	</table>
+</body>
+</html>

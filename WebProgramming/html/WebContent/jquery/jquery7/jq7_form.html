@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#check").click(function(){
+				$(":disabled").each(function(){
+					alert($(this).html());
+					console.log(this);
+				});
+			});
+			$("#btnVisible").click(function(){
+				$(":visible").each(function(){
+					alert($(this).html());
+					console.log(this);
+				});
+			});
+		});
+		
+	</script>
+</head>
+<body>
+	<form>
+		<input type="text"><br>
+		<input type="password"><br>
+		<select name="disSelect" disabled>
+		
+		</select><br>
+		<textarea name="enTextarea" rows=10 cols=20>text</textarea>
+		<br>
+		<input id="check" type="button" value="확인" disabled><br>
+		
+		<hr>
+	</form>
+</body>
+</html>

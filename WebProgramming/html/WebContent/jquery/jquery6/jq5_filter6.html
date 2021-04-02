@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#btnHidden").click(function(){
+				var str = ""
+				$(":hidden").each(function(){
+					str += "태그명 : " + $(this).prop("tagName")
+							+ "\t" + "유형 : " + this.type
+							+ "\t" + "유형 : " + this.value + "\n";
+				});
+					alert(str);
+			});
+		});
+		
+	</script>
+</head>
+<body>
+	<label>ID :</label>
+	<input type="text" name="userID" value="lhr"><br>
+	<label>이름 :</label>
+	<input type="text" name="userName" value="이휘로"><br>
+	<label>성별 :</label>
+	<input type="radio" name="gender" id="M" value="남">
+	<label for="M">남자</label>
+	<input type="radio" name="gender" id="F" value="여">
+	<label for="F">여자</label><br>
+	<hr>
+	<button id="btnHidden" type="button">hidden 요소</button>
+	<button id="btnVisible" type="button">visible 요소</button>
+	
+	<input type="hidden" id="userAge" name="userAge" value="27">
+</body>
+</html>

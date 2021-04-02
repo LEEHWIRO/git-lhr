@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			//각 리스트의 첫번째 li에 빨간색 테두리 넣기
+			$("li:first-child").css({
+				"border" : "3px solid red"
+			});
+			
+			// 첫번째 li에 노란색 넣기
+			$("li").first().css({
+				"background" : "yellow"
+			});
+			
+			// 마지막 li에 초록색 배경 넣기
+			$("li").last().css({
+				"background" : "green"
+			});
+			
+			// 각 리스트의 마지막 li에 파란색 점선 테두리 넣기
+			$("li:last-child").css({
+				"border" : "3px dotted blue"
+			});
+		});
+	</script>
+</head>
+<body>
+	<fieldset>
+		<p>여자에게 인기있는 사람들</p>
+		<ol>
+			<li>능력있는 남자</li>
+			<li>돈 많은 남자</li>
+			<li>잘 생긴 남자</li>
+			<li>프로그래머</li>
+		</ol>
+		<p>남자들에게 인기있는 여자들</p>
+		<ol>
+			<li>예쁜 여자</li>
+			<li>귀여운 여자</li>
+			<li>프로그래머</li>
+		</ol>
+	</fieldset>
+</body>
+</html>

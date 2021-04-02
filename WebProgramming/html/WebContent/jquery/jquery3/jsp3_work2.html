@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#book1").click(function(e){
+				$("img").slideUp(function(){
+					$("img").attr("src", $("#book1").attr("href"));
+				});
+				$("img").slideDown();
+				e.preventDefault();
+			});
+			$("#book2").click(function(e){
+				$("img").fadeOut();
+				$("img").attr("src", $("#book2").attr("href"));
+				$("img").fadeIn();
+				e.preventDefault();
+			});
+			$("#book3").click(function(e){
+				$("img").hide("slow", function(){
+				$("img").attr("src", $("#book3").attr("href"));
+				$("img").show();
+				}); 
+				e.preventDefault();
+			});
+		});
+	</script>
+</head>
+<body>
+	<div>
+		<h1>교재목록</h1>
+		<ul>
+			<li><a id="book1" href="../../images/book1.jfif">jQuery교재</a></li>
+			<li><a id="book2" href="../../images/book2.jfif">JSP교재</a></li>
+			<li><a id="book3" href="../../images/book3.png">UML교재</a></li>
+		</ul>
+		
+		<hr color="red">
+		
+		
+		<img alt="이미지" name= "img" src="../../images/spone.jfif">
+		
+	</div>
+</body>
+</html>

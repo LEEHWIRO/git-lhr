@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#btnGet").click(function(){
+// 				$(":text")
+// 				$("#userName") //<input type="text" value="박신혜" id="userName">
+				var userName = $("#userName").val(); // value값을 return();
+				var userGender = $("[name='gender']:checked").val();
+				var userDes = $("#description").val();
+				var userJob = $("#job option:selected").text()
+// 					$("#job").val();
+				var str = "이름 : " + userName + "\n" 
+						+ "성별 : " + userGender + "\n" 
+						+ "소개 : " + userDes + "\n" 
+						+ "직업 : " + userJob;
+				
+				alert(str);
+				
+// 				$("#job option:selected").text() 
+//              => <select> 하위의  <option>들 중 선택된 option "프로.."text
+			});
+			$("#btnSet").click(function(){
+				var userName = $("#userName").val("홍길동");
+				var userGender = document.getElementById("genderMale").checked = "남성";
+				var userDes = $("#description").val("스타")
+				var userJob = $("#job option:selected").val("entertainer")
+				
+			});
+		});
+	</script>
+</head>
+<body>
+	<form>
+		이름<input type="text" value="박신혜" id="userName"><br>
+		성별
+		<input type="radio" id="genderMale" name="gender" value="남성">
+		<label for="genderMale">남자</label>
+		<input type="radio" id="genderFale" name="gender" value="여성">
+		<label for="genderFale">여자</label><br>
+		소개<textarea id="description" rows="3" cols=""></textarea><br>
+		직업
+		<select id="job">
+			<option value="programmer">프로그래머</option>
+			<option value="actor">배우</option>
+			<option value="entertainer">연예인</option>
+<!-- 			<option value="A01">프로그래머</option> -->
+<!-- 			<option value="A02">배우</option> -->
+<!-- 			<option value="A03">연예인</option> -->
+		</select>
+		<br><br>
+		<button type="button" id="btnGet">조사하기</button>
+		<button type="button" id="btnSet">이름변경</button>
+	</form>
+</body>
+</html>
