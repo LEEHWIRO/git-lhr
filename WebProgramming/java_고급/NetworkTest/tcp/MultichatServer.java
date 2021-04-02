@@ -88,6 +88,24 @@ public class MultichatServer {
 		}
 	}
 	
+	public void sendMessage(String msg, String toname, String from) {
+		// Map에 저장된 유저의 대화명 리스트 추출(key값 구하기)
+		Iterator<String> it = clients.keySet().iterator();
+		while(it.hasNext()) {
+			try {
+				String name = it.next(); // 대화명
+				if(toname.equals(name)) {
+					// 대화명에 해당하는 Socket의 OutputStream 구하기
+					DataOutputStream dos = new DataOutputStream(clients.get(name).getOutputStream());
+					dos.writeUTF("[" + from + "]" + msg); // 메세지 보내기
+					
+				}
+			}catch(IOException ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
+	
 	
 	// 서버에서 클라이언트로 메세지를 전송할 스레드를 Inner클래스로 정의
 	// => Inner클래스에서는 부모 클래스의 멤버들을 직접 사용할 수 있다.
@@ -109,48 +127,52 @@ public class MultichatServer {
 		@Override
 		public void run() {
 			try {
-				// 서버에서는 클라이언트가 보내는 최초의 메세지 즉,
-				// 대화명을 수신해야 한다.
+				// 서버에서는 클라이언트가 보내는 최초의 메시지 즉, 대화명을
+				// 수신해야 한다.
 				name = dis.readUTF();
 				
-				// 대화명을 받아서 다른 모든 클라이언트에게 대화방 참여 메세지를 보낸다.
+				// 대화명을 받아서 다른 모든 클라이언트에게 대화방 참여
+				// 메시지를 보낸다.
 				sendMessage("#" + name + "님이 입장했습니다.");
 				
 				// 대화명과 소켓정보를 Map에 저장한다.
 				clients.put(name, socket);
-				System.out.println("현재 서버 접속자 수는" + clients.size() + "명 입니다.");
+				System.out.println("현재 서버 접속자 수는 " +
+								clients.size() + "명 입니다.");
 				
-				// 이 이후의 메세지 처리는 반복문으로 처리한다.
-				// 한 클라이언트가 보낸 메세지를 다른 모든 클라이언트에게 보내준다.
+				// 이 이후의 메시지 처리는 반복문으로 처리한다.
+				// 한 클라이언트가 보낸 메시지를 다른 모든 클라이언트에게
+				// 보내준다.
+				
 				while(dis != null) {
-					
-					if(name.equals("종료")) {
-						break;
-					}
-					if(name.startsWith("/")) {
-						if(name.charAt(1) == 'w') {
-							//귓속말
-							String[] w = name.split(" ");
-							if(clients.get(w) != null) {
-								clients.put(name, socket);
-								
+					String msg = dis.readUTF();
+					String[] array = msg.split(" ", 3);
+					if(array[0].equals("/w")) {
+						Iterator<String> it = clients.keySet().iterator();
+						while(it.hasNext()) {
+							String toname = it.next(); // 대화명
+							if(array[1].equals(toname)) {
+								sendMessage(array[2], array[1], name);
 							}
 						}
 					}else {
+						
 						sendMessage(dis.readUTF(), name);
 					}
-					
 				}
+				
 			}catch(IOException ex) {
 				ex.printStackTrace();
 			}finally {
-				// 이 finally영역이 실행된다는 것은 클라이언트의 접속이 종료되었다는 의미이다.
+				// 이 finally영역이 실행된다는 것은 클라이언트의 접속이
+				// 종료되었다는 의미이다.
 				sendMessage(name + "님이 나가셨습니다.");
 				
 				// Map에서 해당 대화명을 삭제한다.
 				clients.remove(name);
 				
-				System.out.println("[" + socket.getInetAddress() + " : " + socket.getPort() + "] 에서 접속을 종료했습니다.");
+				System.out.println("[" + socket.getInetAddress()
+						+ " : " + socket.getPort() + "] 에서 접속을 종료했습니다.");
 				System.out.println("현재 접속자 수는 " + clients.size() + "명 입니다.");
 			}
 		}

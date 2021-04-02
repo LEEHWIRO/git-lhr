@@ -20,7 +20,7 @@ public class MultiChatClient {
 		
 		try {
 			
-			socket = new Socket("127.0.0.1", 7777);
+			socket = new Socket("192.168.43.52",7777);
 			
 			System.out.println("서버에 연결되었습니다.");
 			
@@ -38,32 +38,43 @@ public class MultiChatClient {
 		}
 	}
 	
-	// 메세지를 전송하는 스레드
-	class ClientSender extends Thread {
-		Socket socket;
-		DataOutputStream dos;
-		String name;
-		Scanner scan = new Scanner(System.in);
-		
-		public ClientSender(Socket socket, String name) {
-			this.socket = socket;
-			this.name = name;
+	//송신용 Thread;메시지를 전송하는 스레드
+		class ClientSender extends Thread {
+			Socket socket;
+			DataOutputStream dos;
+			String name;
+			Scanner scan = new Scanner(System.in);
 			
-			try {
-				// 시작하자 마자 자신의 대화명을 서버로 전송
-				if(dos != null) {
-					dos.writeUTF(name);
-				}
+			public ClientSender(Socket socket,String name) {
+				this.socket = socket;
+				this.name = name;
 				
-				while(dos != null) {
-					// 키보드를 입력받은 메세지를 서버로 전송
-					dos.writeUTF(scan.nextLine());
+				try {
+					dos = new DataOutputStream(socket.getOutputStream());
+				} catch (IOException ex) {
+					ex.printStackTrace();
 				}
-			}catch(IOException ex) {
-				ex.printStackTrace();
+			}
+			
+			@Override
+			public void run() {
+				try {
+					//시작하자 마자 자신의 대화명을 서버로 전송
+					if(dos != null) {
+						dos.writeUTF(name);
+					}
+					
+					while(dos != null) {
+						//키보드를 입력받은 메시지를 서버로 전송
+						dos.writeUTF(scan.nextLine());
+					}
+					
+					
+				} catch (IOException ex) {
+					ex.printStackTrace();
+				}
 			}
 		}
-	}
 	
 	// 수신용 Thread
 	class ClientReceiver extends Thread {
