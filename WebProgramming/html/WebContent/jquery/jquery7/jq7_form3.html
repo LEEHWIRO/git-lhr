@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			//case 1)
+			$("#check").click(function(){
+				var str = "";
+				$("[name=spring]:selected").each(function(){
+					str += $(this).text() + ", "
+				});
+
+				var subStr = str.substr(0,str.lastIndexOf(","))
+// 				var subStr = str.substr(0,str.length-2)
+				
+				$("#result").html(subStr);
+			});
+			
+			
+		});
+		
+	</script>
+</head>
+<body>
+	<form>
+		봄소식 :
+		<select name="spring" id="spring" multiple size="6">
+			<option>개나리</option>
+			<option selected>진달래</option>
+			<option>민들레</option>
+			<option selected>벛꽃</option>
+			<option>목련</option>
+			<option>철쭉</option>
+		</select><br>
+		
+		<input id="check" type="button" value="확인"><br>
+		
+		선택 결과 : <span id="result"></span>
+	</form>
+</body>
+</html>
