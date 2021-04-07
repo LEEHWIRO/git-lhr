@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+<p>안녕하세요, '<span id="spUserName">홍길동</span>'씨</p>
+<br>
+<p>올해로 <span id="spUserAge">37</span>살이군요.</p>
+</body>
+<script type="text/javascript">
+
+	var userName = "";
+	var userAge = "";
+	
+	var url = location.href
+	var params = url.substr(url.indexOf("?")+1); // userName=박신혜&userAge=32
+	var arr = params.split("&"); // ["userName=박신혜, userAge=32"]
+	
+	//arr[0]; // "userName=박신혜"
+	//arr[0].split("=") // ["userName", "박신혜"]
+	userName = arr[0].split("=")[1]; // "박신혜"
+	//arr[1]; // "userAge=32"
+	//arr[1].split("=") // ["userAge", "32"]
+	userAge = arr[1].split("=")[1]; // "32"
+	
+	document.getElementById("spUserName").innerHTML = userName;
+	document.getElementById("spUserAge").innerHTML = userName;
+	
+</script>
+</html>
