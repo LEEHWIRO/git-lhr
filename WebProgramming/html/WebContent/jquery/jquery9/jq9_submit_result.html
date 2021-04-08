@@ -20,13 +20,13 @@
 	
 	//arr[0]; // "userName=박신혜"
 	//arr[0].split("=") // ["userName", "박신혜"]
-	userName = arr[0].split("=")[1]; // "박신혜"
+	userName = decodeURI(arr[0].split("=")[1]); // "박신혜"
 	//arr[1]; // "userAge=32"
 	//arr[1].split("=") // ["userAge", "32"]
 	userAge = arr[1].split("=")[1]; // "32"
 	
 	document.getElementById("spUserName").innerHTML = userName;
-	document.getElementById("spUserAge").innerHTML = userName;
+	document.getElementById("spUserAge").innerHTML = userAge;
 	
 </script>
 </html>
