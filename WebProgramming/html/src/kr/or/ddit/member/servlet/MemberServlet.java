@@ -26,14 +26,55 @@ public class MemberServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		super.doPost(req, resp); // 지워야함 : extends한 HttpServlet 의 doPost를 호출하는 것이기 때문에 현재 클래스의 doPost를 사용할 수 없음
-		
 		// 브라우저로 부터 받은 값을 사용하기 위해 request에서 parameter를 get.
+		String flag = req.getParameter("flag");
+		
+		try {
+			if("L".equals(flag)) { // 목록조회
+				List<MemberVO> list = retrieveMemberList(req);
+				
+				req.setAttribute("list", list);
+				RequestDispatcher  disp = req.getRequestDispatcher("/html/member/memberListResult.jsp");
+				disp.forward(req, resp);
+				
+			} else if("C".equals(flag)) { // 등록
+				createMember(req);
+				
+				
+			} else if("R".equals(flag)) { // 단건 조회
+				
+			} else if("U".equals(flag)) { // 수정
+				
+			} else if("D".equals(flag)) { //삭제
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private void createMember(HttpServletRequest req) throws SQLException {
+		// TODO Auto-generated method stub
 		String memId = req.getParameter("memId");
 		String memName = req.getParameter("memName");
-		// form serialize를 사용해서 파라미터를 전달한 경우, request에 요소의 name으로 parameter가 매핑됨.
-		// 예) <input type="text" name="userId"> ==> req.getParameter("userId")
+		// 그외 정보들...
+
+		MemberVO memberVo = new MemberVO();
+		memberVo.setMemId(memId);
+		memberVo.setMemName(memName);
+		// 그 외 정보들 VO에 세팅...
+		
+		MemberService service = new MemberService();
+		service.createMember(memberVo);
+		
+	}
+
+	private List<MemberVO> retrieveMemberList(HttpServletRequest req) throws SQLException {
+		String memId = req.getParameter("memId");
+		String memName = req.getParameter("memName");
 		
 		MemberVO memberVo = new MemberVO();
 		memberVo.setMemId(memId);
@@ -41,23 +82,10 @@ public class MemberServlet extends HttpServlet {
 		
 		//회원 목록 조회
 		MemberService service = new MemberService();
-		try {
-			List<MemberVO> list = service.retrieveMemberList(memberVo);
-			
-			// 브라우저로 전달할 결과를 request에 attribute로 세팅
-			req.setAttribute("list", list);
-			
-			// 결과를 받을 url 세팅
-//			RequestDispatcher  disp = req.getRequestDispatcher("/MemberPj/html/member/memberListResult.jsp"); // <== contextroot 포함하면 안됨!
-			RequestDispatcher  disp = req.getRequestDispatcher("/html/member/memberListResult.jsp");
-			disp.forward(req, resp);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		List<MemberVO> list = service.retrieveMemberList(memberVo);
+		return list;
 		
 	}
+	
 	
 }
