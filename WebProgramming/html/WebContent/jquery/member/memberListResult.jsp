@@ -1,28 +1,27 @@
 <%@page import="kr.or.ddit.member.vo.MemberVO"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-[    
-<%
-//ì„œë¸”ë¦¿ì—ì„œ ì¡°íšŒê²°ê³¼ë¥¼ "list"ë¼ëŠ” keyë¡œ requestì— ë‹´ì•„ì¤¬ìŒ.
-List<MemberVO> list = (List<MemberVO>)request.getAttribute("list"); 
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 
-for(int i = 0; i < list.size(); i++){
+[
+<%
+//¼­ºí¸´¿¡¼­ Á¶È¸°á°ú¸¦ "list"¶ó´Â key·Î request¿¡ ´ã¾ÆÁáÀ½
+List<MemberVO> list = (List<MemberVO>)request.getAttribute("list");
+for(int i=0 ; i<list.size() ; i++) {
 	MemberVO vo = list.get(i);
 	String memId = vo.getMemId();
 	String memName = vo.getMemName();
 	
-	// json íƒ€ìž…ìœ¼ë¡œ ë§Œë“¤ì–´ì•¼ í•˜ëŠ” ë¶€ë¶„ ==> {name : "~", id : "~"}
+	//json Å¸ÀÔÀ¸·Î ¸¸µé¾î¾ß ÇÏ´Â ºÎºÐ ==> {name : "~", id : "~"}
 	
 	if(i > 0) {
 		%>,<%
 	}
-	%>
-	{"name" : "<%=memName%>", "id" : "<%=memId %>"}
-	<%
 	
+	%>
+	{"name" : "<%=memName %>", "id" : "<%=memId %>"}
+	<%
 }
-
 %>
+
 ]
