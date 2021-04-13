@@ -64,15 +64,6 @@
 	<tr	align="center">
 		<td colspan="4"><a href="insert.do">[회원 등록]</a></td>
 	</tr>
-	<tr	align="center">
-		<td colspan="4"><a href="update.do">[회원 수정]</a></td>
-	</tr>
-	<tr	align="center">
-		<td colspan="4"><a href="delete.do">[회원 삭제]</a></td>
-	</tr>
-	<tr	align="center">
-		<td colspan="4"><a href="select.do">[회원 검색]</a></td>
-	</tr>
 	</table>
 	
 	<%
