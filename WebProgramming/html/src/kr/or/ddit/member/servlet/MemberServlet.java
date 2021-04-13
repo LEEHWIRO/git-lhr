@@ -17,7 +17,7 @@ import kr.or.ddit.member.vo.MemberVO;
 @WebServlet("/MemberServlet")
 public class MemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -45,8 +45,14 @@ public class MemberServlet extends HttpServlet {
 				
 			} else if("U".equals(flag)) { // 수정
 				
-			} else if("D".equals(flag)) { //삭제
+			} else if("D".equals(flag)) { // 삭제
 				
+			} else if("CHKID".equals(flag)) { // ID 체크
+				MemberVO memberVo = checkMemberId(req);
+				
+				req.setAttribute("memberVo", memberVo);
+				RequestDispatcher  disp = req.getRequestDispatcher("/html/member/idCheckResult.jsp");
+				disp.forward(req, resp);
 			}
 			
 		} catch (SQLException e) {
@@ -56,6 +62,15 @@ public class MemberServlet extends HttpServlet {
 		
 	}
 	
+	private MemberVO checkMemberId(HttpServletRequest req) throws SQLException {
+		// TODO Auto-generated method stub
+		String memId = req.getParameter("memId");
+		
+		MemberService service = new MemberService();
+		MemberVO memberVo = service.retrieveMember(memId);
+		return memberVo;
+	}
+
 	private void createMember(HttpServletRequest req) throws SQLException {
 		// TODO Auto-generated method stub
 		String memId = req.getParameter("memId");
