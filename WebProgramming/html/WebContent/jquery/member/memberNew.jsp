@@ -4,25 +4,14 @@
 <html>
 <head>
 	<title>Insert title here</title>
+	<script src="/JqueryPro/js/jquery-3.6.0.js"></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<!-- JS -->
-	<script src="/JqueryPro/js/jquery-3.6.0.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/JqueryPro/js/com/dditUtils.js?v=1"></script>
-	<script type="text/javascript" src="/JqueryPro/js/member/memberNew.js?v=1"></script>
-<!--     <script type="text/javascript" src="../../js/lib/moment.min.js"></script> -->
-<!--     <script type="text/javascript" src="../../js/lib/daterangepicker.js"></script> -->
-<!--     <script type="text/javascript" src="../../js/comm/ui.js"></script> -->
-
-	<link rel="stylesheet" href="/JqueryPro/js/lib/jquery-ui.css">
-<!--   <link rel="stylesheet" href="/resources/demos/style.css"> -->
-<!--   <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
-	<script src="/JqueryPro/js/lib/jquery-ui.js"></script>
-	<script src="/JqueryPro/js/lib/datepicker-ko.js"></script>
-	
+	<script type="text/javascript" src="../../js/common/myutils.js"></script>
 	
 	<style type="text/css">
 	body {background-color: #eaf0f7;color: #50649c;}
@@ -52,32 +41,63 @@
 	.form-group-inner-down .form-control{width: 100%}
 	.form-control1{width: 50%;}
 	.form-control {padding-left: 16px;}
-/* 	.form-control:required {background:#fff url(../../images/bg-required.png) no-repeat left 7px center} */
 	.form-control:disabled, .form-control[readonly] {background: #f2f5fa;}
 	
 	
 	.form-control.singleDate {min-width:125px;padding-right:25px;background:#fff url(/JqueryPro/images/ico-date.png) no-repeat right 7px center}
-/* 	.form-control.singleDate:required {background:#fff url(../../images/bg-required.png) no-repeat left 7px center, url(../../images/ico-date.png) no-repeat right 5px center} */
 	.form-group label.required {background: url(/JqueryPro/images/bg-required.png) no-repeat right 5px center}
 	
 	</style>
 	
 	<script type="text/javascript">
-	$(document).ready(function(){
+	function makeJobSelect(data) {
+// 		// 방법1)
+// 		var strHtml = "";
+// 		$("#memJob").html();
 		
+// 		// 방법2)
+// 		$("#memJob").empty();
+// 		$("#memJob").append(ele1);
+// 		$("#memJob").append(ele2);
+
+		var strHtml = "";
+		for(var i = 0; i < data.length; i++){
+			strHtml += '<option value="' + data[i].value + '">' + data[i].name + '</option>';
+		}
+		$("#memJob").html(strHtml);
+	}
+	
+	$(document).ready(function(){
+		// 직업코드 조회해서 세팅하기
+		$.ajax({
+			url : "/JqueryPro/CodeServlet"
+			,type : "post"
+			,data : {"groupCode" : 'A02'} // 직업코드 조회
+			,dataType : "json"
+			,success : function(data){
+				console.log(data);
+				alert("성공")
+				makeJobSelect(data);
+			}
+			,error : function(xhr){
+				console.log(xhr);
+				alert("오류")
+			}
+			
+		});
 	});
 	
 	// [중복검사] 버튼에 클릭 이벤트
 	function chkId1(){
 		var memId = $("#memId").val();
 		
-		// 빈 값 확인     
+		 // 빈 값 확인     
 		if(isEmpty(memId)) {
 			alert("ID 값이 입력되지 않았습니다.");
 			$("#memId").focus();
 			$("#spMemId").show();
 			return;
-		}
+		} 
 		
 		// 유효성 검사 - 영어소문자와 숫자로 구성. 3글자 이상 10글자 이하 
 		var regExp = /^[a-z0-9]{3,10}$/;
@@ -96,11 +116,13 @@
 			,dataType : "json"
 			,success : function(data){
 				console.log(data);
-				if(isEmpty(data.result)){
-					$("#spMemId").html("중복된 ID가 존재합니다.");
-					$("#spMemId").show();
-				} else {
+				if(data.resultCnt == 0){
+					alert("사용할수있는 아이디");
 					$("#spMemId").hide();
+				}else {
+					alert("사용할수 없는 아이디, 다시입력하시오");
+					$("#memId").focus();
+					$("#spMemId").show();
 				}
 			}
 			,error : function(xhr){

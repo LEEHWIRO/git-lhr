@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.ddit.common.service.CodeService;
 import kr.or.ddit.common.vo.CodeVO;
+import kr.or.ddit.member.service.MemberService;
+import kr.or.ddit.member.vo.MemberVO;
 
 /**
  * Servlet implementation class CodeServlet
@@ -20,37 +22,34 @@ import kr.or.ddit.common.vo.CodeVO;
 @WebServlet("/CodeServlet")
 public class CodeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public CodeServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+				super.doGet(req, resp);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String groupCode = request.getParameter("groupCode");
-		
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try {
+		// 그룹코드로 코드테이블 조회
+		String groupCode = req.getParameter("groupCode");
+			
 		CodeVO codeVo = new CodeVO();
 		codeVo.setGroupCode(groupCode);
 		
-		//코드 목록 조회
-		CodeService service = new CodeService();
-		List<CodeVO> list;
-		try {
-			list = service.retrieveCodeList(codeVo);
-			request.setAttribute("list", list);
-			RequestDispatcher  disp = request.getRequestDispatcher("/html/common/codeListResult.jsp");
-			disp.forward(request, response);
-			
-		} catch (SQLException e) {
+		CodeService codeService = new CodeService();
+		List<CodeVO> list = codeService.retrieveCodeList(codeVo);
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		
+		req.setAttribute("list", list);
+		
+		RequestDispatcher disp = req.getRequestDispatcher("/html/common/codeListResult.jsp");
+		disp.forward(req, resp);
+	} catch (SQLException e) {
+		e.printStackTrace();
+		
 	}
-
+	
+	
+	}
 }
