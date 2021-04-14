@@ -15,7 +15,6 @@ import org.apache.commons.fileupload.FileUploadException;
 import kr.or.ddit.util.FileUploadRequestWrapper;
 
 public class MultipartParser implements Filter {
-
 	// 메모리 임계크기(이 크기가 넘어가면 레파지토리 위치에 임시파일로 저장됨)
 	private static final int MEMORY_THRESHOLD = 1024 * 1024 * 3;
 	// 파일 1개당 최대 크기
@@ -32,18 +31,18 @@ public class MultipartParser implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain fc)
 			throws IOException, ServletException {
-
-		// 리퀘스트래퍼 객체 생성
+		
+		// 리퀘스트래퍼  객체 생성
 		FileUploadRequestWrapper requestWrapper;
 		try {
 			requestWrapper = new FileUploadRequestWrapper(
-													(HttpServletRequest)req,
-													MEMORY_THRESHOLD,
-													MAX_FILE_SIZE,
-													MAX_REQUEST_SIZE,
-													"");
+					(HttpServletRequest) req, 
+					MEMORY_THRESHOLD, 
+					MAX_FILE_SIZE, 
+					MAX_REQUEST_SIZE, 
+					"");
 			
-			// 래퍼클래스 적용
+			// 래퍼 클래스 적용.
 			fc.doFilter(requestWrapper, resp);
 			
 		} catch (FileUploadException e) {
@@ -51,12 +50,10 @@ public class MultipartParser implements Filter {
 		}
 		
 		
-		fc.doFilter(req, resp);
-		
 	}
 
 	@Override
-	public void init(FilterConfig fc) throws ServletException {
+	public void init(FilterConfig arg0) throws ServletException {
 		// TODO Auto-generated method stub
 		
 	}
