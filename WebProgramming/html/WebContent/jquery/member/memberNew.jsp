@@ -4,139 +4,16 @@
 <html>
 <head>
 	<title>Insert title here</title>
-	<script src="/JqueryPro/js/jquery-3.6.0.js"></script>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/JqueryPro/css/newcss.css">
 	<!-- JS -->
+	<script src="/JqueryPro/js/jquery-3.6.0.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../../js/common/myutils.js"></script>
-	
-	<style type="text/css">
-	body {background-color: #eaf0f7;color: #50649c;}
-	.container .form-horizontal .form-group:first-child {
-/* 		border-top: 1px solid; */
-		border-top: 1px solid rgb(80, 100, 156, .3);
-		border-left: 1px solid rgb(80, 100, 156, .3);
-		border-right: 1px solid rgb(80, 100, 156, .3);
-	}
-	.container .form-horizontal .form-group {
-/* 		border-bottom: 1px solid; */
-		border-bottom: 1px solid rgb(80, 100, 156, .3);
-		border-left: 1px solid rgb(80, 100, 156, .3);
-		border-right: 1px solid rgb(80, 100, 156, .3);
-		padding: 5px 0px;
-		margin: 0 -15px;
-		background-color: #f1f5fa;
-	    
-	    display: flex;
-	    align-items: center;
-	}
-	.container .form-horizontal .form-group .control-label {}
-	.form-button {padding: 10px 0px;}
-	.form-inline .form-inline-zip1 {width: 90px;}
-	.form-inline .form-inline-zip2 {width: calc(100% - 90px - 54px);}
-	.form-group-inner-down{width: 100%; margin-top: 5px;}
-	.form-group-inner-down .form-control{width: 100%}
-	.form-control1{width: 50%;}
-	.form-control {padding-left: 16px;}
-	.form-control:disabled, .form-control[readonly] {background: #f2f5fa;}
-	
-	
-	.form-control.singleDate {min-width:125px;padding-right:25px;background:#fff url(/JqueryPro/images/ico-date.png) no-repeat right 7px center}
-	.form-group label.required {background: url(/JqueryPro/images/bg-required.png) no-repeat right 5px center}
-	
-	</style>
-	
-	<script type="text/javascript">
-	function makeJobSelect(data) {
-// 		// 방법1)
-// 		var strHtml = "";
-// 		$("#memJob").html();
-		
-// 		// 방법2)
-// 		$("#memJob").empty();
-// 		$("#memJob").append(ele1);
-// 		$("#memJob").append(ele2);
-
-		var strHtml = "";
-		for(var i = 0; i < data.length; i++){
-			strHtml += '<option value="' + data[i].value + '">' + data[i].name + '</option>';
-		}
-		$("#memJob").html(strHtml);
-	}
-	
-	$(document).ready(function(){
-		// 직업코드 조회해서 세팅하기
-		$.ajax({
-			url : "/JqueryPro/CodeServlet"
-			,type : "post"
-			,data : {"groupCode" : 'A02'} // 직업코드 조회
-			,dataType : "json"
-			,success : function(data){
-				console.log(data);
-				alert("성공")
-				makeJobSelect(data);
-			}
-			,error : function(xhr){
-				console.log(xhr);
-				alert("오류")
-			}
-			
-		});
-	});
-	
-	// [중복검사] 버튼에 클릭 이벤트
-	function chkId1(){
-		var memId = $("#memId").val();
-		
-		 // 빈 값 확인     
-		if(isEmpty(memId)) {
-			alert("ID 값이 입력되지 않았습니다.");
-			$("#memId").focus();
-			$("#spMemId").show();
-			return;
-		} 
-		
-		// 유효성 검사 - 영어소문자와 숫자로 구성. 3글자 이상 10글자 이하 
-		var regExp = /^[a-z0-9]{3,10}$/;
-		if(!regExp.test(memId)) {
-			alert("ID 값이 유효하지 않습니다.");
-			$("#memId").focus();
-			$("#spMemId").show();
-			return;
-		}
-		
-		// DB에서 중복검사 수행
-		$.ajax({
-			url : "/JqueryPro/MemberServlet"
-			,type : "post"
-			,data : {"memId" : memId, "flag" : "CHKID"}
-			,dataType : "json"
-			,success : function(data){
-				console.log(data);
-				if(data.resultCnt == 0){
-					alert("사용할수있는 아이디");
-					$("#spMemId").hide();
-				}else {
-					alert("사용할수 없는 아이디, 다시입력하시오");
-					$("#memId").focus();
-					$("#spMemId").show();
-				}
-			}
-			,error : function(xhr){
-				console.log(xhr);
-				alert("ID 중복 검사 중 오류가 발생했습니다.");
-			}
-				
-		});
-		
-	}
-	
-	</script>
-	
-	
+	<script type="text/javascript" src="/JqueryPro/js/member/memberNew.js"></script>
 </head>
 <body>
 	<!-- 본문영역 시작 -->
@@ -208,7 +85,8 @@
 				<label class="control-label col-sm-2 required" for="memId">주소</label>
 				<div class="col-sm-10 form-inline">
 					<input type="text" class="form-control form-inline-zip1" id="memZip" name="memZip" readonly="readonly" required>
-					<button type="button" class="btn btn-info btn-sm" id="btnAddr" onclick="openZip()">검색</button>
+					<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#zipModal">검색</button>
+<!-- 					<button type="button" class="btn btn-info btn-sm" id="btnAddr" onclick="openZip()">검색</button> -->
 					<input type="text" class="form-control form-inline-zip2" id="memAdd1" name="memAdd1" readonly="readonly" required>
 					<br>
 					<div class="form-group-inner-down">
@@ -234,18 +112,14 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="recvEmail">광고메일</label>
 				<div class="col-sm-10">
-					<label class="radio-inline"><input type="radio" name="recvEmailYn" value="Y" checked>수신</label>
-					<label class="radio-inline"><input type="radio" name="recvEmailYn" value="N" >미수신</label>
+					<label class="radio-inline"><input type="radio" name="recvEmailYn" value="Y" >수신</label>
+					<label class="radio-inline"><input type="radio" name="recvEmailYn" value="N" id="recvEmailYn">미수신</label>
 				</div>
-<!-- 				<label class="control-label col-sm-2" for="memJob">직업</label> -->
-<!-- 				<div class="col-sm-4"> -->
-<!-- 					<select class="form-control" id="memJob" name="memJob"> -->
-<!-- 					</select> -->
-<!-- 				</div> -->
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="hobby">취미</label>
 				<div class="col-sm-10" id="divHobby">
+<!-- 					<LABEL CLASS="CHECKBOX-INLINE"></LABEL> -->
 				</div>
 			    <input type="hidden" name="memLike" id="memLike">
 			</div>
@@ -263,7 +137,7 @@
 		</div>
 	</div>
 	
-	<!-- 우편번호 검색 Modal -->
+	<!-- 우편번호 검색 Modal Start -->
 	<div class="modal fade" id="zipModal" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
@@ -274,16 +148,12 @@
 				</div>
 				<div class="modal-body">
 					시: <select id="city" onchange="setGu()">
-						<option value="">선택하세요</option>
-						<option value="대전">대전</option>
-						<option value="세종">세종</option>
-						<option value="충남">충남</option>
 					</select>
 					구: <select id="gu" onchange="setDong()" disabled="disabled">
-						<option>선택하세요</option>
+						<option value="">선택하세요</option>
 					</select>
 					동: <select id="dong" disabled="disabled">
-						<option>선택하세요</option>
+						<option value="">선택하세요</option>
 					</select>
 					<button type="button" onclick="searchZipCode()" id="btnZip">검색</button>
 					<hr>
@@ -307,6 +177,7 @@
 			</div>
 		</div>
 	</div>
+	<!-- 우편번호 검색 Modal End -->
 	
 	<form id="tmpFm">
 		<input type="hidden" name="action" id="actionTmlFm">

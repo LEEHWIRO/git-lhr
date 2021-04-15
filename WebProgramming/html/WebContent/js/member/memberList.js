@@ -16,7 +16,7 @@ $(document).ready(function(){
 		// ==> { memId : "test", memName : ""}
 		
 		$.ajax({
-			url : "/jqueryPro/MemberServlet"
+			url : "/JqueryPro/MemberServlet"
 			,type : "post"
 			,data : param
 			,dataType : "json"
@@ -56,3 +56,4 @@ function makeTable(data){
 	$("#tbResult tbody").html(str);
 
 }
+
