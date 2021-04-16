@@ -17,6 +17,30 @@ $(document).ready(function() {
 
 	// 5. '우편번호 찾기화면- 시' 세팅
 	initCitySelect();
+	
+//	$("#tbZipResult tbody").dblclick(function(){
+//	});
+//	$("#tbZipResult tbody tr").on("dblclick", function(){
+//	});
+	$("#tbZipResult").on("dblclick", "tbody tr", function(){
+//		this ==> tr
+//		console.log($(this));
+//		console.log($(this).children());
+		
+		var zipcode = $(this).children("td:eq(0)").text();
+		var addr = $(this).children("td:eq(1)").text();
+		
+//		console.log(zipcode);
+//		console.log(addr);
+		
+		// 메인화면(부모창)의 우편번호, 주소 input에 데이터 세팅
+		$("#memZip").val(zipcode);
+		$("#memAdd1").val(addr);
+		
+		// 주소창(모달창) 닫기
+		$("#zipModal").modal("hide");
+		
+	});
 
 });
 
@@ -53,7 +77,7 @@ function makeJobSelect(data) {
 	// 		$("#memJob").append(ele1);
 	// 		$("#memJob").append(ele2);
 
-	var strHtml = "";
+	var strHtml = '<option value="">선택하세요</option>';
 	for (var i = 0; i < data.length; i++) {
 		strHtml += '<option value="' + data[i].value + '">' + data[i].name
 				+ '</option>';
@@ -83,7 +107,7 @@ function initMemorialSelect() {
 }
 
 function makeMemorialSelect(data) {
-	var strHtml = "";
+	var strHtml = '<option value="">선택하세요</option>';
 	for (var i = 0; i < data.length; i++) {
 		strHtml += '<option value="' + data[i].value + '">' + data[i].name
 				+ '</option>';
@@ -116,7 +140,7 @@ function makeHobbySelect(data) {
 	var strHtml = "";
 	for (var i = 0; i < data.length; i++) {
 		strHtml += "<label class=\"checkbox-inline\">";
-		strHtml += '<input type=\"checkbox\" value="' + data[i].value + '">'
+		strHtml += '<input type=\"checkbox\" value="" name="memLike""'  + data[i].value + '">'
 				+ data[i].name;
 		strHtml += "</label>"
 	}
@@ -148,12 +172,14 @@ function initCitySelect() {
 }
 
 function makeCitySelect(data) {
-	var strHtml = "";
+	var strHtml = '<option value="">선택하세요</option>';
 	for (var i = 0; i < data.length; i++) {
 		strHtml += '<option value="' + data[i].sido + '">' + data[i].sido
 				+ '</option>';
 	}
 	$("#city").html(strHtml);
+	
+	setGu();
 
 	// 방법2.
 	//	setGu();
@@ -194,6 +220,7 @@ function makeGugunSelect(data) {
 	$("#gu").html(strHtml);
 	$("#gu").prop("disabled", false);
 	
+	setDong();
 }
 
 function setDong() {
@@ -271,31 +298,20 @@ function makeZipTable(data) {
 
 	var strHtml = "";
 	for (var i = 0; i < data.length; i++) {
-		strHtml += "<tr>" + "<td>" + data[i].zipcode + "</td>" + "<td>"
-				+ data[i].sido + " " + data[i].gugun + " " + data[i].dong + " "
-				+ changeEmptyVal(data[i].bunji) + "</td>" + "</tr>";
+		strHtml += 
+//				"<tr onclick='test(\"" + data[i].zipcode + "\");'>" 
+				"<tr>" 
+				+ "<td>" + data[i].zipcode + "</td>" 
+				+ "<td>" + data[i].sido + " " 
+				+ data[i].gugun + " " 
+				+ data[i].dong + " "
+//				+ changeEmptyVal(data[i].bunji) 
+				+ "</td>" 
+				+ "</tr>";
 	}
 
 	$("#tbZipResult tbody").html(strHtml);
 }
-
-//function openZip() {
-//	initSidoSelect();
-//	$("#divZipResult").hide();
-//	$("#tbZipResult tbody").empty();
-//	$("#zipModal").modal();
-//}
-
-
-
-
-
-
-
-
-
-
-
 
 
 // [중복검사] 버튼에 클릭 이벤트
@@ -348,3 +364,63 @@ function chkId1() {
 
 }
 
+function openZip(){
+	// 시 셀렉트박스 조회하고 초기화
+	initCitySelect();
+	// 테이블 초기화
+	$("#tbZipResult tbody").empty();
+	
+	// 주소창(모달창) 열기 - 부트스트랩의 modal 메소드 호출
+	$("#zipModal").modal();
+}
+
+//회원정보 저장하기
+function save(){
+	// 회원정보 유효성 체크
+//	var result = validate();
+//	if(!result){
+//		return
+//	}
+	
+	// 사용자 컨펌
+	if(!confirm("저장하시겠습니까?")){
+		return
+	}
+	
+	// DB에 저장하는 ajax 호출
+	$("#formFlag").val("C");
+	$.ajax({
+		url : "/JqueryPro/MemberServlet"
+		,type : "post"
+		,data : $("#fm").serialize()
+		,dataType : "json"
+		,success : function(data){
+			alert("저장 ㄱㄱ");
+			
+			// 페이지 이동
+			changePage();
+		}
+		,error : function(xhr){
+			alert("실패하엿습니다.\n관리자에게 문의하세요.")
+			console.log(xhr);
+		}
+	});
+}
+
+function changePage(){
+	// 방법1
+//	window.location.href = "/JqueryPro/html/member/memberList2.html"
+	
+	// 방법2
+	var fm = document.getElementById("fm");
+	fm.action = "/JqueryPro/html/member/memberList2.html" // 서블릿을 호출하기도 함.
+	fm.method = "post";
+	fm.submit();
+}
+function valiate(){
+	// ...
+	return false;
+	
+	// 체크가 끝나면...
+	return true;
+}
