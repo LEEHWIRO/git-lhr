@@ -16,6 +16,8 @@ public class MemberService {
 	}
 	
 	public MemberVO retrieveMember(String memberId) throws SQLException {
+		// 검증작업
+		
 		MemberVO memberVo = dao.retrieveMember(memberId);
 		return memberVo;
 	}
@@ -26,7 +28,9 @@ public class MemberService {
 	}
 	
 	public void createMember(MemberVO memberVo) throws SQLException {
-		// TODO Auto-generated method stub
+		String memHp = memberVo.getMemHp().replaceAll("-", "");
+		memberVo.setMemHp(memHp);
+		
 		// 1. 등록 전 유효성 체크
 		//  1) 중복된 ID인지 체크
 //		MemberVO resultVo = dao.retrieveMember(memberVo.getMemId());
