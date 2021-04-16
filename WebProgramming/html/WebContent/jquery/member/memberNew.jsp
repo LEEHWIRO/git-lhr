@@ -13,7 +13,7 @@
 	<script src="/JqueryPro/js/jquery-3.6.0.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../../js/common/myutils.js"></script>
-	<script type="text/javascript" src="/JqueryPro/js/member/memberNew.js"></script>
+	<script type="text/javascript" src="/JqueryPro/js/member/memberNew.js?v=1"></script>
 </head>
 <body>
 	<!-- 본문영역 시작 -->
@@ -46,7 +46,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2 required" for="memPass">비밀번호 확인</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control form-control1" id="memPass1" placeholder="비밀번호를 입력하세요" name="memPass" required>
+					<input type="password" class="form-control form-control1" id="memPass1" placeholder="비밀번호를 입력하세요" name="memPass1" required>
 					<span id="spMemPass1" style="display: none;">비밀번호가 일치하지 않습니다.</span>
 				</div>
 			</div>
@@ -104,8 +104,8 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memMemorial">기념일</label>
 				<div class="col-sm-10 form-inline">
-					종류 : <select class="form-control" id="memMemorial" name="memMemorial"></select>
-					날짜 : <input type="text" class="form-control singleDate" id="memMemorialday" name="memMemorialday">
+					종류 : <select class="form-control" id="memMemorial" name="memMemorialType"></select>
+					날짜 : <input type="text" class="form-control singleDate" id="memMemorialday" name="memMemorialDate">
 				</div>
 			</div>
 			
@@ -119,9 +119,8 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="hobby">취미</label>
 				<div class="col-sm-10" id="divHobby">
-<!-- 					<LABEL CLASS="CHECKBOX-INLINE"></LABEL> -->
+				    <input type="hidden" name="memLike" id="memLike">
 				</div>
-			    <input type="hidden" name="memLike" id="memLike">
 			</div>
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="memComment">비고</label>
@@ -129,7 +128,8 @@
 					<textarea class="form-control" rows="5" id="memComment" name="memComment" maxlength="1000"></textarea>
 				</div>
 			</div>
-			<input type="hidden" name="action" id="actionFm">
+<!-- 			<input type="hidden" name="action" id="actionFm"> -->
+			<input type="hidden" name="flag" id="formFlag">
 		</form>
 		<div class="form-button text-center">
 			<button type="button" class="btn btn-primary" onclick="save()">저장</button>
