@@ -50,14 +50,14 @@ CREATE TABLE <테이블명>
                     .
                     .
 CONSTRAINT 기본키명 PRIMARY KEY (필드명1, [,필드명2])
-CONSTRAINT 외부키명 FOREIGN KEY (필드명2) REFERENCE 외부테이블명(외부필드명)
+CONSTRAINT 외부키명 FOREIGN KEY (필드명2) REFERENCES 외부테이블명(외부필드명)
 );
 
 TABLE 수정(ALTER)
 
 ALTER TABLE <테이블명>
 ADD(CONSTRAINT 기본키명 PRIMARY KEY (필드명1, 필드명2),
-    CONSTRAINT 외부키명 FOREIGN KEY (필드명2) REFERENCE 외부테이블명(외부필드명)
+    CONSTRAINT 외부키명 FOREIGN KEY (필드명2) REFERENCES 외부테이블명(외부필드명)
 );
 
 뷰의 구문 및 설명
