@@ -1,0 +1,326 @@
+4월 02, 2021 4:17:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Server version:        Apache Tomcat/7.0.73
+4월 02, 2021 4:17:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Server built:          Nov 7 2016 21:27:23 UTC
+4월 02, 2021 4:17:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Server number:         7.0.73.0
+4월 02, 2021 4:17:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: OS Name:               Windows 10
+4월 02, 2021 4:17:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: OS Version:            10.0
+4월 02, 2021 4:17:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Architecture:          amd64
+4월 02, 2021 4:17:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Java Home:             D:\B_Util\2.Java\jdk1.8\jre
+4월 02, 2021 4:17:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: JVM Version:           1.8.0_121-b13
+4월 02, 2021 4:17:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: JVM Vendor:            Oracle Corporation
+4월 02, 2021 4:17:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: CATALINA_BASE:         D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73
+4월 02, 2021 4:17:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: CATALINA_HOME:         D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73
+4월 02, 2021 4:17:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+4월 02, 2021 4:17:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Djava.util.logging.config.file=D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\conf\logging.properties
+4월 02, 2021 4:17:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+4월 02, 2021 4:17:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Djava.endorsed.dirs=D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\endorsed
+4월 02, 2021 4:17:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Dcatalina.base=D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73
+4월 02, 2021 4:17:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Dcatalina.home=D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73
+4월 02, 2021 4:17:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Djava.io.tmpdir=D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\temp
+4월 02, 2021 4:17:08 오후 org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+정보: Loaded APR based Apache Tomcat Native library 1.2.10 using APR version 1.5.2.
+4월 02, 2021 4:17:08 오후 org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+정보: APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+4월 02, 2021 4:17:09 오후 org.apache.catalina.core.AprLifecycleListener initializeSSL
+정보: OpenSSL successfully initialized (OpenSSL 1.0.2j  26 Sep 2016)
+4월 02, 2021 4:17:09 오후 org.apache.coyote.AbstractProtocol init
+정보: Initializing ProtocolHandler ["http-apr-8080"]
+4월 02, 2021 4:17:09 오후 org.apache.coyote.AbstractProtocol init
+심각: Failed to initialize end point associated with ProtocolHandler ["http-apr-8080"]
+java.lang.Exception: Socket bind failed: [730013] ¾?¼½º ±???¡ ???Ø ¼?°??ø ¼???¡ ¾
+	at org.apache.tomcat.util.net.AprEndpoint.bind(AprEndpoint.java:470)
+	at org.apache.tomcat.util.net.AbstractEndpoint.init(AbstractEndpoint.java:665)
+	at org.apache.coyote.AbstractProtocol.init(AbstractProtocol.java:452)
+	at org.apache.catalina.connector.Connector.initInternal(Connector.java:978)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.core.StandardService.initInternal(StandardService.java:560)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:840)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.startup.Catalina.load(Catalina.java:642)
+	at org.apache.catalina.startup.Catalina.load(Catalina.java:667)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.catalina.startup.Bootstrap.load(Bootstrap.java:253)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:427)
+
+4월 02, 2021 4:17:09 오후 org.apache.catalina.core.StandardService initInternal
+심각: Failed to initialize connector [Connector[HTTP/1.1-8080]]
+org.apache.catalina.LifecycleException: Failed to initialize component [Connector[HTTP/1.1-8080]]
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:107)
+	at org.apache.catalina.core.StandardService.initInternal(StandardService.java:560)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:840)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.startup.Catalina.load(Catalina.java:642)
+	at org.apache.catalina.startup.Catalina.load(Catalina.java:667)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.catalina.startup.Bootstrap.load(Bootstrap.java:253)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:427)
+Caused by: org.apache.catalina.LifecycleException: Protocol handler initialization failed
+	at org.apache.catalina.connector.Connector.initInternal(Connector.java:980)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	... 12 more
+Caused by: java.lang.Exception: Socket bind failed: [730013] ¾?¼½º ±???¡ ???Ø ¼?°??ø ¼???¡ ¾
+	at org.apache.tomcat.util.net.AprEndpoint.bind(AprEndpoint.java:470)
+	at org.apache.tomcat.util.net.AbstractEndpoint.init(AbstractEndpoint.java:665)
+	at org.apache.coyote.AbstractProtocol.init(AbstractProtocol.java:452)
+	at org.apache.catalina.connector.Connector.initInternal(Connector.java:978)
+	... 13 more
+
+4월 02, 2021 4:17:09 오후 org.apache.coyote.AbstractProtocol init
+정보: Initializing ProtocolHandler ["ajp-apr-8009"]
+4월 02, 2021 4:17:09 오후 org.apache.catalina.startup.Catalina load
+정보: Initialization processed in 807 ms
+4월 02, 2021 4:17:09 오후 org.apache.catalina.core.StandardService startInternal
+정보: Starting service Catalina
+4월 02, 2021 4:17:09 오후 org.apache.catalina.core.StandardEngine startInternal
+정보: Starting Servlet Engine: Apache Tomcat/7.0.73
+4월 02, 2021 4:17:09 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deploying web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\docs
+4월 02, 2021 4:17:09 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deployment of web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\docs has finished in 275 ms
+4월 02, 2021 4:17:09 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deploying web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\examples
+4월 02, 2021 4:17:10 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deployment of web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\examples has finished in 659 ms
+4월 02, 2021 4:17:10 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deploying web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\host-manager
+4월 02, 2021 4:17:10 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deployment of web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\host-manager has finished in 39 ms
+4월 02, 2021 4:17:10 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deploying web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\manager
+4월 02, 2021 4:17:10 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deployment of web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\manager has finished in 33 ms
+4월 02, 2021 4:17:10 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deploying web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\ROOT
+4월 02, 2021 4:17:10 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deployment of web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\ROOT has finished in 22 ms
+4월 02, 2021 4:17:10 오후 org.apache.coyote.AbstractProtocol start
+정보: Starting ProtocolHandler ["ajp-apr-8009"]
+4월 02, 2021 4:17:10 오후 org.apache.catalina.startup.Catalina start
+정보: Server startup in 1081 ms
+4월 02, 2021 4:20:26 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Server version:        Apache Tomcat/7.0.73
+4월 02, 2021 4:20:26 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Server built:          Nov 7 2016 21:27:23 UTC
+4월 02, 2021 4:20:26 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Server number:         7.0.73.0
+4월 02, 2021 4:20:26 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: OS Name:               Windows 10
+4월 02, 2021 4:20:26 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: OS Version:            10.0
+4월 02, 2021 4:20:26 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Architecture:          amd64
+4월 02, 2021 4:20:26 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Java Home:             D:\B_Util\2.Java\jdk1.8\jre
+4월 02, 2021 4:20:26 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: JVM Version:           1.8.0_121-b13
+4월 02, 2021 4:20:26 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: JVM Vendor:            Oracle Corporation
+4월 02, 2021 4:20:26 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: CATALINA_BASE:         D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73
+4월 02, 2021 4:20:26 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: CATALINA_HOME:         D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73
+4월 02, 2021 4:20:26 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+4월 02, 2021 4:20:26 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Djava.util.logging.config.file=D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\conf\logging.properties
+4월 02, 2021 4:20:26 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+4월 02, 2021 4:20:26 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Djava.endorsed.dirs=D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\endorsed
+4월 02, 2021 4:20:26 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Dcatalina.base=D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73
+4월 02, 2021 4:20:26 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Dcatalina.home=D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73
+4월 02, 2021 4:20:26 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Djava.io.tmpdir=D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\temp
+4월 02, 2021 4:20:26 오후 org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+정보: Loaded APR based Apache Tomcat Native library 1.2.10 using APR version 1.5.2.
+4월 02, 2021 4:20:26 오후 org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+정보: APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+4월 02, 2021 4:20:27 오후 org.apache.catalina.core.AprLifecycleListener initializeSSL
+정보: OpenSSL successfully initialized (OpenSSL 1.0.2j  26 Sep 2016)
+4월 02, 2021 4:20:27 오후 org.apache.coyote.AbstractProtocol init
+정보: Initializing ProtocolHandler ["http-apr-8080"]
+4월 02, 2021 4:20:27 오후 org.apache.coyote.AbstractProtocol init
+심각: Failed to initialize end point associated with ProtocolHandler ["http-apr-8080"]
+java.lang.Exception: Socket bind failed: [730013] ¾?¼½º ±???¡ ???Ø ¼?°??ø ¼???¡ ¾
+	at org.apache.tomcat.util.net.AprEndpoint.bind(AprEndpoint.java:470)
+	at org.apache.tomcat.util.net.AbstractEndpoint.init(AbstractEndpoint.java:665)
+	at org.apache.coyote.AbstractProtocol.init(AbstractProtocol.java:452)
+	at org.apache.catalina.connector.Connector.initInternal(Connector.java:978)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.core.StandardService.initInternal(StandardService.java:560)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:840)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.startup.Catalina.load(Catalina.java:642)
+	at org.apache.catalina.startup.Catalina.load(Catalina.java:667)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.catalina.startup.Bootstrap.load(Bootstrap.java:253)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:427)
+
+4월 02, 2021 4:20:27 오후 org.apache.catalina.core.StandardService initInternal
+심각: Failed to initialize connector [Connector[HTTP/1.1-8080]]
+org.apache.catalina.LifecycleException: Failed to initialize component [Connector[HTTP/1.1-8080]]
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:107)
+	at org.apache.catalina.core.StandardService.initInternal(StandardService.java:560)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:840)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.startup.Catalina.load(Catalina.java:642)
+	at org.apache.catalina.startup.Catalina.load(Catalina.java:667)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.catalina.startup.Bootstrap.load(Bootstrap.java:253)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:427)
+Caused by: org.apache.catalina.LifecycleException: Protocol handler initialization failed
+	at org.apache.catalina.connector.Connector.initInternal(Connector.java:980)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	... 12 more
+Caused by: java.lang.Exception: Socket bind failed: [730013] ¾?¼½º ±???¡ ???Ø ¼?°??ø ¼???¡ ¾
+	at org.apache.tomcat.util.net.AprEndpoint.bind(AprEndpoint.java:470)
+	at org.apache.tomcat.util.net.AbstractEndpoint.init(AbstractEndpoint.java:665)
+	at org.apache.coyote.AbstractProtocol.init(AbstractProtocol.java:452)
+	at org.apache.catalina.connector.Connector.initInternal(Connector.java:978)
+	... 13 more
+
+4월 02, 2021 4:20:27 오후 org.apache.coyote.AbstractProtocol init
+정보: Initializing ProtocolHandler ["ajp-apr-8009"]
+4월 02, 2021 4:20:27 오후 org.apache.catalina.startup.Catalina load
+정보: Initialization processed in 675 ms
+4월 02, 2021 4:20:27 오후 org.apache.catalina.core.StandardService startInternal
+정보: Starting service Catalina
+4월 02, 2021 4:20:27 오후 org.apache.catalina.core.StandardEngine startInternal
+정보: Starting Servlet Engine: Apache Tomcat/7.0.73
+4월 02, 2021 4:20:27 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deploying web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\docs
+4월 02, 2021 4:20:27 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deployment of web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\docs has finished in 218 ms
+4월 02, 2021 4:20:27 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deploying web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\examples
+4월 02, 2021 4:20:27 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deployment of web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\examples has finished in 123 ms
+4월 02, 2021 4:20:27 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deploying web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\host-manager
+4월 02, 2021 4:20:27 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deployment of web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\host-manager has finished in 26 ms
+4월 02, 2021 4:20:27 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deploying web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\manager
+4월 02, 2021 4:20:27 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deployment of web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\manager has finished in 23 ms
+4월 02, 2021 4:20:27 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deploying web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\ROOT
+4월 02, 2021 4:20:27 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deployment of web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\ROOT has finished in 18 ms
+4월 02, 2021 4:20:27 오후 org.apache.coyote.AbstractProtocol start
+정보: Starting ProtocolHandler ["ajp-apr-8009"]
+4월 02, 2021 4:20:27 오후 org.apache.catalina.startup.Catalina start
+정보: Server startup in 432 ms
+4월 02, 2021 4:22:08 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Server version:        Apache Tomcat/7.0.73
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Server built:          Nov 7 2016 21:27:23 UTC
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Server number:         7.0.73.0
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: OS Name:               Windows 10
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: OS Version:            10.0
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Architecture:          amd64
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Java Home:             D:\B_Util\2.Java\jdk1.8\jre
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: JVM Version:           1.8.0_121-b13
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: JVM Vendor:            Oracle Corporation
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: CATALINA_BASE:         D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: CATALINA_HOME:         D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Djava.util.logging.config.file=D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\conf\logging.properties
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Djava.endorsed.dirs=D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\endorsed
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Dcatalina.base=D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Dcatalina.home=D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.VersionLoggerListener log
+정보: Command line argument: -Djava.io.tmpdir=D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\temp
+4월 02, 2021 4:22:09 오후 org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+정보: Loaded APR based Apache Tomcat Native library 1.2.10 using APR version 1.5.2.
+4월 02, 2021 4:22:09 오후 org.apache.catalina.core.AprLifecycleListener lifecycleEvent
+정보: APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+4월 02, 2021 4:22:09 오후 org.apache.catalina.core.AprLifecycleListener initializeSSL
+정보: OpenSSL successfully initialized (OpenSSL 1.0.2j  26 Sep 2016)
+4월 02, 2021 4:22:09 오후 org.apache.coyote.AbstractProtocol init
+정보: Initializing ProtocolHandler ["http-apr-80"]
+4월 02, 2021 4:22:09 오후 org.apache.coyote.AbstractProtocol init
+정보: Initializing ProtocolHandler ["ajp-apr-8009"]
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.Catalina load
+정보: Initialization processed in 663 ms
+4월 02, 2021 4:22:09 오후 org.apache.catalina.core.StandardService startInternal
+정보: Starting service Catalina
+4월 02, 2021 4:22:09 오후 org.apache.catalina.core.StandardEngine startInternal
+정보: Starting Servlet Engine: Apache Tomcat/7.0.73
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deploying web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\docs
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deployment of web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\docs has finished in 215 ms
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deploying web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\examples
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deployment of web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\examples has finished in 127 ms
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deploying web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\host-manager
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deployment of web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\host-manager has finished in 25 ms
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deploying web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\manager
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deployment of web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\manager has finished in 23 ms
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deploying web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\ROOT
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.HostConfig deployDirectory
+정보: Deployment of web application directory D:\B_Util\5.ApacheTomcat\apache-tomcat-7.0.73\webapps\ROOT has finished in 18 ms
+4월 02, 2021 4:22:09 오후 org.apache.coyote.AbstractProtocol start
+정보: Starting ProtocolHandler ["http-apr-80"]
+4월 02, 2021 4:22:09 오후 org.apache.coyote.AbstractProtocol start
+정보: Starting ProtocolHandler ["ajp-apr-8009"]
+4월 02, 2021 4:22:09 오후 org.apache.catalina.startup.Catalina start
+정보: Server startup in 431 ms

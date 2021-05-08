@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+	function login(){
+		var f = document.myForm;
+		if(!f.memId.value){
+			alert("아이디를 입력하시오")
+			f.memId.focus();
+			return;
+		}
+		if(!f.memPass.value){
+			alert("비밀번호를 입력하시오")
+			f.memPass.focus();
+			return;
+		}
+		f.action = "/servlet_default/login"
+		f.submit();
+	}
+</script>
+<body>
+<form action=""></form>
+<input type="password" id="memPass">
+<button type="submit">로그인</button>
+</body>
+</html>
