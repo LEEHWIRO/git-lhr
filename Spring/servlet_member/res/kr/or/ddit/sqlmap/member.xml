@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="member">
+
+	<insert id="insertMember" parameterClass="kr.or.ddit.member.vo.MemberVO">
+		INSERT INTO MEMBER (
+			   MEM_ID           
+             , MEM_PASS          
+             , MEM_EMAIL
+             , MEM_PHONE         
+		) VALUES (
+			  #memId#
+			, #memPass#
+			, #memEmail#
+			, #memPhone#
+		)
+	</insert>
+	
+	<update id="updateMember" parameterClass="kr.or.ddit.member.vo.MemberVO">
+		UPDATE MEMBER
+		SET    MEM_PASS = #memPass#
+			  ,MEM_EMAIL = #memEmail#
+			  ,MEM_PHONE = #memPhone#
+		WHERE  MEM_ID = #memId#
+	</update>
+	
+	<delete id="deleteMember" parameterClass="String">
+		DELETE 
+		FROM  MEMBER
+		WHERE MEM_ID = #memId#
+	</delete>
+	
+	<select id="listDetailMember" parameterClass="String" resultClass="kr.or.ddit.member.vo.MemberVO">
+		SELECT MEM_ID                memId             
+             , MEM_PASS              memPass           
+             , MEM_EMAIL             memEmail           
+             , MEM_PHONE             memPhone             
+		FROM MEMBER
+		WHERE MEM_ID = #memId#
+	</select>
+	
+	<select id="listMember" resultClass="kr.or.ddit.member.vo.MemberVO">
+		SELECT MEM_ID                memId             
+             , MEM_PASS              memPass           
+             , MEM_EMAIL             memEmail           
+             , MEM_PHONE             memPhone           
+        FROM MEMBER 
+	</select>
+	
+</sqlMap>
