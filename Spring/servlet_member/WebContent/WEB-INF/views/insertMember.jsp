@@ -6,43 +6,62 @@
 <html>
 <head>
 	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="${pageContext.request.contextPath }/resource/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-    <link href="${pageContext.request.contextPath }/resource/css/sb-admin-2.min.css" rel="stylesheet">
-    <style type="text/css">
-    	label {
-    		color : black;
-    	}
-    </style>
-<title>회원등록</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>회원등록</title>
+	
+	<!-- Google Font: Source Sans Pro -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/bootstrap/plugins/fontawesome-free/css/all.min.css">
+	<!-- Theme style -->
+	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/bootstrap/dist/css/adminlte.min.css">
 </head>
 <body>
-	<div class="container">
-		<form class="form-horizontal" action="insert" method="post">
-			<div class="form-group">
-				<label class="col-lg-2 control-label">아이디</label>
-				<input class="form-control"  type="text" name="memId"><br>
+	<div class="content">
+		<div class="container-fluid">
+			<div class = "row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-8">
+					<div class="row">
+						<div class="card col-sm-12"></div>
+						<div class="card col-sm-12">
+							<div class="card card-primary">
+								<div class="card-header">
+									<h3 class="card-title">회원 등록 페이지</h3>
+								</div>
+				            	<form action="update" method="post" >
+						            <div class="card-body">
+										<div class="form-group">
+											<label for="exampleInputId">아이디</label>
+											<input class="form-control"  type="text" name="memId"  id="exampleInputId" placeholder="아이디">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword">비밀번호</label>
+											<input class="form-control" type="password" name="memPass" id="exampleInputPassword" placeholder="비밀번호">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputEmail">이메일</label>
+											<input class="form-control" type="text" name="memEmail" id="exampleInputEmail" placeholder="이메일">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPhone">전화번호</label>
+											<input class="form-control" style="" type="text" name="memPhone" id="exampleInputPhone" placeholder="전화번호">
+										</div>
+						           	</div>
+									<div class="card-footer">
+										<input class="btn btn-primary" type="submit" value="등록">
+										<a href="${pageContext.request.contextPath }/list">
+											<button class="btn btn-primary" type="button">목록</button>
+										</a>
+									</div>
+								</form>
+							</div>      				
+      					</div>
+					</div>
+				</div>
+				<div class="col-sm-2"></div>
 			</div>
-			<div class="form-group">
-				<label class="col-lg-2 control-label">비밀번호</label>
-				<input class="form-control" type="password" name="memPass"><br>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-2 control-label">이메일</label>
-				<input class="form-control" type="text" name="memEmail"><br>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-2 control-label">전화번호</label>
-				<input class="form-control" style="margin-bottom: 10px;" type="text" name="memPhone"><br>
-			</div>
-			<input class="btn btn-primary" type="submit" value="등록">
-		</form>
-	</div>	
+		</div>
+	</div>
 </body>
 </html>
