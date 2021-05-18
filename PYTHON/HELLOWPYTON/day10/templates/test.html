@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+	{{title}}<br>
+	{% for i in data %}
+	 {{ loop.index }}
+	{{ i }}<br>
+	 {% endfor %}
+	 
+	{% for i in objList %}
+	 {{ loop.index }}
+	{{ i.e_id }}{{ i.e_name }}{{ i.e_birth }}<br>
+	 {% endfor %}
+
+</body>
+</html>
