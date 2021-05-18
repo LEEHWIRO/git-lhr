@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE sqlMap
-	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
-	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<sqlMap namespace="member">
+<mapper namespace="member">
 
-	<insert id="insertMember" parameterClass="kr.or.ddit.member.vo.MemberVO">
+	<insert id="insertMember" parameterType="member">
 		INSERT INTO MEMBER (
 			   MEM_ID           
              , MEM_PASS          
              , MEM_EMAIL
              , MEM_PHONE         
 		) VALUES (
-			  #memId#
-			, #memPass#
-			, #memEmail#
-			, #memPhone#
+			  #{memId}
+			, #{memPass}
+			, #{memEmail}
+			, #{memPhone}
 		)
 	</insert>
 	
-	<update id="updateMember" parameterClass="kr.or.ddit.member.vo.MemberVO">
+	<update id="updateMember" parameterType="member">
 		UPDATE MEMBER
-		SET    MEM_PASS = #memPass#
-			  ,MEM_EMAIL = #memEmail#
-			  ,MEM_PHONE = #memPhone#
-		WHERE  MEM_ID = #memId#
+		SET    MEM_PASS = #{memPass}
+			  ,MEM_EMAIL = #{memEmail}
+			  ,MEM_PHONE = #{memPhone}
+		WHERE  MEM_ID = #{memId}
 	</update>
 	
-	<delete id="deleteMember" parameterClass="String">
+	<delete id="deleteMember" parameterType="str">
 		DELETE 
 		FROM  MEMBER
-		WHERE MEM_ID = #memId#
+		WHERE MEM_ID = #{memId}
 	</delete>
 	
-	<select id="listDetailMember" parameterClass="String" resultClass="kr.or.ddit.member.vo.MemberVO">
+	<select id="listDetailMember" parameterType="str" resultType="member">
 		SELECT MEM_ID                memId             
              , MEM_PASS              memPass           
              , MEM_EMAIL             memEmail           
              , MEM_PHONE             memPhone             
 		FROM MEMBER
-		WHERE MEM_ID = #memId#
+		WHERE MEM_ID = #{memId}
 	</select>
 	
-	<select id="listMember" resultClass="kr.or.ddit.member.vo.MemberVO">
+	<select id="listMember" resultType="member">
 		SELECT MEM_ID                memId             
              , MEM_PASS              memPass           
              , MEM_EMAIL             memEmail           
@@ -50,4 +50,4 @@
         FROM MEMBER 
 	</select>
 	
-</sqlMap>
+</mapper>

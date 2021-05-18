@@ -41,21 +41,25 @@ public class InsertMemberServlet extends HttpServlet {
 		try {
 			int cnt = memberService.insertMember(mv);
 			String msg = "";
+			
 			if(cnt == 1) {
 				msg = "등록성공";
 			}else {
 				msg = "등록실패";			
 			}
 			
+			System.out.println("------------------------------------");
+			
 			List<MemberVO> memberList = memberService.listMember();
+			
 			request.setAttribute("memberList", memberList);
 			request.setAttribute("msg", msg);
 			request.getRequestDispatcher(Url).forward(request, response);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		doGet(request, response);
 	}
 
 }

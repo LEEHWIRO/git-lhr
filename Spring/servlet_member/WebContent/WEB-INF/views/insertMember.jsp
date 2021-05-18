@@ -29,7 +29,7 @@
 								<div class="card-header">
 									<h3 class="card-title">회원 등록 페이지</h3>
 								</div>
-				            	<form action="update" method="post" >
+				            	<form action="insert" method="post" >
 						            <div class="card-body">
 										<div class="form-group">
 											<label for="exampleInputId">아이디</label>

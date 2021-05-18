@@ -9,13 +9,13 @@ import kr.or.ddit.member.vo.MemberVO;
 
 public interface MemberDao {
 	
-	public MemberVO listDetailMember(SqlMapClient smc, String memId) throws SQLException;
+	public MemberVO listDetailMember(String memId) throws Exception;
 	
-	public List<MemberVO> listMember(SqlMapClient smc) throws SQLException;
+	public List<MemberVO> listMember() throws Exception;
 	
-	public int insertMember(SqlMapClient smc, MemberVO mv) throws SQLException;
+	public int insertMember(MemberVO mv) throws Exception;
 	
-	public int updateMember(SqlMapClient smc, MemberVO mv) throws SQLException;
+	public int updateMember(MemberVO mv) throws Exception;
 	
-	public int deleteMember(SqlMapClient smc, String memId) throws SQLException;
+	public int deleteMember(String memId) throws Exception;
 }

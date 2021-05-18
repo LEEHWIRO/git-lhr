@@ -12,13 +12,13 @@ import kr.or.ddit.member.vo.MemberVO;
  */
 public interface IMemberService {
 
-	public MemberVO listDetailMember(String memId) throws SQLException;
+	public MemberVO listDetailMember(String memId) throws Exception;
 	
-	public List<MemberVO> listMember() throws SQLException;
+	public List<MemberVO> listMember() throws Exception;
 	
-	public int insertMember(MemberVO mv) throws SQLException;
+	public int insertMember(MemberVO mv) throws Exception;
 	
-	public int updateMember(MemberVO mv) throws SQLException;
+	public int updateMember(MemberVO mv) throws Exception;
 	
-	public int deleteMember(String memId) throws SQLException;
+	public int deleteMember(String memId) throws Exception;
 }

@@ -8,19 +8,16 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 import kr.or.ddit.member.dao.MemberDao;
 import kr.or.ddit.member.dao.MemberDaoImpl;
 import kr.or.ddit.member.vo.MemberVO;
-import kr.or.ddit.util.SqlMapClientUtil;
 
 public class MemberServiceImpl implements IMemberService{
 
 	// 사용할 DAO의 객체변수를 선언한다.
 	private MemberDao memDao;
-	private SqlMapClient smc;
 	
 	private static IMemberService memService;
 	
 	private MemberServiceImpl() {
 		memDao = MemberDaoImpl.getInstance();
-		smc = SqlMapClientUtil.getInstance();
 	}
 	
 	public static IMemberService getInstance() {
@@ -32,35 +29,35 @@ public class MemberServiceImpl implements IMemberService{
 	}
 
 	@Override
-	public MemberVO listDetailMember(String memId) throws SQLException {
-		MemberVO mv = memDao.listDetailMember(smc, memId);
+	public MemberVO listDetailMember(String memId) throws Exception {
+		MemberVO mv = memDao.listDetailMember(memId);
 		return mv;
 	}
 
 	@Override
-	public List<MemberVO> listMember() throws SQLException {
-		List<MemberVO> memList = memDao.listMember(smc);
+	public List<MemberVO> listMember() throws Exception {
+		List<MemberVO> memList = memDao.listMember();
 		return memList;
 	}
 
 	@Override
-	public int insertMember(MemberVO mv) throws SQLException {
+	public int insertMember(MemberVO mv) throws Exception {
 		int cnt = 0;
-		cnt = memDao.insertMember(smc, mv);
+		cnt = memDao.insertMember(mv);
 		return cnt;
 	}
 
 	@Override
-	public int updateMember(MemberVO mv) throws SQLException {
+	public int updateMember(MemberVO mv) throws Exception {
 		int cnt = 0;
-		cnt = memDao.updateMember(smc, mv);
+		cnt = memDao.updateMember(mv);
 		return cnt;
 	}
 
 	@Override
-	public int deleteMember(String memId) throws SQLException {
+	public int deleteMember(String memId) throws Exception {
 		int cnt = 0;
-		cnt = memDao.deleteMember(smc, memId);
+		cnt = memDao.deleteMember(memId);
 		return cnt;
 	}
 
