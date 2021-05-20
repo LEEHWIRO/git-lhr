@@ -3,61 +3,80 @@ package kr.or.ddit.member.service;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.ibatis.sqlmap.client.SqlMapClient;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
 
 import kr.or.ddit.member.dao.MemberDao;
 import kr.or.ddit.member.dao.MemberDaoImpl;
-import kr.or.ddit.member.vo.MemberVO;
+import kr.or.ddit.member.dto.MemberVO;
+import kr.or.ddit.mybatis.OracleMyBatisSqlSessionFactory;
 
 public class MemberServiceImpl implements IMemberService{
 
-	// 사용할 DAO의 객체변수를 선언한다.
-	private MemberDao memDao;
+	private MemberDao memDao = new MemberDaoImpl();
 	
-	private static IMemberService memService;
-	
-	private MemberServiceImpl() {
-		memDao = MemberDaoImpl.getInstance();
+	public void setMenuDAO(MemberDao memDao) {
+		this.memDao = memDao;
 	}
 	
-	public static IMemberService getInstance() {
-		if(memService == null) {
-			memService = new MemberServiceImpl();
-		}
-		
-		return memService;
+	private SqlSessionFactory sqlSessionFactory = new OracleMyBatisSqlSessionFactory();
+	public void setSqlSessioFactory(SqlSessionFactory sqlSessionFactory) {
+		this.sqlSessionFactory = sqlSessionFactory;
 	}
 
 	@Override
-	public MemberVO listDetailMember(String memId) throws Exception {
-		MemberVO mv = memDao.listDetailMember(memId);
+	public MemberVO listDetailMember(String memId) throws SQLException {
+		MemberVO mv = null;
+		SqlSession session = sqlSessionFactory.openSession();
+
+		mv = memDao.listDetailMember(session, memId);
+		session.close();
+		
 		return mv;
 	}
 
 	@Override
-	public List<MemberVO> listMember() throws Exception {
-		List<MemberVO> memList = memDao.listMember();
+	public List<MemberVO> listMember() throws SQLException {
+		List<MemberVO> memList = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		memList = memDao.listMember(session);
+		session.close();
+		
 		return memList;
 	}
 
 	@Override
-	public int insertMember(MemberVO mv) throws Exception {
+	public int insertMember(MemberVO mv) throws SQLException {
 		int cnt = 0;
-		cnt = memDao.insertMember(mv);
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		cnt = memDao.insertMember(session, mv);
+		session.close();
+		
 		return cnt;
 	}
 
 	@Override
-	public int updateMember(MemberVO mv) throws Exception {
+	public int updateMember(MemberVO mv) throws SQLException {
 		int cnt = 0;
-		cnt = memDao.updateMember(mv);
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		cnt = memDao.updateMember(session, mv);
+		session.close();
+		
 		return cnt;
 	}
 
 	@Override
-	public int deleteMember(String memId) throws Exception {
+	public int deleteMember(String memId) throws SQLException {
 		int cnt = 0;
-		cnt = memDao.deleteMember(memId);
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		cnt = memDao.deleteMember(session, memId);
+		session.close();
+		
 		return cnt;
 	}
 
