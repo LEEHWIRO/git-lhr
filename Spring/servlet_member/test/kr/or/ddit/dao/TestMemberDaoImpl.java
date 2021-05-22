@@ -25,11 +25,11 @@ public class TestMemberDaoImpl {
 		memDao = new MemberDaoImpl();
 	}
 	
-//	@Test
-//	public void testlistDetailMember(String memId) throws SQLException {
-//		MemberVO mv = memDao.listDetailMember(session, "veckto");
-//		Assert.assertEquals(1, mv);
-//	}
+	@Test
+	public void testlistDetailMember() throws SQLException {
+		MemberVO mv = memDao.listDetailMember(session, "lhro95");
+		Assert.assertEquals("1234", mv.getMemPass());
+	}
 
 	@Test
 	public void testlistMember() throws SQLException {
@@ -37,37 +37,43 @@ public class TestMemberDaoImpl {
 		Assert.assertEquals(3, memList.size());
 	}
 
-//	@Test
-//	public void insertMember(MemberVO mv) throws SQLException {
-//		int cnt = 0;
-//		
-//		int x = memDao.insertMember(session, mv);
-//		
-//		int obj = session.insert("member.insertMember", mv);
-//		
-//		if(obj == 1) {
-//			cnt = 1;
-//		}
-//		
-//	}
-//
-//	@Test
-//	public int updateMember(SqlSession session, MemberVO mv) throws SQLException {
-//		int cnt = 0;
-//		
-//		cnt = session.update("member.updateMember", mv);
-//		
-//		return cnt;
-//	}
-//
-//	@Test
-//	public int deleteMember(SqlSession session, String memId) throws SQLException {
-//		int cnt = 0;
-//		
-//		cnt = session.delete("member.deleteMember", memId);
-//		
-//		return cnt;
-//	}
+	@Test
+	public void insertMember() throws SQLException {
+		MemberVO mv = new MemberVO();
+		
+		mv.setMemId("p00212345");
+		mv.setMemPass("1234");
+		mv.setMemPhone("01011112222");
+		mv.setMemEmail("jiro110516@ncavae.com");
+		
+		int cnt = memDao.insertMember(session, mv);
+		
+		Assert.assertEquals(1, cnt);
+	}
+
+	@Test
+	public void updateMember() throws SQLException {
+		MemberVO mv = new MemberVO();
+		
+		mv.setMemId("jiro110516");
+		mv.setMemPass("1234");
+		mv.setMemPhone("01011112222");
+		mv.setMemEmail("jiro110516@ncavae.com");
+		
+		int cnt = memDao.updateMember(session, mv);
+		
+		Assert.assertEquals(1, cnt);
+	}
+
+	@Test
+	public void deleteMember() throws SQLException {
+		int cnt = 0;
+		
+		cnt = memDao.deleteMember(session, "lhro95");
+		
+		Assert.assertEquals(1, cnt);
+		
+	}
 	
 	@After
 	public void complete() {
