@@ -14,14 +14,14 @@ import kr.or.ddit.mybatis.OracleMyBatisSqlSessionFactory;
 
 public class MemberServiceImpl implements IMemberService{
 
-	private MemberDao memDao = new MemberDaoImpl();
+	private MemberDao memDao; // = new MemberDaoImpl();
 	
-	public void setMenuDAO(MemberDao memDao) {
+	public void setMemberDao(MemberDao memDao) {
 		this.memDao = memDao;
 	}
 	
-	private SqlSessionFactory sqlSessionFactory = new OracleMyBatisSqlSessionFactory();
-	public void setSqlSessioFactory(SqlSessionFactory sqlSessionFactory) {
+	private SqlSessionFactory sqlSessionFactory; // = new OracleMyBatisSqlSessionFactory();
+	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
 		this.sqlSessionFactory = sqlSessionFactory;
 	}
 

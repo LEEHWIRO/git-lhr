@@ -1,9 +1,6 @@
 package kr.or.ddit.member.servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,19 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.or.ddit.context.ApplicationContext;
+import kr.or.ddit.member.dto.MemberVO;
+import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.member.service.MemberServiceImpl;
-import kr.or.ddit.member.vo.MemberVO;
 
 @WebServlet("/listDetail")
 public class ListDetailMemberServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	
+	private IMemberService memberService 
+		= (IMemberService) ApplicationContext.getApplicationContext().get("memberService");
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "/WEB-INF/views/listDetailMember.jsp";
 		
 		String memId = request.getParameter("memId");
-		
-		MemberServiceImpl memberService = (MemberServiceImpl) MemberServiceImpl.getInstance(); 
 		
 			try {
 				MemberVO member = memberService.listDetailMember(memId);

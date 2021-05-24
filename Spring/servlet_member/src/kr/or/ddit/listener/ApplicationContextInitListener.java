@@ -18,6 +18,7 @@ import org.w3c.dom.NodeList;
 import kr.or.ddit.context.ApplicationContext;
 
 
+
 public class ApplicationContextInitListener implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent ctxEvent)  { 
