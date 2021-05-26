@@ -20,10 +20,8 @@
 	<div class="content">
 		<div class="container-fluid">
 			<div class = "row">
-				<div class="col-sm-2"></div>
-				<div class="col-sm-8">
+				<div class="col-sm-12">
 					<div class="row">
-						<div class="card col-sm-12"></div>
 						<div class="card col-sm-12">
 							<div class="card card-primary">
 								<div class="card-header">
@@ -59,7 +57,6 @@
       					</div>
 					</div>
 				</div>
-				<div class="col-sm-2"></div>
 			</div>
 		</div>
 	</div>

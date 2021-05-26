@@ -21,10 +21,8 @@
 	<div class="content">
 		<div class="container-fluid">
 			<div class = "row">
-				<div class="col-sm-2"></div>
-				<div class="col-sm-8">
+				<div class="col-sm-12">
 					<div class="row">
-						<div class="card col-sm-12"></div>
 						<div class="card col-sm-12">
 							<div class="card card-primary">
 								<div class="card-header">
@@ -32,7 +30,10 @@
 								</div>
 				            	<form action="update" method="post" >
 						            <div class="card-body">
-										<input type="hidden" name="memId" value="${member.memId }">
+										<div class="form-group">
+											<label for="exampleInputPassword">아이디</label>
+											<input class="form-control" type="text" name="memId" value="${member.id }" readonly="readonly">
+										</div>
 										<div class="form-group">
 											<label for="exampleInputPassword">비밀번호</label>
 											<input class="form-control" type="password" name="memPass" id="exampleInputPassword" placeholder="비밀번호">
@@ -48,7 +49,7 @@
 						           	</div>
 									<div class="card-footer">
 										<input class="btn btn-primary" type="submit" value="수정">
-										<a href="${pageContext.request.contextPath }/listDetail?memId=${member.memId }">
+										<a href="${pageContext.request.contextPath }/listDetail?memId=${member.id }">
 											<button class="btn btn-primary" type="button">목록</button>
 										</a>
 									</div>
@@ -57,7 +58,6 @@
       					</div>
 					</div>
 				</div>
-				<div class="col-sm-2"></div>
 			</div>
 		</div>
 	</div>

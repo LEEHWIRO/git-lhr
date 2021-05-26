@@ -35,10 +35,10 @@ public class InsertMemberServlet extends HttpServlet {
 		
 		
 		MemberVO mv = new MemberVO();
-		mv.setMemId(memId);
-		mv.setMemPass(memPass);
-		mv.setMemEmail(memEmail);
-		mv.setMemPhone(memPhone);
+		mv.setId(memId);
+		mv.setPwd(memPass);
+		mv.setEmail(memEmail);
+		mv.setPhone(memPhone);
 		
 		try {
 			int cnt = memberService.insertMember(mv);

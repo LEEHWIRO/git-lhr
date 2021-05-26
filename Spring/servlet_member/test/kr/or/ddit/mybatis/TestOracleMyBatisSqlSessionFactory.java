@@ -34,7 +34,7 @@ public class TestOracleMyBatisSqlSessionFactory {
 	@Test
 	public void testSQL() {
 		MemberVO menu = session.selectOne("member.listDetailMember", "p0021234");
-		Assert.assertEquals("1234", menu.getMemPass());
+		Assert.assertEquals("1234", menu.getPwd());
 	}
 	@Test
 	public void testSQLList() {
