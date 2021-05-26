@@ -19,7 +19,7 @@ public class MockMemberDao implements MemberDao {
 		
 		if(memId.equals("lhro95")) {
 			member = new MemberVO();
-			member.setMemPass("1234");
+			member.setPwd("1234");
 		}
 		
 		return member;
@@ -33,7 +33,7 @@ public class MockMemberDao implements MemberDao {
 		
 		
 		MemberVO member = new MemberVO();
-		member.setMemPass("1234");
+		member.setPwd("1234");
 		
 		memberList= new ArrayList<MemberVO>();
 		memberList.add(member);
@@ -47,7 +47,7 @@ public class MockMemberDao implements MemberDao {
 		
 		if(session.getConnection()==null) throw new SQLException();
 		
-		if(mv.getMemId().equals("p002123456")) {
+		if(mv.getId().equals("p002123456")) {
 			cnt = 1;
 		}
 		
@@ -60,7 +60,7 @@ public class MockMemberDao implements MemberDao {
 		
 		if(session.getConnection()==null) throw new SQLException();
 		
-		if(mv.getMemId().equals("jiro110516")) {
+		if(mv.getId().equals("jiro110516")) {
 			cnt = 1;
 		}
 		

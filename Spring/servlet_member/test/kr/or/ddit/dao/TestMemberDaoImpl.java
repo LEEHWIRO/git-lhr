@@ -28,7 +28,7 @@ public class TestMemberDaoImpl {
 	@Test
 	public void testlistDetailMember() throws SQLException {
 		MemberVO mv = memDao.listDetailMember(session, "lhro95");
-		Assert.assertEquals("1234", mv.getMemPass());
+		Assert.assertEquals("1234", mv.getPwd());
 	}
 
 	@Test
@@ -41,10 +41,10 @@ public class TestMemberDaoImpl {
 	public void insertMember() throws SQLException {
 		MemberVO mv = new MemberVO();
 		
-		mv.setMemId("p00212345");
-		mv.setMemPass("1234");
-		mv.setMemPhone("01011112222");
-		mv.setMemEmail("jiro110516@ncavae.com");
+		mv.setId("p00212345");
+		mv.setPwd("1234");
+		mv.setPhone("01011112222");
+		mv.setEmail("jiro110516@ncavae.com");
 		
 		int cnt = memDao.insertMember(session, mv);
 		
@@ -55,10 +55,10 @@ public class TestMemberDaoImpl {
 	public void updateMember() throws SQLException {
 		MemberVO mv = new MemberVO();
 		
-		mv.setMemId("jiro110516");
-		mv.setMemPass("1234");
-		mv.setMemPhone("01011112222");
-		mv.setMemEmail("jiro110516@ncavae.com");
+		mv.setId("jiro110516");
+		mv.setPwd("1234");
+		mv.setPhone("01011112222");
+		mv.setEmail("jiro110516@ncavae.com");
 		
 		int cnt = memDao.updateMember(session, mv);
 		
