@@ -7,46 +7,77 @@
 
 	<insert id="insertMember" parameterType="member">
 		INSERT INTO MEMBER (
-			   MEM_ID           
-             , MEM_PASS          
-             , MEM_EMAIL
-             , MEM_PHONE         
+			   ID           
+             , PWD          
+             , EMAIL
+             , PICTURE
+             , ENABLED
+             , REGDATE
+             , PHONE
+             , NAME
+             , REGISTER
+             , ADDRESS
+             , AUTHORITY         
 		) VALUES (
-			  #{memId}
-			, #{memPass}
-			, #{memEmail}
-			, #{memPhone}
+			  #{id}
+			, #{pwd}
+			, #{email}
+			, 'noImage.jpg' 
+			, 1
+			, sysdate
+			, #{phone}
+			, #{name}
+			, "mimi"
+			, #{address}
+			, "ROLE_USER"
 		)
 	</insert>
 	
 	<update id="updateMember" parameterType="member">
 		UPDATE MEMBER
-		SET    MEM_PASS = #{memPass}
-			  ,MEM_EMAIL = #{memEmail}
-			  ,MEM_PHONE = #{memPhone}
-		WHERE  MEM_ID = #{memId}
+		SET    PWD = #{pwd}
+			  ,EMAIL = #{email}
+			  ,ENABLED = 1
+			  ,PHONE = #{phone}
+			  ,NAME = #{name}
+			  ,ADDRESS = #{address}
+		WHERE  ID = #{id}
 	</update>
 	
 	<delete id="deleteMember" parameterType="str">
 		DELETE 
 		FROM  MEMBER
-		WHERE MEM_ID = #{memId}
+		WHERE ID = #{id}
 	</delete>
 	
 	<select id="listDetailMember" parameterType="str" resultType="member">
-		SELECT MEM_ID                memId             
-             , MEM_PASS              memPass           
-             , MEM_EMAIL             memEmail           
-             , MEM_PHONE             memPhone             
+		SELECT ID                id             
+             , PWD              pwd           
+             , EMAIL             email    
+             , PICTURE          picture   
+             , ENABLED          enabled
+             , REGDATE          regdate    
+             , PHONE             phone
+             , NAME             name  
+             , REGISTER         register
+             , ADDRESS          adress
+             , AUTHORITY        authority            
 		FROM MEMBER
-		WHERE MEM_ID = #{memId}
+		WHERE ID = #{id}
 	</select>
 	
 	<select id="listMember" resultType="member">
-		SELECT MEM_ID                memId             
-             , MEM_PASS              memPass           
-             , MEM_EMAIL             memEmail           
-             , MEM_PHONE             memPhone           
+		SELECT ID                id             
+             , PWD              pwd           
+             , EMAIL             email    
+             , PICTURE          picture   
+             , ENABLED          enabled
+             , REGDATE          regdate    
+             , PHONE             phone
+             , NAME             name  
+             , REGISTER         register
+             , ADDRESS          adress
+             , AUTHORITY        authority        
         FROM MEMBER 
 	</select>
 	
