@@ -16,9 +16,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title></title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/bootstrap/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/bootstrap/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/bootstrap/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
@@ -32,15 +32,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Left navbar links -->
     <ul class="navbar-nav main-menu-list">
      	<!-- main menu list -->
-		<c:forEach items="${menuList }" var="menu">
-    	<li class="nav-item d-none d-sm-inline-block">
-    		<a href="${menu.murl }" class="nav-link">
-    			<i class="nav-icon far fa-envelope"></i>
+     	<c:forEach items="${menuList }" var="menu">
+    	<li class="nav-item d-none d-sm-inline-block"  >
+    	<a href="javascript:subMenu('${menu.mcode }');goPage('${menu.murl}','${menu.mcode }');"
+    		class="nav-link">
+    			<i class="${menu.micon }" ></i>
     			${menu.mname }
     		</a>
-    		
     	</li>
-		</c:forEach>
+    	</c:forEach>
+    	
     </ul>
 
     <!-- SEARCH FORM -->
@@ -67,7 +68,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="<%=request.getContextPath() %>/resources/bootstrap/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="<%=request.getContextPath()%>/resources/bootstrap/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -83,7 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="<%=request.getContextPath() %>/resources/bootstrap/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="<%=request.getContextPath()%>/resources/bootstrap/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -99,7 +100,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="<%=request.getContextPath() %>/resources/bootstrap/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="<%=request.getContextPath()%>/resources/bootstrap/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -154,7 +155,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="<%=request.getContextPath() %>/resources/bootstrap/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="<%=request.getContextPath()%>/resources/bootstrap/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
@@ -183,7 +184,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </aside>
   
  <div class="content-wrapper">
- 	<iframe name="ifr" src="/home.html" frameborder="0" style="width:100%; height:80vh;"></iframe>
+ 	<iframe name="ifr" src="/home.html" frameborder="0" style="width:100%;height:80vh;"></iframe>
  </div>
  
  <!-- Control Sidebar -->
@@ -211,29 +212,75 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="<%=request.getContextPath() %>/resources/bootstrap/plugins/jquery/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="<%=request.getContextPath() %>/resources/bootstrap/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/bootstrap/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="<%=request.getContextPath() %>/resources/bootstrap/dist/js/adminlte.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/bootstrap/dist/js/adminlte.min.js"></script>
 <!-- jquery cookie -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
 <!-- handlebars -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>
+<script type="text/x-handlebars-template"  id="subMenu-list-template" >
+{{#each .}}
+	<li class="nav-item subMenu" >
+      	<a href="javascript:goPage('{{murl}}','{{mcode}}');initPageParam();" class="nav-link">
+          <i class="{{micon}}"></i>
+             <p>{{mname}}</p>
+        </a>
+	</li>
+{{/each}}
+</script>
+
 
 <script>
-	$('ul.navbar-nav > li.nav-item > a').click(function(event){
-		//alert("click a");
+
+function subMenu(mcode){
+	if(mcode!="M000000"){
+		$.getJSON("/subMenu.do?mCode="+mcode,function(data){	
+			//console.log(data);		
+			printData(data,$('.subMenuList'),$('#subMenu-list-template'),'.subMenu');
+		});
+	}else{
+		$('.subMenuList').html("");		
+	}
+}
+
+function printData(dataArr, target, templateObject, removeClass){
+	
+	var template = Handlebars.compile(templateObject.html());
+	
+	var html = template(dataArr);
+	
+	$(removeClass).remove();
+	target.append(html);
+}
+
+function goPage(url, mCode) {
+	// HTML5 지원브라우저에서 사용 가능
+	if (typeof(history.pushState) == 'function') {
+		//현재 주소를 가져온다.
+		var renewURL = location.href;
+		//현재 주소 중 .do 뒤 부분이 있다면 날려버린다.
+		renewURL = renewURL.substring(0, renewURL.indexOf(".htm") + 4);
 		
-		//alert("$(this).attr('href')");
-		
-		$('iframe[name="ifr"]').attr('src',$(this).attr('href'));
-		
-		return false;
-	})
+		if(mCode != 'M000000') {
+			renewURL += "?mCode" + mCode;
+		}
+		//페이지를 리로드하지 않고 페이지 주소만 변경할 때 사용
+		history.pushState(mCode, null, renewURL);
+	}else {
+		location.hash = '#' + mCode;
+	}
+	
+	$('iframe[name="ifr"]').attr("src", url);
+}
+
+goPage('${menu.murl}', '${menu.mcode}');
+subMenu('${menu.mcode}'.substring(0,3) + "0000");
+
 </script>
-<!-- common -->
  
  </body>
  </html>
