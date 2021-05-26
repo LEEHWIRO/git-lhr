@@ -8,13 +8,13 @@
 	<insert id="insertNotice" parameterType="notice">
 		INSERT INTO NOTICE (
 				NNO
-				TITLE
-				WRITER
-				CONTENT
-				REGDATE
-				VIEWCNT
-				POINT
-				DIST        
+				,TITLE
+				,WRITER
+				,CONTENT
+				,REGDATE
+				,VIEWCNT
+				,POINT
+				,DIST        
 		) VALUES (
 			  NOTICE_SEQ.NEXTVAL
 			, #{title}
@@ -47,8 +47,12 @@
              , TITLE              title           
              , WRITER             writer           
              , CONTENT            content    
-             , REGDATE            regdate
-             , UPDATEDATE         updatedate
+             , VIEWCNT            viewcnt
+             , POINT              point
+             , STARTDATE          startdate
+             , ENDDATE            enddate
+             , UPDATEDAE          updatedate
+             , DIST               dist
 		FROM NOTICE
 		WHERE NNO = #{nno}
 	</select>
@@ -56,8 +60,15 @@
 	<select id="listNotice" resultType="notice">
 		SELECT NNO                nno             
              , TITLE              title           
-             , WRITER             writer           
+             , WRITER             writer  
+			 , CONTENT            content        
              , REGDATE            regdate
+             , VIEWCNT            viewcnt
+             , POINT              point
+             , STARTDATE          startdate
+             , ENDDATE            enddate
+             , UPDATEDAE          updatedate
+             , DIST               dist
         FROM NOTICE 
 	</select>
 	

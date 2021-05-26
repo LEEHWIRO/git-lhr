@@ -21,7 +21,10 @@ public class deleteNoticeServlet extends HttpServlet {
 		= (INoticeService) ApplicationContext.getApplicationContext().get("noticeService");
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "/WEB-INF/views/listNotice.jsp";
+		request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+
+        String url = "/WEB-INF/views/listNotice.jsp";
 		
 		int nno = Integer.parseInt(request.getParameter("nno"));
 		
@@ -44,7 +47,6 @@ public class deleteNoticeServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		doGet(request, response);
 	}
 
 }

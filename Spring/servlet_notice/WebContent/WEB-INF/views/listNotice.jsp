@@ -23,16 +23,24 @@
 	<div class="content">
 		<div class="container-fluid">
 			<div class = "row">
-				<div class="col-sm-2"></div>
-				<div class="col-sm-8">
+				<div class="col-sm-12">
 					<div class="row">
-						<div class="card col-sm-12"></div>
 						<div class="card col-sm-12">
 							<div class="card">
-								<div class="card-header card-header-primary">
+								<div class="card-header">
 									<h1 class="card-title">공지사항</h1>
 					            </div>
 					            <div class="card-body">
+					            	<div class="col-sm-12">
+							            <div class = "row">
+							            	<div class="col-sm-11"></div>
+							            	<div class="col-sm-1">
+					            				<a  href="${pageContext.request.contextPath }/insertNotice">
+					            					<button style="width: 80px; float: right;" class="btn btn-primary" type="button">등록</button>
+				            					</a>		
+							            	</div>
+							            </div>
+					            	</div>
 									<table class="table table-bordered">
 										<thead>
 											<tr>
@@ -56,9 +64,6 @@
 												<td>${noticeList[i].regdate }</td>
 											</tr>
 											</c:forEach>	
-											<tr>
-												<td colspan="4" style="text-align: center;"><a href="${pageContext.request.contextPath }/insertNotice">[등록]</a></td>			
-											<tr>
 										</tbody>
 									</table>
 					           	</div>
@@ -66,7 +71,6 @@
       					</div>
 					</div>
 				</div>
-				<div class="col-sm-2"></div>
 			</div>
 		</div>
 	</div>

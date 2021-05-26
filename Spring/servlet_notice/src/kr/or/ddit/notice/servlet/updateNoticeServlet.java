@@ -20,6 +20,7 @@ public class updateNoticeServlet extends HttpServlet {
 		= (INoticeService) ApplicationContext.getApplicationContext().get("noticeService");
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String url = "/WEB-INF/views/updateNotice.jsp";
 		
 		int nno = Integer.parseInt(request.getParameter("nno"));
@@ -35,6 +36,8 @@ public class updateNoticeServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
 		
 		int nno = Integer.parseInt(request.getParameter("nno"));
 		String title = request.getParameter("title");

@@ -20,16 +20,14 @@
 	<div class="content">
 		<div class="container-fluid">
 			<div class = "row">
-				<div class="col-sm-2"></div>
-				<div class="col-sm-8">
+				<div class="col-sm-12">
 					<div class="row">
-						<div class="card col-sm-12"></div>
 						<div class="card col-sm-12">
 							<div class="card card-primary">
 								<div class="card-header">
 									<h3 class="card-title">공지사항 등록 페이지</h3>
 								</div>
-				            	<form action="insert" method="post" >
+				            	<form action="insertNotice" method="post" >
 						            <div class="card-body">
 										<div class="form-group">
 											<label for="exampleInputId">제목</label>
@@ -37,7 +35,7 @@
 										</div>
 										<div class="form-group">
 											<label for="exampleInputPassword">작성자</label>
-											<input class="form-control" type="password" name="writer" id="exampleInputWriter" placeholder="작성자">
+											<input class="form-control" type="text" name="writer" id="exampleInputWriter" placeholder="작성자">
 										</div>
 										<div class="form-group">
 											<label for="exampleInputEmail">내용</label>
@@ -55,7 +53,6 @@
       					</div>
 					</div>
 				</div>
-				<div class="col-sm-2"></div>
 			</div>
 		</div>
 	</div>

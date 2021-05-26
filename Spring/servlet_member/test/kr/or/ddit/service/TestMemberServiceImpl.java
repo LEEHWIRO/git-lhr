@@ -17,7 +17,7 @@ public class TestMemberServiceImpl {
 	@Before
 	public void init() {
 		service = new MemberServiceImpl();
-		service.setMenuDAO(new MockMemberDao());
+		service.setMemberDao(new MockMemberDao());
 	}
 	
 	@Test
@@ -25,7 +25,7 @@ public class TestMemberServiceImpl {
 		List<MemberVO> memberList = service.listMember();
 		
 		Assert.assertEquals(1, memberList.size());
-		Assert.assertEquals("1234", memberList.get(0).getMemPass());
+		Assert.assertEquals("1234", memberList.get(0).getPwd());
 		
 	}
 	
@@ -33,17 +33,17 @@ public class TestMemberServiceImpl {
 	public void testlistDetailMember()throws Exception {
 		MemberVO member = service.listDetailMember("lhro95");
 		
-		Assert.assertEquals("1234", member.getMemPass());
+		Assert.assertEquals("1234", member.getPwd());
 		
 	}
 	@Test
 	public void testinsertMember()throws Exception {
 		MemberVO mv = new MemberVO();
 		
-		mv.setMemId("p002123456");
-		mv.setMemPass("1234");
-		mv.setMemPhone("01011112222");
-		mv.setMemEmail("jiro110516@ncavae.com");
+		mv.setId("p002123456");
+		mv.setPwd("1234");
+		mv.setPhone("01011112222");
+		mv.setEmail("jiro110516@ncavae.com");
 		
 		int cnt = service.insertMember(mv);
 		
@@ -54,10 +54,10 @@ public class TestMemberServiceImpl {
 	public void testupdateMember()throws Exception {
 		MemberVO mv = new MemberVO();
 		
-		mv.setMemId("jiro110516");
-		mv.setMemPass("1234");
-		mv.setMemPhone("01011112222");
-		mv.setMemEmail("jiro110516@ncavae.com");
+		mv.setId("jiro110516");
+		mv.setPwd("1234");
+		mv.setPhone("01011112222");
+		mv.setEmail("jiro110516@ncavae.com");
 		
 		int cnt = service.updateMember(mv);
 		

@@ -41,13 +41,12 @@ public class updateMemberServlet extends HttpServlet {
 		String memEmail = request.getParameter("memEmail");
 		String memPhone = request.getParameter("memPhone");
 		
-		MemberServiceImpl memberService = new MemberServiceImpl();
 		
 		MemberVO mv = new MemberVO();
-		mv.setMemId(memId);
-		mv.setMemPass(memPass);
-		mv.setMemEmail(memEmail);
-		mv.setMemPhone(memPhone);
+		mv.setId(memId);
+		mv.setPwd(memPass);
+		mv.setEmail(memEmail);
+		mv.setPhone(memPhone);
 		
 		try {
 			int cnt = memberService.updateMember(mv);
