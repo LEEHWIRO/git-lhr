@@ -43,8 +43,25 @@
 											<input class="form-control" type="text" name="memEmail" id="exampleInputEmail" placeholder="이메일">
 										</div>
 										<div class="form-group">
+											<label for="exampleInputEmail">회원상태</label>&nbsp&nbsp&nbsp
+											<input class="custom-checkbox" type="checkbox" value="0" name="memEnabled" id="enabled1" >
+											<label for="enabled1">퇴사</label>&nbsp&nbsp
+											<input class="custom-checkbox" type="checkbox" value="1" name="memEnabled" id="enabled2" >
+											<label for="enabled2">입사</label>&nbsp&nbsp
+											<input class="custom-checkbox" type="checkbox" value="2" name="memEnabled" id="enabled3">
+											<label for="enabled3">휴직</label>
+										</div>
+										<div class="form-group">
 											<label for="exampleInputPhone">전화번호</label>
-											<input class="form-control" style="" type="text" name="memPhone" id="exampleInputPhone" placeholder="전화번호">
+											<input class="form-control" type="text" name="memPhone" id="exampleInputPhone" placeholder="전화번호">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPhone">이름</label>
+											<input class="form-control" type="text" name="memName" id="exampleInputName" placeholder="이름">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPhone">주소</label>
+											<input class="form-control" type="text" name="memAddress" id="exampleInputAddress" placeholder="주소">
 										</div>
 						           	</div>
 									<div class="card-footer">

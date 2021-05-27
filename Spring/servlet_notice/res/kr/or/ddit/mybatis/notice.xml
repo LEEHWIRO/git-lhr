@@ -45,13 +45,14 @@
 	<select id="listDetailNotice" parameterType="int" resultType="notice">
 		SELECT NNO                nno             
              , TITLE              title           
-             , WRITER             writer           
-             , CONTENT            content    
+             , WRITER             writer  
+			 , CONTENT            content        
+             , REGDATE            regdate
              , VIEWCNT            viewcnt
              , POINT              point
              , STARTDATE          startdate
              , ENDDATE            enddate
-             , UPDATEDAE          updatedate
+             , UPDATEDATE          updatedate
              , DIST               dist
 		FROM NOTICE
 		WHERE NNO = #{nno}
@@ -67,7 +68,7 @@
              , POINT              point
              , STARTDATE          startdate
              , ENDDATE            enddate
-             , UPDATEDAE          updatedate
+             , UPDATEDATE          updatedate
              , DIST               dist
         FROM NOTICE 
 	</select>
