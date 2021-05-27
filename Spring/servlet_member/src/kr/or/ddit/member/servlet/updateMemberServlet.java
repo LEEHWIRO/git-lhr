@@ -35,18 +35,28 @@ public class updateMemberServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+		
+        String Url =  "/WEB-INF/views/listDetailMember.jsp";
 		
 		String memId = request.getParameter("memId");
 		String memPass = request.getParameter("memPass");
 		String memEmail = request.getParameter("memEmail");
+		int memEnabled = Integer.parseInt(request.getParameter("memEnabled"));
 		String memPhone = request.getParameter("memPhone");
+		String memName = request.getParameter("memName");
+		String memAddress = request.getParameter("memAddress");
 		
 		
 		MemberVO mv = new MemberVO();
 		mv.setId(memId);
 		mv.setPwd(memPass);
 		mv.setEmail(memEmail);
+		mv.setEnabled(memEnabled);
 		mv.setPhone(memPhone);
+		mv.setName(memName);
+		mv.setAddress(memAddress);
 		
 		try {
 			int cnt = memberService.updateMember(mv);
@@ -56,8 +66,6 @@ public class updateMemberServlet extends HttpServlet {
 			}else {
 				msg = "수정실패";			
 			}
-			
-			String Url =  "/WEB-INF/views/listDetailMember.jsp";
 			
 			MemberVO member = memberService.listDetailMember(memId);
 			

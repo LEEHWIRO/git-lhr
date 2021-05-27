@@ -50,9 +50,18 @@
 							            </div>
 						            </div>
 						            <div class="col-sm-12">
-										<div class="form-group">
-											<label for="exampleInputPassword">아이디</label>
-											<input class="form-control" type="text" name="memId" value="${member.id }" readonly="readonly">
+						            	<div class="col-sm-12">
+						            		<div class = "row">
+						            			<div class="col-sm-11">
+												<div class="form-group">
+													<label for="exampleInputPassword">아이디</label>
+													<input class="form-control" type="text" name="memId" value="${member.id }" readonly="readonly">
+												</div>
+												</div>
+												<div class="col-sm-1">
+													<img alt="사진없음" style="width: 100px; height: 100px;" src="<%=request.getContextPath() %>/resources/images/${member.picture }">
+												</div>
+											</div>
 										</div>
 										<div class="form-group">
 											<label for="exampleInputPassword">비밀번호</label>
@@ -63,8 +72,42 @@
 											<input class="form-control" type="text" name="memEmail" id="exampleInputEmail" value="${member.email }" readonly="readonly">
 										</div>
 										<div class="form-group">
+										<c:if test="${member.enabled == 0 }">
+											<label for="exampleInputEmail">회원상태</label>
+											<input class="form-control" type="text" name="enabled" id="enabled" value="퇴사" readonly="readonly">
+										</c:if>
+										<c:if test="${member.enabled == 1 }">
+											<label for="exampleInputEmail">회원상태</label>
+											<input class="form-control" type="text" name="enabled" id="enabled" value="재직" readonly="readonly">
+										</c:if>
+										<c:if test="${member.enabled == 2 }">
+											<label for="exampleInputEmail">회원상태</label>
+											<input class="form-control" type="text" name="enabled" id="enabled" value="휴직" readonly="readonly">
+										</c:if>
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPhone">입사일</label>
+											<input class="form-control" type="text" name="regdate" id="regdate" value="${member.regdate }" readonly="readonly">
+										</div>
+										<div class="form-group">
 											<label for="exampleInputPhone">전화번호</label>
-											<input class="form-control" style="" type="text" name="memPhone" id="exampleInputPhone" value="${member.phone }" readonly="readonly">
+											<input class="form-control" type="text" name="memPhone" id="exampleInputPhone" value="${member.phone }" readonly="readonly">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPhone">이름</label>
+											<input class="form-control" type="text" name="name" id="name" value="${member.name }" readonly="readonly">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPhone">등록자</label>
+											<input class="form-control" type="text" name="register" id="register" value="${member.register }" readonly="readonly">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPhone">주소</label>
+											<input class="form-control" type="text" name="address" id="address" value="${member.address }" readonly="readonly">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPhone">권한</label>
+											<input class="form-control" type="text" name="authority" id="authority" value="${member.authority }" readonly="readonly">
 										</div>
 						            </div>
 					           	</div>

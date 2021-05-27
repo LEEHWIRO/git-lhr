@@ -47,13 +47,10 @@
 											<th>아이디</th>
 											<th>비밀번호</th>
 											<th>이메일</th>
-											<th>사진</th>
 											<th>입사일</th>
 											<th>휴대전화번호</th>
 											<th>이름</th>
-											<th>등록자</th>
 											<th>주소</th>
-											<th>권한</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -67,13 +64,10 @@
 											<td><a href="${pageContext.request.contextPath }/listDetail?memId=${memberList[i].id }">${memberList[i].id }</a></td>
 											<td>${memberList[i].pwd }</td>
 											<td>${memberList[i].email }</td>
-											<td><img alt="사진없음" style="width: 50px; height: 50px;" src="<%=request.getContextPath() %>/resources/images/${memberList[i].picture }"></td>
 											<td>${memberList[i].regdate }</td>
 											<td>${memberList[i].phone }</td>
 											<td>${memberList[i].name }</td>
-											<td>${memberList[i].register }</td>
 											<td>${memberList[i].address }</td>
-											<td>${memberList[i].authority }</td>
 										</tr>
 										</c:forEach>	
 									</tbody>
