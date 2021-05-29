@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Member-Mapper">
+	
+	<select id="selectMemberById" parameterType="str" resultType="member">
+		select *
+		from member
+		where id=#{id}
+	</select>
+	
+	<insert id="insertMember" parameterType="member">
+		INSERT INTO MEMBER (
+			   ID           
+             , PWD          
+             , EMAIL
+             , PICTURE
+             , ENABLED
+             , REGDATE
+             , PHONE
+             , NAME
+             , REGISTER
+             , ADDRESS
+             , AUTHORITY         
+		) VALUES (
+			  #{id}
+			, #{pwd}
+			, #{email}
+			, 'noImage.jpg' 
+			, #{enabled}
+			, sysdate
+			, #{phone}
+			, #{name}
+			, 'mimi'
+			, #{address}
+			, 'ROLE_USER'
+		)
+	</insert>
+	
+	<update id="updateMember" parameterType="member">
+		UPDATE MEMBER
+		SET    PWD = #{pwd}
+			  ,EMAIL = #{email}
+			  ,ENABLED = #{enabled}
+			  ,PHONE = #{phone}
+			  ,NAME = #{name}
+			  ,ADDRESS = #{address}
+		WHERE  ID = #{id}
+	</update>
+	
+	<delete id="deleteMember" parameterType="str">
+		DELETE 
+		FROM  MEMBER
+		WHERE ID = #{id}
+	</delete>
+	
+	<select id="listDetailMember" parameterType="str" resultType="member">
+		SELECT ID                id             
+             , PWD              pwd           
+             , EMAIL             email    
+             , PICTURE          picture   
+             , ENABLED          enabled
+             , REGDATE          regdate    
+             , PHONE             phone
+             , NAME             name  
+             , REGISTER         register
+             , ADDRESS          address
+             , AUTHORITY        authority            
+		FROM MEMBER
+		WHERE ID = #{id}
+	</select>
+	
+	<select id="listMember" resultType="member">
+		SELECT ID                id             
+             , PWD              pwd           
+             , EMAIL             email    
+             , PICTURE          picture   
+             , ENABLED          enabled
+             , REGDATE          regdate    
+             , PHONE             phone
+             , NAME             name  
+             , REGISTER         register
+             , ADDRESS          address
+             , AUTHORITY        authority        
+        FROM MEMBER 
+	</select>
+	
+</mapper>
