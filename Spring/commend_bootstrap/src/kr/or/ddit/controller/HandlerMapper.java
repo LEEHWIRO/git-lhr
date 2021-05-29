@@ -33,7 +33,7 @@ public class HandlerMapper {
 			try {
 				Class<?> actionClass = Class.forName(actionClassName);
 				Handler commandAction = (Handler)actionClass.newInstance();
-				
+				System.out.println(commandAction);
 				//의존주입(service, dao ....)
 				//의존성 확인 및 조립
 				Method[] methods = actionClass.getMethods();

@@ -12,7 +12,6 @@ import kr.or.ddit.dto.MenuVO;
 public class MenuServiceImpl implements MenuService {
 
 	private MenuDAO menuDAO; // = new MenuDAOImpl();
-	
 	public void setMenuDAO(MenuDAO menuDAO) {
 		this.menuDAO = menuDAO;
 	}
