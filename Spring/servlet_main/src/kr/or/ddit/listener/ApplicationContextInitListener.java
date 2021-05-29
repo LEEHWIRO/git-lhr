@@ -85,7 +85,9 @@ public class ApplicationContextInitListener implements ServletContextListener {
 							
 							String className = eleBean.getAttribute("class");
 							Class<?> classType = Class.forName(className);
+							
 							Method[] methods = classType.getMethods();
+							
 							for (Method method : methods) {
 								// 의존성 여부 확인
 								if (method.getName().equals(setMethodName)) {
