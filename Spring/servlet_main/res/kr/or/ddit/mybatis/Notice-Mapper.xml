@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Notice-Mapper">
+
+	<insert id="insertNotice" parameterType="notice">
+		INSERT INTO NOTICE (
+				NNO
+				,TITLE
+				,WRITER
+				,CONTENT
+				,REGDATE
+				,VIEWCNT
+				,POINT
+				,DIST        
+		) VALUES (
+			  NOTICE_SEQ.NEXTVAL
+			, #{title}
+			, #{writer}
+			, #{content}
+			, sysdate
+			, 0
+			, 0
+			, 'N'
+			
+		)
+	</insert>
+	
+	<update id="updateNotice" parameterType="notice">
+		UPDATE NOTICE
+		SET    TITLE = #{title}
+			  ,CONTENT = #{content}
+			  ,UPDATEDATE = sysdate
+		WHERE  NNO = #{nno}
+	</update>
+	
+	<delete id="deleteNotice" parameterType="int">
+		DELETE 
+		FROM  NOTICE
+		WHERE NNO = #{nno}
+	</delete>
+	
+	<select id="listDetailNotice" parameterType="int" resultType="notice">
+		SELECT NNO                nno             
+             , TITLE              title           
+             , WRITER             writer  
+			 , CONTENT            content        
+             , REGDATE            regdate
+             , VIEWCNT            viewcnt
+             , POINT              point
+             , STARTDATE          startdate
+             , ENDDATE            enddate
+             , UPDATEDATE          updatedate
+             , DIST               dist
+		FROM NOTICE
+		WHERE NNO = #{nno}
+	</select>
+	
+	<select id="listNotice" resultType="notice">
+		SELECT NNO                nno             
+             , TITLE              title           
+             , WRITER             writer  
+			 , CONTENT            content        
+             , REGDATE            regdate
+             , VIEWCNT            viewcnt
+             , POINT              point
+             , STARTDATE          startdate
+             , ENDDATE            enddate
+             , UPDATEDATE          updatedate
+             , DIST               dist
+        FROM NOTICE 
+	</select>
+	
+</mapper>
