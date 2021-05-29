@@ -1,0 +1,15 @@
+Django 설치 & allauth 설치 복사용
+
+1번쨰 코드	pip install django==3.2.3 
+
+2번째 코드	pip install django-allauth 
+----------------------------------------------------------------
+Manage.py admin 계정 생성 수퍼계정 생성용 코드
+
+python manage.py createsuperuser
+------------------------------------------------------------------
+Django admin 설정
+	
+1번쨰 코드	 http://127.0.0.1:8000 
+
+2번째 코드	http://127.0.0.1:8000/accounts/naver/login/callback/ 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="144.0" prefWidth="329.0">
+         <children>
+            <TextField id="tf1" layoutX="14.0" layoutY="31.0" prefHeight="27.0" prefWidth="53.0" />
+            <Label layoutX="76.0" layoutY="37.0" text="에서" />
+            <TextField id="tf2" layoutX="112.0" layoutY="31.0" prefHeight="27.0" prefWidth="53.0" />
+            <Button id="btn" layoutX="178.0" layoutY="33.0" mnemonicParsing="false" text="까지 합은" />
+            <TextField id="tf3" layoutX="262.0" layoutY="31.0" prefHeight="27.0" prefWidth="53.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
