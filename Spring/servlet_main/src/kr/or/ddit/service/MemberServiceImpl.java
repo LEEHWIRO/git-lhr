@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import kr.or.ddit.command.Criteria;
 import kr.or.ddit.dao.MemberDAO;
 import kr.or.ddit.dao.MemberDAOImpl;
 import kr.or.ddit.dto.MemberVO;
@@ -28,24 +29,37 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public MemberVO listDetailMember(String memId) throws SQLException {
-		MemberVO mv = null;
 		SqlSession session = sqlSessionFactory.openSession();
-
-		mv = memberDAO.listDetailMember(session, memId);
-		session.close();
 		
-		return mv;
+		try {
+			MemberVO member = memberDAO.listDetailMember(session, memId);
+			return member;
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public List<MemberVO> listMember() throws SQLException {
-		List<MemberVO> memList = null;
+		List<MemberVO> memberList = null;
 		SqlSession session = sqlSessionFactory.openSession();
-		
-		memList = memberDAO.listMember(session);
-		session.close();
-		
-		return memList;
+		try {
+			memberList = memberDAO.listMember(session);
+			return memberList;
+		}finally {
+			session.close();
+		}
+	}
+	@Override
+	public List<MemberVO> listMember(Criteria cri) throws SQLException {
+		List<MemberVO> memberList = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			memberList = memberDAO.listMember(session,cri);
+			return memberList;
+		}finally {
+			session.close();
+		}
 	}
 
 	@Override

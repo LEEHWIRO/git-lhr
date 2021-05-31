@@ -3,6 +3,7 @@ package kr.or.ddit.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import kr.or.ddit.command.Criteria;
 import kr.or.ddit.dto.NoticeVO;
 
 /**
@@ -15,6 +16,7 @@ public interface NoticeService {
 	public NoticeVO listDetailNotice(int nno) throws SQLException;
 	
 	public List<NoticeVO> listNotice() throws SQLException;
+	public List<NoticeVO> listNotice(Criteria cri) throws SQLException;
 	
 	public int insertNotice(NoticeVO mv) throws SQLException;
 	

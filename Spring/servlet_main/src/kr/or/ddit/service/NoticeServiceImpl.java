@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import kr.or.ddit.command.Criteria;
 import kr.or.ddit.dao.NoticeDAO;
 import kr.or.ddit.dto.NoticeVO;
 
@@ -75,6 +76,17 @@ public class NoticeServiceImpl implements NoticeService{
 		session.close();
 		
 		return cnt;
+	}
+
+	@Override
+	public List<NoticeVO> listNotice(Criteria cri) throws SQLException {
+		List<NoticeVO> noticeList = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		noticeList = noticeDAO.listNotice(session,cri);
+		session.close();
+		
+		return noticeList;
 	}
 
 
