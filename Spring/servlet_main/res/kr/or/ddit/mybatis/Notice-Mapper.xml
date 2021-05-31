@@ -71,6 +71,7 @@
              , UPDATEDATE          updatedate
              , DIST               dist
         FROM NOTICE 
+        ORDER BY NNO desc
 	</select>
 	
 </mapper>

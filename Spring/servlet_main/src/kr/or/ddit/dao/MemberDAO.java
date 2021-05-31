@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import kr.or.ddit.command.Criteria;
 import kr.or.ddit.dto.MemberVO;
 
 public interface MemberDAO {
@@ -12,6 +13,7 @@ public interface MemberDAO {
 	public MemberVO listDetailMember(SqlSession session,String memId) throws SQLException;
 	
 	public List<MemberVO> listMember(SqlSession session) throws SQLException;
+	public List<MemberVO> listMember(SqlSession session,Criteria cri) throws SQLException;
 	
 	public int insertMember(SqlSession session, MemberVO mv) throws SQLException;
 	

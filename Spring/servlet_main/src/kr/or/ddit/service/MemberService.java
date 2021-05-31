@@ -3,6 +3,7 @@ package kr.or.ddit.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import kr.or.ddit.command.Criteria;
 import kr.or.ddit.dto.MemberVO;
 import kr.or.ddit.exception.InvalidPasswordException;
 import kr.or.ddit.exception.NotFoundIDException;
@@ -17,6 +18,7 @@ public interface MemberService {
 	public MemberVO listDetailMember(String memId) throws SQLException;
 	
 	public List<MemberVO> listMember() throws SQLException;
+	public List<MemberVO> listMember(Criteria cri) throws SQLException;
 	
 	public int insertMember(MemberVO mv) throws SQLException;
 	

@@ -3,8 +3,10 @@ package kr.or.ddit.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
+import kr.or.ddit.command.Criteria;
 import kr.or.ddit.dto.NoticeVO;
 
 
@@ -51,6 +53,16 @@ public class NoticeDAOImpl implements NoticeDAO {
 		cnt = session.delete("Notice-Mapper.deleteNotice", nno);
 		
 		return cnt;
+	}
+
+	@Override
+	public List<NoticeVO> listNotice(SqlSession session, Criteria cri) throws SQLException {
+		int offset = cri.getStartRowNum();
+		int limit = cri.getPerPageNum();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<NoticeVO> noticeList = session.selectList("Notice-Mapper.listNotice",null,rowBounds);
+		return noticeList;
 	}
 	
 
