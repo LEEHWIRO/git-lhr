@@ -85,6 +85,7 @@
              , ADDRESS          address
              , AUTHORITY        authority        
         FROM MEMBER 
+        ORDER BY REGDATE ASC
 	</select>
 	
 </mapper>

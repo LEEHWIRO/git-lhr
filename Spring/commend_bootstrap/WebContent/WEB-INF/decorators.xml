@@ -6,4 +6,12 @@
 		<pattern>/index.do*</pattern>
 	</decorator>
 	
+	<decorator name="openWindow" page="open_decorator.jsp">
+		<pattern>/**/*</pattern>
+		<pattern>/main.do</pattern>
+	</decorator>	
+	
+	<exclude>
+		<pattern>/resources/*</pattern>
+	</exclude>
 </decorators>
