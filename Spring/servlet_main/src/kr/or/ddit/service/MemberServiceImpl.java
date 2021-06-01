@@ -1,12 +1,16 @@
 package kr.or.ddit.service;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.PageMaker;
+import kr.or.ddit.command.SearchCriteria;
 import kr.or.ddit.dao.MemberDAO;
 import kr.or.ddit.dao.MemberDAOImpl;
 import kr.or.ddit.dto.MemberVO;
@@ -119,6 +123,28 @@ public class MemberServiceImpl implements MemberService{
 			MemberVO member = memberDAO.selectMemberById(session, id);
 			return member;
 		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public Map<String, Object> getMemberList(SearchCriteria cri) throws SQLException {
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		
+		try {
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(memberDAO.selectMemberListCount(session, cri));
+			
+			List<MemberVO> memberList = memberDAO.selectSearchMemberList(session, cri);
+			
+			dataMap.put("memberList", memberList);
+			dataMap.put("pageMaker", pageMaker);
+			
+			return dataMap;
+		}finally {
 			session.close();
 		}
 	}

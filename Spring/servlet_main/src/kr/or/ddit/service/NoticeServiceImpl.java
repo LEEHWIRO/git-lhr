@@ -1,13 +1,18 @@
 package kr.or.ddit.service;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.PageMaker;
+import kr.or.ddit.command.SearchCriteria;
 import kr.or.ddit.dao.NoticeDAO;
+import kr.or.ddit.dto.MemberVO;
 import kr.or.ddit.dto.NoticeVO;
 
 public class NoticeServiceImpl implements NoticeService{
@@ -87,6 +92,28 @@ public class NoticeServiceImpl implements NoticeService{
 		session.close();
 		
 		return noticeList;
+	}
+
+	@Override
+	public Map<String, Object> getNoticeList(SearchCriteria cri) throws SQLException {
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		
+		try {
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(noticeDAO.selectNoticeListCount(session, cri));
+			
+			List<NoticeVO> noticeList = noticeDAO.selectSearchNoticeList(session, cri);
+			
+			dataMap.put("noticeList", noticeList);
+			dataMap.put("pageMaker", pageMaker);
+			
+			return dataMap;
+		}finally {
+			session.close();
+		}
 	}
 
 
