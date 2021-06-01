@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.SearchCriteria;
 import kr.or.ddit.dto.NoticeVO;
 
 
@@ -63,6 +64,24 @@ public class NoticeDAOImpl implements NoticeDAO {
 		
 		List<NoticeVO> noticeList = session.selectList("Notice-Mapper.listNotice",null,rowBounds);
 		return noticeList;
+	}
+
+	@Override
+	public List<NoticeVO> selectSearchNoticeList(SqlSession session, SearchCriteria cri) throws SQLException {
+		int offset = cri.getStartRowNum();
+		int limit = cri.getPerPageNum();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<NoticeVO> noticeList = session.selectList("Notice-Mapper.selectSearchNoticeList",cri,rowBounds);
+		return noticeList;
+	}
+
+	@Override
+	public int selectNoticeListCount(SqlSession session, SearchCriteria cri) throws SQLException {
+		int count = 0;
+		count = session.selectOne("Notice-Mapper.selectSearchNoticeListCount",cri);
+		return count;
+
 	}
 	
 
