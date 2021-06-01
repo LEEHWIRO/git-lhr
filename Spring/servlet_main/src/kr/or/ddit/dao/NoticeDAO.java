@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import kr.or.ddit.command.Criteria;
+import kr.or.ddit.command.SearchCriteria;
 import kr.or.ddit.dto.NoticeVO;
 
 public interface NoticeDAO {
@@ -14,6 +15,9 @@ public interface NoticeDAO {
 	
 	public List<NoticeVO> listNotice(SqlSession session) throws SQLException;
 	public List<NoticeVO> listNotice(SqlSession session,Criteria cri) throws SQLException;
+	public List<NoticeVO> selectSearchNoticeList(SqlSession session,SearchCriteria cri) throws SQLException;
+	
+	public int selectNoticeListCount(SqlSession session,SearchCriteria cri) throws SQLException;
 	
 	public int insertNotice(SqlSession session, NoticeVO mv) throws SQLException;
 	
