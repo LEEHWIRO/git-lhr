@@ -56,6 +56,18 @@
 		WHERE ID = #{id}
 	</delete>
 	
+	<sql id ="search">
+      <if test="searchType == 'i'.toString()">
+         and id like '%'||#{keyword}||'%'
+      </if>
+      <if test="searchType == 'p'.toString()">
+         and phone like '%'||#{keyword}||'%'
+      </if>
+      <if test="searchType == 'e'.toString()">
+         and email like '%'||#{keyword}||'%'
+      </if>
+    </sql>
+	
 	<select id="listDetailMember" parameterType="str" resultType="member">
 		SELECT ID                id             
              , PWD              pwd           
@@ -85,7 +97,24 @@
              , ADDRESS          address
              , AUTHORITY        authority        
         FROM MEMBER 
-        ORDER BY REGDATE ASC
+        ORDER BY REGDATE desc
 	</select>
+	
+	<select id="selectSearchMemberList" resultType="member">
+      select
+      *
+      from member
+      where id is not null
+      <include refid="search"/>
+      order by regdate desc
+   </select>
+   
+   <select id="selectSearchMemberListCount" resultType="int">
+      select
+      count(*)
+      from member
+      where id is not null
+      <include refid="search"/>
+   </select>
 	
 </mapper>
