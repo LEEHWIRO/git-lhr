@@ -39,4 +39,5 @@ function goPage(url, mCode) {
 	
 	$('iframe[name="ifr"]').attr("src", url);
 }
+
  

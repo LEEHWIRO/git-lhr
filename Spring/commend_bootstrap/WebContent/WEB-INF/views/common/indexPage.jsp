@@ -44,7 +44,12 @@
 function init(){
 	goPage('${menu.murl}','${menu.mcode}');
 	subMenu('${menu.mcode}'.substring(0,3)+"0000");
+
 }
+
+
+
+
 </script>
 </body>
 
