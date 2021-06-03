@@ -8,17 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ViewResolver {
 	
-	public static void view(HttpServletRequest request, HttpServletResponse response,
-							String url) throws  ServletException, IOException {
+	public static void view(HttpServletRequest request, HttpServletResponse response, 
+							String url)	throws ServletException, IOException {
 		if (url == null) {
 			return;
 		}
-		
+
 		if (url.indexOf("redirect:") > -1) {
 			
-			String contextPath = request.getContextPath();
+			String contextPath=request.getContextPath();
 			
-			url = contextPath  + "/" + url.replace("redirect:", "");
+			url =  contextPath+"/"+url.replace("redirect:", "");
 			
 			response.sendRedirect(url);
 		} else {
@@ -28,5 +28,4 @@ public class ViewResolver {
 			request.getRequestDispatcher(url).forward(request, response);
 		}
 	}
-
 }
