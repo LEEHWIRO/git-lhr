@@ -25,4 +25,7 @@ public interface MemberService {
 	List<MemberVO> getMemberList(Criteria cri) throws SQLException;
 	Map<String,Object> getMemberList(SearchCriteria cri) throws SQLException;
 	
+	// 회원등록
+	public void regist(MemberVO member) throws SQLException;
+	
 }
