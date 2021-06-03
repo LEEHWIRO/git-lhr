@@ -18,5 +18,7 @@
 <decorator:body />
 
 <%@ include file="/WEB-INF/views/include/js.jsp" %>
+<script src="/resources/js/common.js"></script>
 </body>
+
 </html>
