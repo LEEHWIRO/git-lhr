@@ -27,20 +27,20 @@ public class NoticeUpdateHandler implements Handler {
 		String content = request.getParameter("content");
 		
 		
-		NoticeVO mv = new NoticeVO();
-		mv.setNno(nno);
-		mv.setTitle(title);
-		mv.setContent(content);
+		NoticeVO notice = new NoticeVO();
+		notice.setNno(nno);
+		notice.setTitle(title);
+		notice.setContent(content);
 		
 		try {
-			int cnt = noticeService.updateNotice(mv);
+			int cnt = noticeService.modify(notice);
 			String msg = "";
 			if(cnt == 1) {
 				msg = "수정성공";
 			}else {
 				msg = "수정실패";			
 			}
-			NoticeVO notice = noticeService.listDetailNotice(nno);
+			notice = noticeService.getNotice(nno);
 			
 			request.setAttribute("notice", notice);
 			request.setAttribute("msg", msg);

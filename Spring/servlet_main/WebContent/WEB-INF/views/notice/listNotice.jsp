@@ -37,7 +37,7 @@
 	<section class="content">
 		<div class="card card-primary card-outline">
 			<div class="card-header with-border">
-				<button type="button" class="btn btn-primary" onclick="OpenWindow('registForm.do','공지등록',800,700)">회원등록</button>
+				<button type="button" class="btn btn-primary" onclick="OpenWindow('registForm.do','공지사항',800,700)">공지사항</button>
   				<div id="keyword" class="card-tools" style="width:550px;">
   					 <div class="input-group row">	
   					 	  <!-- sort num -->
@@ -83,21 +83,17 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="i" begin="0" end="${noticeList.size()-1 }" step="1">
-								<c:if test="${empty noticeList }">
-									<tr>
-										<td colspan="4">해당 내용이 없습니다.</td>
-									</tr>
-								</c:if>	
-								<tr>
-									<td><a href="<%=request.getContextPath() %>/notice/detail.do?nno=${noticeList[i].nno }">${noticeList[i].nno }</a></td>
-									<td>${noticeList[i].title }</td>
-									<td>${noticeList[i].writer }</td>
-									<td>
-										<fmt:formatDate value="${noticeList[i].regdate }" pattern="yyyy-MM-dd"/>
-									</td>
-									<td>${noticeList[i].viewcnt }</td>											</tr>
-								</c:forEach>	
+								<c:forEach items="${noticeList }" var="notice" >
+				               	  <tr onclick="OpenWindow('detail.do?nno=${notice.nno }','','800','900');" style="cursor: pointer;">
+				               		<td>${notice.nno }</td>
+				              		<td>${notice.title }</td>
+				              		<td>${notice.writer }</td>
+				              		<td>
+				              			<fmt:formatDate value="${notice.regdate }" pattern="yyyy-MM-dd"/>
+				              		</td>
+				              		<td>${notice.viewcnt }</td>
+				              	  </tr>
+				               	</c:forEach>
 							</tbody>
 						</table>
 	            	</div>

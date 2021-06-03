@@ -21,7 +21,7 @@ public class NoticeListHandler implements Handler {
 		String url = "notice/listNotice";
 		
 		try {
-			List<NoticeVO> noticeList = noticeService.listNotice();
+			List<NoticeVO> noticeList = noticeService.getNoticeList();
 			
 			request.setAttribute("noticeList", noticeList);
 		} catch (Exception e) {

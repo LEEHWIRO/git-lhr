@@ -39,6 +39,19 @@ function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
 //}
 
 function CloseWindow(parentURL){
-	window.opener.location.href=parentUL;
-	window.close;
+	if(parentURL){
+		window.opener.location.href=parentUL;
+	}else {
+		window.opener.location.reload(true);
+	}
+	window.close();
+}
+
+//사용자 사진 미리보기
+function MemberPictureThumb(targetObj, fileName){// (element,fileName)
+	targetObj.style.backgroundImage="url('getPicture.do?picture="+ fileName +"')";
+	targetObj.style.backgroundPosition="center";
+	targetObj.style.backgroundRepeat="no-repeat";
+	targetObj.style.backgroundSize="cover";
+	
 }

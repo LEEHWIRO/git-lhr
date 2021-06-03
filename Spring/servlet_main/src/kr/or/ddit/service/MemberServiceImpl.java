@@ -32,74 +32,6 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVO listDetailMember(String memId) throws SQLException {
-		SqlSession session = sqlSessionFactory.openSession();
-		
-		try {
-			MemberVO member = memberDAO.listDetailMember(session, memId);
-			return member;
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public List<MemberVO> listMember() throws SQLException {
-		List<MemberVO> memberList = null;
-		SqlSession session = sqlSessionFactory.openSession();
-		try {
-			memberList = memberDAO.listMember(session);
-			return memberList;
-		}finally {
-			session.close();
-		}
-	}
-	@Override
-	public List<MemberVO> listMember(Criteria cri) throws SQLException {
-		List<MemberVO> memberList = null;
-		SqlSession session = sqlSessionFactory.openSession();
-		try {
-			memberList = memberDAO.listMember(session,cri);
-			return memberList;
-		}finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public int insertMember(MemberVO mv) throws SQLException {
-		int cnt = 0;
-		SqlSession session = sqlSessionFactory.openSession();
-		
-		cnt = memberDAO.insertMember(session, mv);
-		session.close();
-		
-		return cnt;
-	}
-
-	@Override
-	public int updateMember(MemberVO mv) throws SQLException {
-		int cnt = 0;
-		SqlSession session = sqlSessionFactory.openSession();
-		
-		cnt = memberDAO.updateMember(session, mv);
-		session.close();
-		
-		return cnt;
-	}
-
-	@Override
-	public int deleteMember(String memId) throws SQLException {
-		int cnt = 0;
-		SqlSession session = sqlSessionFactory.openSession();
-		
-		cnt = memberDAO.deleteMember(session, memId);
-		session.close();
-		
-		return cnt;
-	}
-	
-	@Override
 	public void login(String id, String pwd) throws SQLException, NotFoundIDException, InvalidPasswordException {
 
 		SqlSession session = sqlSessionFactory.openSession();
@@ -126,7 +58,30 @@ public class MemberServiceImpl implements MemberService{
 			session.close();
 		}
 	}
-
+	
+	@Override
+	public List<MemberVO> getMemberList() throws SQLException {
+		List<MemberVO> memberList = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			memberList = memberDAO.selectMemberList(session);
+			return memberList;
+		}finally {
+			session.close();
+		}
+	}
+	@Override
+	public List<MemberVO> getMemberList(Criteria cri) throws SQLException {
+		List<MemberVO> memberList = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			memberList = memberDAO.selectMemberList(session,cri);
+			return memberList;
+		}finally {
+			session.close();
+		}
+	}
+	
 	@Override
 	public Map<String, Object> getMemberList(SearchCriteria cri) throws SQLException {
 		SqlSession session = sqlSessionFactory.openSession();
@@ -138,7 +93,7 @@ public class MemberServiceImpl implements MemberService{
 			pageMaker.setCri(cri);
 			pageMaker.setTotalCount(memberDAO.selectMemberListCount(session, cri));
 			
-			List<MemberVO> memberList = memberDAO.selectSearchMemberList(session, cri);
+			List<MemberVO> memberList = memberDAO.selectMemberList(session, cri);
 			
 			dataMap.put("memberList", memberList);
 			dataMap.put("pageMaker", pageMaker);
@@ -148,6 +103,43 @@ public class MemberServiceImpl implements MemberService{
 			session.close();
 		}
 	}
+
+	@Override
+	public void regist(MemberVO member) throws SQLException {
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			
+			memberDAO.insertMember(session, member);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public int modify(MemberVO member) throws SQLException {
+		int cnt = 0;
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		cnt = memberDAO.updateMember(session, member);
+		session.close();
+		
+		return cnt;
+	}
+
+	@Override
+	public int remove(String id) throws SQLException {
+		int cnt = 0;
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		cnt = memberDAO.deleteMember(session, id);
+		session.close();
+		
+		return cnt;
+	}
+	
+	
+
+	
 
 
 

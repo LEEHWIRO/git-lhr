@@ -29,66 +29,33 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public NoticeVO listDetailNotice(int nno) throws SQLException {
-		NoticeVO mv = null;
+	public NoticeVO getNotice(int nno) throws SQLException {
+		NoticeVO notice = null;
 		SqlSession session = sqlSessionFactory.openSession();
 
-		mv = noticeDAO.listDetailNotice(session, nno);
+		notice = noticeDAO.selectNoticeByNno(session, nno);
 		session.close();
 		
-		return mv;
+		return notice;
 	}
 
 	@Override
-	public List<NoticeVO> listNotice() throws SQLException {
+	public List<NoticeVO> getNoticeList() throws SQLException {
 		List<NoticeVO> noticeList = null;
 		SqlSession session = sqlSessionFactory.openSession();
 		
-		noticeList = noticeDAO.listNotice(session);
+		noticeList = noticeDAO.selectNoticeList(session);
 		session.close();
 		
 		return noticeList;
 	}
-
+	
 	@Override
-	public int insertNotice(NoticeVO mv) throws SQLException {
-		int cnt = 0;
-		SqlSession session = sqlSessionFactory.openSession();
-		
-		cnt = noticeDAO.insertNotice(session, mv);
-		session.close();
-		
-		return cnt;
-	}
-
-	@Override
-	public int updateNotice(NoticeVO mv) throws SQLException {
-		int cnt = 0;
-		SqlSession session = sqlSessionFactory.openSession();
-		
-		cnt = noticeDAO.updateNotice(session, mv);
-		session.close();
-		
-		return cnt;
-	}
-
-	@Override
-	public int deleteNotice(int nno) throws SQLException {
-		int cnt = 0;
-		SqlSession session = sqlSessionFactory.openSession();
-		
-		cnt = noticeDAO.deleteNotice(session, nno);
-		session.close();
-		
-		return cnt;
-	}
-
-	@Override
-	public List<NoticeVO> listNotice(Criteria cri) throws SQLException {
+	public List<NoticeVO> getNoticeList(Criteria cri) throws SQLException {
 		List<NoticeVO> noticeList = null;
 		SqlSession session = sqlSessionFactory.openSession();
 		
-		noticeList = noticeDAO.listNotice(session,cri);
+		noticeList = noticeDAO.selectNoticeList(session,cri);
 		session.close();
 		
 		return noticeList;
@@ -105,7 +72,7 @@ public class NoticeServiceImpl implements NoticeService{
 			pageMaker.setCri(cri);
 			pageMaker.setTotalCount(noticeDAO.selectNoticeListCount(session, cri));
 			
-			List<NoticeVO> noticeList = noticeDAO.selectSearchNoticeList(session, cri);
+			List<NoticeVO> noticeList = noticeDAO.selectNoticeList(session, cri);
 			
 			dataMap.put("noticeList", noticeList);
 			dataMap.put("pageMaker", pageMaker);
@@ -115,6 +82,42 @@ public class NoticeServiceImpl implements NoticeService{
 			session.close();
 		}
 	}
+	
+
+	@Override
+	public void regist(NoticeVO notice) throws SQLException {
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			
+			noticeDAO.insertNotice(session, notice);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public int modify(NoticeVO notice) throws SQLException {
+		int cnt = 0;
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		cnt = noticeDAO.updateNotice(session, notice);
+		session.close();
+		
+		return cnt;
+	}
+
+	@Override
+	public int remove(int nno) throws SQLException {
+		int cnt = 0;
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		cnt = noticeDAO.deleteNotice(session, nno);
+		session.close();
+		
+		return cnt;
+	}
+
+	
 
 
 

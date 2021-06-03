@@ -28,7 +28,7 @@ public class NoticeListPageHandler implements Handler {
 			cri.setPage(pageParam);
 			cri.setPerPageNum(perPageNumParam);
 			
-			List<NoticeVO> noticeList = noticeService.listNotice(cri);
+			List<NoticeVO> noticeList = noticeService.getNoticeList(cri);
 			
 			request.setAttribute("noticeList", noticeList);
 		} catch (Exception e) {

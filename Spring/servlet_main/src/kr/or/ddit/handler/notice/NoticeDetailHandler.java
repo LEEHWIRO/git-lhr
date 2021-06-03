@@ -19,11 +19,11 @@ public class NoticeDetailHandler implements Handler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		String url = "notice/listDetailNotice";
+		String url = "notice/detailNotice";
 		int nno = Integer.parseInt(request.getParameter("nno"));
 		
 		try {
-			NoticeVO notice = noticeService.listDetailNotice(nno);
+			NoticeVO notice = noticeService.getNotice(nno);
 			
 			request.setAttribute("notice", notice);
 		} catch (Exception e) {

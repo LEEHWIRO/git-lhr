@@ -26,14 +26,14 @@ public class NoticeDeleteHandler implements Handler {
 		int nno = Integer.parseInt(request.getParameter("nno"));
 		
 		try {
-			int cnt = noticeService.deleteNotice(nno);
+			int cnt = noticeService.remove(nno);
 			String msg = "";
 			if(cnt == 1) {
 				msg = "삭제성공";
 			}else {
 				msg = "삭제실패";			
 			}
-			List<NoticeVO> noticeList = noticeService.listNotice();
+			List<NoticeVO> noticeList = noticeService.getNoticeList();
 			request.setAttribute("noticeList", noticeList);
 			request.setAttribute("msg", msg);
 		} catch (Exception e) {

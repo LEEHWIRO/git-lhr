@@ -17,19 +17,20 @@ import kr.or.ddit.exception.NotFoundIDException;
  */
 public interface MemberService {
 
-	public MemberVO listDetailMember(String memId) throws SQLException;
-	
-	public List<MemberVO> listMember() throws SQLException;
-	public List<MemberVO> listMember(Criteria cri) throws SQLException;
-	Map<String,Object> getMemberList(SearchCriteria cri) throws SQLException;
-	
-	public int insertMember(MemberVO mv) throws SQLException;
-	
-	public int updateMember(MemberVO mv) throws SQLException;
-	
-	public int deleteMember(String memId) throws SQLException;
-	
 	public void login(String id, String pwd) throws SQLException, NotFoundIDException, InvalidPasswordException;
-		
+	
 	public MemberVO getMember(String id) throws SQLException;
+	
+	public List<MemberVO> getMemberList() throws SQLException;
+	public List<MemberVO> getMemberList(Criteria cri) throws SQLException;
+	public Map<String,Object> getMemberList(SearchCriteria cri) throws SQLException;
+	
+	
+		
+	
+	public void regist(MemberVO member) throws SQLException;
+	
+	public int modify(MemberVO member) throws SQLException;
+	
+	public int remove(String id) throws SQLException;
 }

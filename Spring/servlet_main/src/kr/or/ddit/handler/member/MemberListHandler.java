@@ -22,7 +22,7 @@ public class MemberListHandler implements Handler {
 		
 		
 		try {
-			List<MemberVO> memberList = memberService.listMember();
+			List<MemberVO> memberList = memberService.getMemberList();
 			
 			request.setAttribute("memberList", memberList);
 		} catch (Exception e) {

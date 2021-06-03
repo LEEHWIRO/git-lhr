@@ -5,26 +5,58 @@
 
 <mapper namespace="Notice-Mapper">
 
+	<sql id ="search">
+      <if test="searchType == 'n'.toString()">
+         and nno like '%'||#{keyword}||'%'
+      </if>
+      <if test="searchType == 't'.toString()">
+         and title like '%'||#{keyword}||'%'
+      </if>
+      <if test="searchType == 'w'.toString()">
+         and writer like '%'||#{keyword}||'%'
+      </if>
+    </sql>
+    
+    <select id="selectSearchNoticeList" resultType="notice">
+      select
+      *
+      from NOTICE
+      where nno is not null
+      <include refid="search"/>
+      order by regdate desc
+   </select>
+   
+   <select id="selectSearchNoticeListCount" resultType="int">
+      select
+      count(*)
+      from NOTICE
+      where nno is not null
+      <include refid="search"/>
+   </select>
+   
+   <select id="selectNoticeByNno" parameterType="int" resultType="notice">
+		SELECT *
+		FROM NOTICE
+		WHERE NNO = #{nno}
+	</select>
+	
+	<select id="selectNoticeList" resultType="notice">
+		SELECT *
+        FROM NOTICE 
+        ORDER BY NNO desc
+	</select>
+
 	<insert id="insertNotice" parameterType="notice">
 		INSERT INTO NOTICE (
 				NNO
 				,TITLE
 				,WRITER
 				,CONTENT
-				,REGDATE
-				,VIEWCNT
-				,POINT
-				,DIST        
 		) VALUES (
 			  NOTICE_SEQ.NEXTVAL
 			, #{title}
 			, #{writer}
 			, #{content}
-			, sysdate
-			, 0
-			, 0
-			, 'N'
-			
 		)
 	</insert>
 	
@@ -42,35 +74,13 @@
 		WHERE NNO = #{nno}
 	</delete>
 	
-	<select id="listDetailNotice" parameterType="int" resultType="notice">
-		SELECT NNO                nno             
-             , TITLE              title           
-             , WRITER             writer  
-			 , CONTENT            content        
-             , REGDATE            regdate
-             , VIEWCNT            viewcnt
-             , POINT              point
-             , STARTDATE          startdate
-             , ENDDATE            enddate
-             , UPDATEDATE          updatedate
-             , DIST               dist
-		FROM NOTICE
-		WHERE NNO = #{nno}
-	</select>
 	
-	<select id="listNotice" resultType="notice">
-		SELECT NNO                nno             
-             , TITLE              title           
-             , WRITER             writer  
-			 , CONTENT            content        
-             , REGDATE            regdate
-             , VIEWCNT            viewcnt
-             , POINT              point
-             , STARTDATE          startdate
-             , ENDDATE            enddate
-             , UPDATEDATE          updatedate
-             , DIST               dist
-        FROM NOTICE 
-	</select>
+	
+	
+	
+	
+    
+	
+    
 	
 </mapper>

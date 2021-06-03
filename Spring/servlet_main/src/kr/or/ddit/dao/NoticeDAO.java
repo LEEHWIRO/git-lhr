@@ -11,17 +11,17 @@ import kr.or.ddit.dto.NoticeVO;
 
 public interface NoticeDAO {
 	
-	public NoticeVO listDetailNotice(SqlSession session,int nno) throws SQLException;
+	public NoticeVO selectNoticeByNno(SqlSession session,int nno) throws SQLException;
 	
-	public List<NoticeVO> listNotice(SqlSession session) throws SQLException;
-	public List<NoticeVO> listNotice(SqlSession session,Criteria cri) throws SQLException;
-	public List<NoticeVO> selectSearchNoticeList(SqlSession session,SearchCriteria cri) throws SQLException;
+	public List<NoticeVO> selectNoticeList(SqlSession session) throws SQLException;
+	public List<NoticeVO> selectNoticeList(SqlSession session,Criteria cri) throws SQLException;
+	public List<NoticeVO> selectNoticeList(SqlSession session,SearchCriteria cri) throws SQLException;
 	
 	public int selectNoticeListCount(SqlSession session,SearchCriteria cri) throws SQLException;
 	
-	public int insertNotice(SqlSession session, NoticeVO mv) throws SQLException;
+	public void insertNotice(SqlSession session, NoticeVO notice) throws SQLException;
 	
-	public int updateNotice(SqlSession session, NoticeVO mv) throws SQLException;
+	public int updateNotice(SqlSession session, NoticeVO notice) throws SQLException;
 	
 	public int deleteNotice(SqlSession session, int nno) throws SQLException;
 }

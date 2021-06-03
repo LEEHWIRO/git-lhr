@@ -26,7 +26,7 @@ public class NoticeUpdatePageHandler implements Handler {
 		int nno = Integer.parseInt(request.getParameter("nno"));
 		
 		try {
-			NoticeVO notice = noticeService.listDetailNotice(nno);
+			NoticeVO notice = noticeService.getNotice(nno);
 			
 			request.setAttribute("notice", notice);
 		} catch (Exception e) {

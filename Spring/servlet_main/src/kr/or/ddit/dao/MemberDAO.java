@@ -11,19 +11,18 @@ import kr.or.ddit.dto.MemberVO;
 
 public interface MemberDAO {
 	
-	public MemberVO listDetailMember(SqlSession session,String memId) throws SQLException;
+	public MemberVO selectMemberById(SqlSession session, String id) throws SQLException;
 	
-	public List<MemberVO> listMember(SqlSession session) throws SQLException;
-	public List<MemberVO> listMember(SqlSession session,Criteria cri) throws SQLException;
-	public List<MemberVO> selectSearchMemberList(SqlSession session,SearchCriteria cri) throws SQLException;
+	public List<MemberVO> selectMemberList(SqlSession session) throws SQLException;
+	public List<MemberVO> selectMemberList(SqlSession session,Criteria cri) throws SQLException;
+	public List<MemberVO> selectMemberList(SqlSession session,SearchCriteria cri) throws SQLException;
 	
 	public int selectMemberListCount(SqlSession session,SearchCriteria cri) throws SQLException;
 	
-	public int insertMember(SqlSession session, MemberVO mv) throws SQLException;
+	public void insertMember(SqlSession session, MemberVO member) throws SQLException;
 	
-	public int updateMember(SqlSession session, MemberVO mv) throws SQLException;
+	public int updateMember(SqlSession session, MemberVO member) throws SQLException;
 	
-	public int deleteMember(SqlSession session, String memId) throws SQLException;
+	public int deleteMember(SqlSession session, String id) throws SQLException;
 	
-	public MemberVO selectMemberById(SqlSession session, String id) throws SQLException;
 }

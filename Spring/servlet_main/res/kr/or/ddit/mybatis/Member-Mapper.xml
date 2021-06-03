@@ -5,11 +5,46 @@
 
 <mapper namespace="Member-Mapper">
 	
+	<sql id ="search">
+      <if test="searchType == 'i'.toString()">
+         and id like '%'||#{keyword}||'%'
+      </if>
+      <if test="searchType == 'p'.toString()">
+         and phone like '%'||#{keyword}||'%'
+      </if>
+      <if test="searchType == 'e'.toString()">
+         and email like '%'||#{keyword}||'%'
+      </if>
+    </sql>
+	
+	<select id="selectSearchMemberList" resultType="member">
+      select
+      *
+      from member
+      where id is not null
+      <include refid="search"/>
+      order by regdate desc
+   </select>
+   
+   <select id="selectSearchMemberListCount" resultType="int">
+      select
+      count(*)
+      from member
+      where id is not null
+      <include refid="search"/>
+   </select>
+	
 	<select id="selectMemberById" parameterType="str" resultType="member">
 		select *
 		from member
 		where id=#{id}
 	</select>
+	
+   <select id="selectMemberList" resultType="member">
+      select
+      *
+      from member
+   </select>
 	
 	<insert id="insertMember" parameterType="member">
 		INSERT INTO MEMBER (
@@ -17,25 +52,19 @@
              , PWD          
              , EMAIL
              , PICTURE
-             , ENABLED
-             , REGDATE
              , PHONE
              , NAME
-             , REGISTER
-             , ADDRESS
+<!--              , ADDRESS -->
              , AUTHORITY         
 		) VALUES (
 			  #{id}
 			, #{pwd}
 			, #{email}
-			, 'noImage.jpg' 
-			, #{enabled}
-			, sysdate
+			, #{picture} 
 			, #{phone}
 			, #{name}
-			, 'mimi'
-			, #{address}
-			, 'ROLE_USER'
+<!-- 			, #{address} -->
+			, #{authority}
 		)
 	</insert>
 	
@@ -56,65 +85,9 @@
 		WHERE ID = #{id}
 	</delete>
 	
-	<sql id ="search">
-      <if test="searchType == 'i'.toString()">
-         and id like '%'||#{keyword}||'%'
-      </if>
-      <if test="searchType == 'p'.toString()">
-         and phone like '%'||#{keyword}||'%'
-      </if>
-      <if test="searchType == 'e'.toString()">
-         and email like '%'||#{keyword}||'%'
-      </if>
-    </sql>
 	
-	<select id="listDetailMember" parameterType="str" resultType="member">
-		SELECT ID                id             
-             , PWD              pwd           
-             , EMAIL             email    
-             , PICTURE          picture   
-             , ENABLED          enabled
-             , REGDATE          regdate    
-             , PHONE             phone
-             , NAME             name  
-             , REGISTER         register
-             , ADDRESS          address
-             , AUTHORITY        authority            
-		FROM MEMBER
-		WHERE ID = #{id}
-	</select>
 	
-	<select id="listMember" resultType="member">
-		SELECT ID                id             
-             , PWD              pwd           
-             , EMAIL             email    
-             , PICTURE          picture   
-             , ENABLED          enabled
-             , REGDATE          regdate    
-             , PHONE             phone
-             , NAME             name  
-             , REGISTER         register
-             , ADDRESS          address
-             , AUTHORITY        authority        
-        FROM MEMBER 
-        ORDER BY REGDATE desc
-	</select>
 	
-	<select id="selectSearchMemberList" resultType="member">
-      select
-      *
-      from member
-      where id is not null
-      <include refid="search"/>
-      order by regdate desc
-   </select>
-   
-   <select id="selectSearchMemberListCount" resultType="int">
-      select
-      count(*)
-      from member
-      where id is not null
-      <include refid="search"/>
-   </select>
+	
 	
 </mapper>

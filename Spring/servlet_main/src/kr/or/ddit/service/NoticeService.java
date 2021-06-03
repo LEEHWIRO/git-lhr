@@ -15,15 +15,15 @@ import kr.or.ddit.dto.NoticeVO;
  */
 public interface NoticeService {
 
-	public NoticeVO listDetailNotice(int nno) throws SQLException;
+	public NoticeVO getNotice(int nno) throws SQLException;
 	
-	public List<NoticeVO> listNotice() throws SQLException;
-	public List<NoticeVO> listNotice(Criteria cri) throws SQLException;
-	Map<String,Object> getNoticeList(SearchCriteria cri) throws SQLException;
+	public List<NoticeVO> getNoticeList() throws SQLException;
+	public List<NoticeVO> getNoticeList(Criteria cri) throws SQLException;
+	public Map<String,Object> getNoticeList(SearchCriteria cri) throws SQLException;
 	
-	public int insertNotice(NoticeVO mv) throws SQLException;
+	public void regist(NoticeVO notice) throws SQLException;
 	
-	public int updateNotice(NoticeVO mv) throws SQLException;
+	public int modify(NoticeVO notice) throws SQLException;
 	
-	public int deleteNotice(int nno) throws SQLException;
+	public int remove(int nno) throws SQLException;
 }

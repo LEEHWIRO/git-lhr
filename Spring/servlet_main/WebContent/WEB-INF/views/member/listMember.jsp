@@ -85,22 +85,17 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="i" begin="0" end="${memberList.size()-1 }" step="1">
-								<c:if test="${empty memberList }">
-									<tr>
-										<td colspan="4">해당 내용이 없습니다.</td>
-									</tr>
-								</c:if>	
-								<tr>
-									<td><a href="<%=request.getContextPath() %>/member/detail.do?id=${memberList[i].id }">${memberList[i].id }</a></td>
-									<td>${memberList[i].pwd }</td>
-									<td>${memberList[i].email }</td>
-									<td>${memberList[i].phone }</td>
-									<td>
-										<fmt:formatDate value="${memberList[i].regdate }" pattern="yyyy-MM-dd"/>
-									</td>
-								</tr>
-								</c:forEach>	
+								<c:forEach items="${memberList }" var="member" >
+				               	  <tr onclick="OpenWindow('detail.do?id=${member.id }','','800','900');" style="cursor: pointer;">
+				               		<td>${member.id }</td>
+				              		<td>${member.pwd }</td>
+				              		<td>${member.email }</td>
+				              		<td>${member.phone }</td>
+				              		<td>
+				              			<fmt:formatDate value="${member.regdate }" pattern="yyyy-MM-dd"/>
+				              		</td>
+				              	  </tr>
+				               	</c:forEach>
 							</tbody>
 						</table>
 		           	</div>
@@ -113,7 +108,6 @@
 		</div>      				
 	</section>
 	
-	<script src="/resources/js/common.js"></script>
 	<script type="text/javascript">
 		<c:if test="${not empty msg}">
 			alert("${msg}")

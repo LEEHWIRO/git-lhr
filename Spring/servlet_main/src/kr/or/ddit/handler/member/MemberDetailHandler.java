@@ -16,12 +16,12 @@ public class MemberDetailHandler implements Handler {
 	
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String url = "member/listDetailMember";
+		String url = "member/detail";
 		String id = request.getParameter("id");
 		
+		MemberVO member = null;
 		try {
-			MemberVO member = memberService.listDetailMember(id);
-			
+			member = memberService.getMember(id);
 			request.setAttribute("member", member);
 		} catch (Exception e) {
 			e.printStackTrace();

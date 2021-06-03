@@ -15,59 +15,30 @@ public class NoticeDAOImpl implements NoticeDAO {
 	
 
 	@Override
-	public NoticeVO listDetailNotice(SqlSession session, int nno) throws SQLException {
-		NoticeVO mv = session.selectOne("Notice-Mapper.listDetailNotice",nno);
-		return mv;
+	public NoticeVO selectNoticeByNno(SqlSession session, int nno) throws SQLException {
+		NoticeVO notice = session.selectOne("Notice-Mapper.selectNoticeByNno",nno);
+		return notice;
 	}
 
 	@Override
-	public List<NoticeVO> listNotice(SqlSession session) throws SQLException {
-		List<NoticeVO> noticeList = session.selectList("Notice-Mapper.listNotice");
+	public List<NoticeVO> selectNoticeList(SqlSession session) throws SQLException {
+		List<NoticeVO> noticeList = session.selectList("Notice-Mapper.selectNoticeList");
 		return noticeList;
 	}
-	@Override
-	public int insertNotice(SqlSession session, NoticeVO mv) throws SQLException {
-		int cnt = 0;
-		
-		int obj = session.insert("Notice-Mapper.insertNotice", mv);
-		
-		if(obj == 1) {
-			cnt = 1;
-		}
-		
-		return cnt;
-	}
+	
 
 	@Override
-	public int updateNotice(SqlSession session, NoticeVO mv) throws SQLException {
-		int cnt = 0;
-		
-		cnt = session.update("Notice-Mapper.updateNotice", mv);
-		
-		return cnt;
-	}
-
-	@Override
-	public int deleteNotice(SqlSession session, int nno) throws SQLException {
-		int cnt = 0;
-		
-		cnt = session.delete("Notice-Mapper.deleteNotice", nno);
-		
-		return cnt;
-	}
-
-	@Override
-	public List<NoticeVO> listNotice(SqlSession session, Criteria cri) throws SQLException {
+	public List<NoticeVO> selectNoticeList(SqlSession session, Criteria cri) throws SQLException {
 		int offset = cri.getStartRowNum();
 		int limit = cri.getPerPageNum();
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		List<NoticeVO> noticeList = session.selectList("Notice-Mapper.listNotice",null,rowBounds);
+		List<NoticeVO> noticeList = session.selectList("Notice-Mapper.selectNoticeList",null,rowBounds);
 		return noticeList;
 	}
 
 	@Override
-	public List<NoticeVO> selectSearchNoticeList(SqlSession session, SearchCriteria cri) throws SQLException {
+	public List<NoticeVO> selectNoticeList(SqlSession session, SearchCriteria cri) throws SQLException {
 		int offset = cri.getStartRowNum();
 		int limit = cri.getPerPageNum();
 		RowBounds rowBounds = new RowBounds(offset, limit);
@@ -82,6 +53,30 @@ public class NoticeDAOImpl implements NoticeDAO {
 		count = session.selectOne("Notice-Mapper.selectSearchNoticeListCount",cri);
 		return count;
 
+	}
+	
+	@Override
+	public void insertNotice(SqlSession session, NoticeVO notice) throws SQLException {
+		session.insert("Notice-Mapper.insertNotice", notice);
+		
+	}
+
+	@Override
+	public int updateNotice(SqlSession session, NoticeVO notice) throws SQLException {
+		int cnt = 0;
+		
+		cnt = session.update("Notice-Mapper.updateNotice", notice);
+		
+		return cnt;
+	}
+
+	@Override
+	public int deleteNotice(SqlSession session, int nno) throws SQLException {
+		int cnt = 0;
+		
+		cnt = session.delete("Notice-Mapper.deleteNotice", nno);
+		
+		return cnt;
 	}
 	
 
