@@ -10,7 +10,7 @@ import kr.or.ddit.dto.MenuVO;
 import kr.or.ddit.service.MenuService;
 
 public class MainMenuHandler implements Handler {
-	
+
 	private MenuService menuService;
 	public void setMenuService(MenuService menuService) {
 		this.menuService = menuService;

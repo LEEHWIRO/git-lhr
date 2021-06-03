@@ -8,7 +8,7 @@ public class LogoutHandler implements Handler {
 
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String url = "redirect:";
+		String url="redirect:";
 		
 		HttpSession session = request.getSession();
 		session.invalidate();
