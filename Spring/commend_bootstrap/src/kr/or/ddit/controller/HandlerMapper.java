@@ -33,22 +33,22 @@ public class HandlerMapper {
 			try {
 				Class<?> actionClass = Class.forName(actionClassName);
 				Handler commandAction = (Handler)actionClass.newInstance();
-				System.out.println(commandAction);
-				//의존주입(service, dao ....)
+				
+				//의존주입(service, dao.......)
 				//의존성 확인 및 조립
-				Method[] methods = actionClass.getMethods();
+				Method[] methods = actionClass.getMethods();	
 				for (Method method : methods) {
 					if (method.getName().contains("set")) {
-						String paramType = method.getParameterTypes()[0].getName();
-						paramType = paramType.substring(paramType.lastIndexOf(".")+1);
+						String paramType=method.getParameterTypes()[0].getName();
+						paramType=paramType.substring(paramType.lastIndexOf(".")+1);
 						
-						paramType = (paramType.charAt(0) + "").toLowerCase() + paramType.substring(1);
+						paramType=(paramType.charAt(0) + "").toLowerCase()+ paramType.substring(1);		
 						try {
-							method.invoke(commandAction, 
+							method.invoke(commandAction,
 									ApplicationContext.getApplicationContext().get(paramType));
-							System.out.println("[HandlerMapper : invoke]" 
-									+ ApplicationContext.getApplicationContext().get(paramType));
-						}catch (Exception e) {
+							System.out.println("[HandlerMapper:invoke]"
+									+ApplicationContext.getApplicationContext().get(paramType));
+						} catch (Exception e) {						
 							e.printStackTrace();
 							throw e;
 						}
@@ -56,7 +56,7 @@ public class HandlerMapper {
 				}
 				
 				commandMap.put(command, commandAction);
-				System.out.println("[HandlerMapper]" + command + " : " + commandAction + "가 준비되었습니다.");
+				System.out.println("[HandlerMapper]"+command+":"+commandAction +" 가 준비되었습니다.");
 				
 			}catch (ClassNotFoundException e){
 				System.out.println("[HandlerMapper]"+actionClassName + "이 존재하지 않습니다.");
@@ -71,12 +71,13 @@ public class HandlerMapper {
 			
 		}
 		
-	}
-		public Handler getHandler(String url) {
-			Handler handler = commandMap.get(url);
-			return handler;
-		}
 		
+	}
+	
+	public Handler getHandler(String url){
+		Handler handler = commandMap.get(url);
+		return handler;
+	}
 }
 
 
