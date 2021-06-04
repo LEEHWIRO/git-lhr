@@ -80,7 +80,7 @@
 			          		</div>
 		          		
 			          		<div class="col-sm-3 text-center">
-			          			<button type="button" onclick="location.href='remove.do?id=${member.id}" 
+			          			<button type="button" onclick="location.href='remove.do?id=${member.id}'" 
 			          			id="deleteBtn" class="btn btn-danger" >삭 제</button>
 			          		</div>
 			          		<div class="col-sm-3 text-center">
