@@ -6,10 +6,10 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import kr.or.ddit.member.dao.MemberDao;
-import kr.or.ddit.member.dto.MemberVO;
+import kr.or.ddit.dao.MemberDAO;
+import kr.or.ddit.dto.MemberVO;
 
-public class MockMemberDao implements MemberDao {
+public class MockMemberDAO implements MemberDAO {
 
 	@Override
 	public MemberVO listDetailMember(SqlSession session, String memId) throws SQLException {
@@ -78,6 +78,12 @@ public class MockMemberDao implements MemberDao {
 		}
 		
 		return cnt;
+	}
+
+	@Override
+	public MemberVO selectMemberById(SqlSession session, String id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -6,8 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import kr.or.ddit.member.dto.MemberVO;
-import kr.or.ddit.member.service.MemberServiceImpl;
+import kr.or.ddit.dto.MemberVO;
+import kr.or.ddit.service.MemberServiceImpl;
 
 
 public class TestMemberServiceImpl {
@@ -17,7 +17,7 @@ public class TestMemberServiceImpl {
 	@Before
 	public void init() {
 		service = new MemberServiceImpl();
-		service.setMemberDao(new MockMemberDao());
+		service.setMemberDAO(new MockMemberDAO());
 	}
 	
 	@Test
