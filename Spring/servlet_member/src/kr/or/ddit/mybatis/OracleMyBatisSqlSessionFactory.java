@@ -15,7 +15,7 @@ public class OracleMyBatisSqlSessionFactory implements SqlSessionFactory{
 	
 	private SqlSessionFactory sqlSessionFactory;
 	{
-		String config = "kr/or/ddit/mybatis/SqlMapConfig.xml";
+		String config = "kr/or/ddit/mybatis/sqlConfig.xml";
 		
 		try {
 			Reader reader = Resources.getResourceAsReader(config);

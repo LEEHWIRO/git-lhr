@@ -10,7 +10,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import kr.or.ddit.member.dto.MemberVO;
+import kr.or.ddit.dto.MemberVO;
 
 public class TestOracleMyBatisSqlSessionFactory {
 	private SqlSessionFactory factory = new OracleMyBatisSqlSessionFactory();

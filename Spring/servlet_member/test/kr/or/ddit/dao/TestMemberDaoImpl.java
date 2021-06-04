@@ -9,20 +9,20 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import kr.or.ddit.member.dao.MemberDao;
-import kr.or.ddit.member.dao.MemberDaoImpl;
-import kr.or.ddit.member.dto.MemberVO;
+import kr.or.ddit.dao.MemberDAO;
+import kr.or.ddit.dao.MemberDAOImpl;
+import kr.or.ddit.dto.MemberVO;
 import kr.or.ddit.mybatis.OracleMyBatisSqlSessionFactory;
 
 public class TestMemberDaoImpl {
 	
 	private SqlSession session;
-	private MemberDao memDao;
+	private MemberDAO memDao;
 	
 	@Before
 	public void init() {
 		session = new OracleMyBatisSqlSessionFactory().openSession(false);
-		memDao = new MemberDaoImpl();
+		memDao = new MemberDAOImpl();
 	}
 	
 	@Test

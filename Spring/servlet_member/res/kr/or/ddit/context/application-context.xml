@@ -6,12 +6,12 @@
 	<bean id="sqlSessionFactory" class="kr.or.ddit.mybatis.OracleMyBatisSqlSessionFactory" />
 
 	<!-- Repository Layer -->
-	<bean id="memberDao"  class="kr.or.ddit.member.dao.MemberDaoImpl" />
+	<bean id="memberDAO"  class="kr.or.ddit.dao.MemberDAOImpl" />
 	
 	<!-- Service layer -->
-	<bean id="memberService" class="kr.or.ddit.member.service.MemberServiceImpl">
+	<bean id="memberService" class="kr.or.ddit.service.MemberServiceImpl">
 		<property name="sqlSessionFactory" ref-value="sqlSessionFactory" />
-		<property name="memberDao" ref-value="memberDao" />
+		<property name="memberDAO" ref-value="memberDAO" />
 	</bean>
 	
 	
