@@ -31,7 +31,6 @@ public class MemberListSearchPageHandler implements Handler {
       cri.setSearchType(searchType);
       cri.setKeyword(keyword);
 
-      
       Map<String, Object> dataMap = memberService.getMemberList(cri);
       
       

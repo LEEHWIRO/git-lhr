@@ -40,9 +40,9 @@ function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
 
 function CloseWindow(parentURL){
 	if(parentURL){
-		window.opener.location.href=parentUL;
+		window.opener.parent.location.href=parentUL;
 	}else {
-		window.opener.location.reload(true);
+		window.opener.parent.location.reload(true);
 	}
 	window.close();
 }
