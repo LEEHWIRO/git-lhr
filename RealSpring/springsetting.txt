@@ -1,0 +1,4 @@
+maven jsp 2.3.1
+maven ojdbc6
+maven servlet 3.1.0
+maven dbcp2 2.5.0
