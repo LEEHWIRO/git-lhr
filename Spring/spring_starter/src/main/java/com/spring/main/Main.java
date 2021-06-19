@@ -11,7 +11,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		System.out.println("두 개의 정수를 입력하세요. ex) 3 5");
+		ApplicationContext ctx = new GenericXmlApplicationContext("classpath:com/spring/context/root-context.xml");
+		Calculator cal = ctx.getBean("calculator",Calculator.class);
+		
+		System.out.print("두 개의 정수를 입력하세요. ex) 3 5");
 		
 		Scanner scann = new Scanner(System.in);
 		
@@ -22,8 +25,6 @@ public class Main {
 		
 		//Calculator cal = new Calculator();
 		
-		ApplicationContext ctx = new GenericXmlApplicationContext("classpath:com/spring/context/root-context.xml");
-		Calculator cal = ctx.getBean("calculator", Calculator.class);
 		
 		String result = "";
 		
@@ -36,10 +37,12 @@ public class Main {
 		case "2": result = result+cal.minus(a, b);break;
 		case "3": result = result+cal.multi(a, b);break;
 		case "4": result = result+cal.div(a, b);break;
-		default : System.out.println("연산 선택이 올바르지 않아 프로그램을 종료합니다."); return;
+		default : System.out.println("연산 선택이 올바르지 않아 프로그램을 종료합니다.");return;	
 		
 		}
 		
 		System.out.println("연산결과는 "+result+"입니다.");
+
 	}
+
 }

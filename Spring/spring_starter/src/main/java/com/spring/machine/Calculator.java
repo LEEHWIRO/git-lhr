@@ -2,18 +2,20 @@ package com.spring.machine;
 
 import com.spring.module.Divide;
 import com.spring.module.Minus;
-import com.spring.module.Multi;
+import com.spring.module.Multiplex;
 import com.spring.module.Summation;
 
 public class Calculator {
 	
 	private Summation sum = new Summation();
 	private Minus minus = new Minus();
-	private Multi multi = new Multi();
+	private Multiplex multi = new Multiplex();
 	private Divide div = new Divide();
 	
+	
+	
 	public int sum(int a, int b) {
-		return sum.sum(a, b);
+		return sum.sum(a,b);
 	}
 	
 	public int minus(int a, int b) {
@@ -24,7 +26,8 @@ public class Calculator {
 		return multi.multi(a, b);
 	}
 	
-	public int div(int a, int b) {
+	
+	public double div(int a, int b) {
 		return div.div(a, b);
 	}
 
@@ -44,11 +47,11 @@ public class Calculator {
 		this.minus = minus;
 	}
 
-	public Multi getMulti() {
+	public Multiplex getMulti() {
 		return multi;
 	}
 
-	public void setMulti(Multi multi) {
+	public void setMulti(Multiplex multi) {
 		this.multi = multi;
 	}
 
@@ -61,4 +64,13 @@ public class Calculator {
 	}
 	
 	
+	
+	
 }
+
+
+
+
+
+
+
